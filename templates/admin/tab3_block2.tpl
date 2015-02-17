@@ -54,7 +54,7 @@
       </table>
       </div>
       <div class="left_line">
-      <img src="[IMAGE_FILE]" width="150">
+      [IMAGE_SRC_FULL]
       </div>
       <div class="clear_line"></div>
     </div>
