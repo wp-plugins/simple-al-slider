@@ -56,6 +56,7 @@ $.post( url, { action:"simple_al_saveBgData_ajax", slider_id: $('#projects').val
     image_frm = image_frm.replace(/\[IMAGE_ID\]/g, inp[2]);
     image_frm = image_frm.replace(/\[IMAGE_NAME\]/g, inp[3]);
       image_frm = image_frm.replace(/\[IMAGE_FILE\]/g, image_addr);
+      image_frm = image_frm.replace(/\[IMAGE_SRC_FULL\]/g, '<img src="'+image_addr+'" width="150">');
 
     ins_slide_into_array(inp[0], inp[1]);
     

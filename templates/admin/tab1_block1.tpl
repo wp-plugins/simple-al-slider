@@ -118,6 +118,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   </table>
   </div>
   <div class="left_line">
+  <table>
     <tr>
   <td>
   Apply Classes
@@ -128,7 +129,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   </textarea>
   </td>
   </tr>
-
+</table>
   </div>
   <div class="clear_line"></div>
     <input type="submit" value=" Save main info " name="main_info_save_btn">

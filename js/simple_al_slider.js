@@ -332,7 +332,7 @@ if(!jQuery.browser){
 	if (((verOffset=nAgt.indexOf("Opera"))!=-1)||((verOffset2=nAgt.indexOf("OPR"))!=-1)) {
 		jQuery.browser.opera = true;
 		jQuery.browser.name = "Opera";
-		console.log(nAgt, verOffset);
+		//console.log(nAgt, verOffset);
 		if (verOffset != -1)
 		jQuery.browser.fullVersion = nAgt.substring(verOffset+6);
 		if (verOffset2 != -1)
@@ -468,7 +468,7 @@ var resize_slider = function()
       {
         koef = settings.parent_params[0]/slider_inner.width();
       }
-        console.log(slider_inner.attr("id"), koef);
+        //console.log(slider_inner.attr("id"), koef);
       $.fn.simple_al_slider_base.set_resize_by_scale(slider_inner.parent(), koef, "0 0 0");
   }
 var setAllow = function() {
