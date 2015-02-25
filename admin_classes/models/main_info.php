@@ -13,10 +13,16 @@ public function __construct($db)
 public function saveMainData($source, $pid)
   {
   if (!isset($source['fullscreen'])) $source['fullscreen'] = 0;
+  
+  if (isset($source['effects_names']))
+  $source['effects_names_gather'] = implode("***", $source['effects_names']);
+    else
+  $source['effects_names_gather'] = 'opacity';
+  
   $filter = array(array('name', 'name', '%s'),
             array('width', 'width', '%d'), array('height', 'height', '%d'), array('duration', 'duration', '%d'),
             array('duration_effect', 'duration_effect', '%d'), array('duration_text_effect', 'duration_text_effect', '%d'),
-            array('effect', 'effect', '%s'), array('effect_direction', 'effect_direction', '%s'),
+            array('effect', 'effects_names_gather', '%s'), array('effect_direction', 'effect_direction', '%s'),
             array('apply_classes', 'apply_classes', '%s'),
             array('fullscreen', 'fullscreen', '%d')
             );

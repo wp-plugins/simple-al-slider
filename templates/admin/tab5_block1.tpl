@@ -1,5 +1,5 @@
 <h2>Slider Settings</h2>
-<form method="POST" id="settings_frm_1" class="settings_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=4&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?>">
+<form method="POST" id="settings_frm_1" class="settings_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=4&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>">
   <input type="hidden" name="pid" value="<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?>">
   <?php
   if (function_exists('wp_nonce_field'))
@@ -10,7 +10,7 @@
 <h3>Buttons</h3>
 <table id="tbl_settings">
 <?php
-$settings_ind = range(1, 2);
+$settings_ind = range(1, 5);
 foreach ($settings_ind as $setts)
   {
   echo "<tr><td>";

@@ -41,13 +41,15 @@ public function addAdminScryptesAndStyles()
   }
 public function addMenu()
   {
-    $main_page = add_menu_page('Simple AL Slider', 'Simple AL Slider', 'manage_options', 'simpleal_slider_show', array('\simpleal\Sial_Admin_Common', 'execute'), plugins_url('images/menu_pict.png', $this->file));
+    $main_page = add_menu_page('Simple AL Slider', 'Simple AL Slider', 'manage_options', 'simpleal_show_about', array('\simpleal\Sial_Admin_Common', 'simpleal_show_about'), plugins_url('images/menu_pict.png', $this->file));
        	
-    $submenu = add_submenu_page('simpleal_slider_show', 'Simple Slider Info', 'Simple Slider Info', 'manage_options', 'simpleal_slider_show_info', array('\simpleal\Sial_Admin_Common', 'show_info'));
-    $submenu2 = add_submenu_page('simpleal_slider_show', 'Other Products', 'Other Products', 'manage_options', 'simpleal_slider_show_products', array('\simpleal\Sial_Admin_Common', 'simpleal_show_products'));
+    $submenu = add_submenu_page('simpleal_show_about', 'Simple AL Slider Setup', 'Simple AL Slider Setup', 'manage_options', 'simpleal_slider_show', array('\simpleal\Sial_Admin_Common', 'execute'));
+    $submenu2 = add_submenu_page('simpleal_show_about', 'Simple Slider Info', 'Simple Slider Info', 'manage_options', 'simpleal_slider_show_info', array('\simpleal\Sial_Admin_Common', 'show_info'));
+    $submenu3 = add_submenu_page('simpleal_show_about', 'Other Products', 'Other Products', 'manage_options', 'simpleal_slider_show_products', array('\simpleal\Sial_Admin_Common', 'simpleal_show_products'));
 
        	add_action('admin_print_styles-' . $submenu, array('\simpleal\Sial_Admin_Common', 'addAdminScryptesAndStyles'));
        	add_action('admin_print_styles-' . $submenu2, array('\simpleal\Sial_Admin_Common', 'addAdminScryptesAndStyles'));
+       	add_action('admin_print_styles-' . $submenu3, array('\simpleal\Sial_Admin_Common', 'addAdminScryptesAndStyles'));
        	add_action('admin_print_styles-' . $main_page, array('\simpleal\Sial_Admin_Common', 'addAdminScryptesAndStyles'));
 
   }
@@ -81,7 +83,7 @@ public static function sial_install()
   `duration_effect` int(8) DEFAULT 100,
   `duration_text_effect` int(8) DEFAULT 200,
   `effect_direction` varchar(100) DEFAULT 'forward',
-  `effect` varchar(100) DEFAULT 'default',
+  `effect` text DEFAULT '',
   `fullscreen` int(2) DEFAULT 0,
   `apply_classes` text DEFAULT '',
   `settings_buttons` int(3) DEFAULT 1,
@@ -190,6 +192,7 @@ public function execute()
 
     $mainInfoController = new Controller_MainInfo(new Model_MainInfo($db));
       list($data['proj_id'], $data['all_projects'], $data['slider']) = $mainInfoController->execute($data['proj_id']);
+      list($data['slider']['slides_info'], $data['slds_pagination'], $data['slides_caption']) = $slideController->makePagination($data['slider']['slides_info']);
     
     $views = new Sial_View(array('admin/header', 
                            array('admin/tab1_header', array('admin/tab1_block1'), 'admin/tab1_footer'),
@@ -202,6 +205,17 @@ public function execute()
     $views->setData($data);
     echo $views->viewTemplates();
   }
+public function simpleal_show_about()
+  {
+    $data = array();
+
+    $views = new Sial_View(array('simple_al_about/header', 
+                           array('simple_al_about/page1_header', array('simple_al_about/page1_block1', 'simple_al_about/page1_block2'), 'simple_al_about/page1_footer'),
+                          'simple_al_about/footer'));
+    $views->setData($data);
+    echo $views->viewTemplates();
+  }
+
 public function show_info()
   {
     $data = array();
