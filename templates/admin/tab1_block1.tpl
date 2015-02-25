@@ -3,7 +3,7 @@
 if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
 {
 ?>
-  <form method="POST" id="main_info_frm_<?php echo $slider['main_info']['sldrid']; ?>" class="main_info_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=0&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?>&amp;updated=true">
+  <form method="POST" id="main_info_frm_<?php echo $slider['main_info']['sldrid']; ?>" class="main_info_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=0&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>&amp;updated=true">
   <?php
   if (function_exists('wp_nonce_field'))
     {
@@ -92,7 +92,10 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   </td>
   <td>
     <select name="effect">
-  <?php $main_effects = array("opacity", "width", "height"); ?>
+  <?php $main_effects = array("opacity", "width", "height", "incrop_decrop_vert", "incrop_decrop_horiz", "incrop_decrop4x2", 
+  "incrop_decrop7x3", "incrop_decrop10x4", "mpopob_vert", "mpopob_horiz", "mpopob4x2", "mpopob10x4", "decrop_vert", "decrop_horiz",
+  "decrop4x2", "decrop7x3", "decrop10x4", "size_rotatex4x2", "size_rotatex10x4", "size_rotatey4x2", "size_rotatey10x4",
+  "skew4x2", "skew7x3", "translatex4x2", "translatex10x5", "translatey4x2", "translatey10x5"); ?>
   <?php if ((isset($slider['main_info']))&&(isset($slider['main_info']['effect']))) {
   foreach ($main_effects as $me)
   {
