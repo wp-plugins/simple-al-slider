@@ -12,7 +12,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
   {
   ?>
   <div class='text_container'>
-  <form method="POST" id="text_frm_<?php echo $image['txtid']; ?>" class="text_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=3&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?>&amp;updated=true">
+  <form method="POST" id="text_frm_<?php echo $image['txtid']; ?>" class="text_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=3&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>&amp;updated=true">
           <?php
   if (function_exists('wp_nonce_field'))
     {

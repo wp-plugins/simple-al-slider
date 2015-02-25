@@ -171,10 +171,6 @@ echo wp_create_nonce("upd_rec_slide");
 <!-- ********************************************* Tab Page 1 ****************************************************** -->
 
 <div><img src='<?php echo plugins_url("../../images/caption.png", __FILE__); ?>'></div>
-<div style="float:right;">
-If you find our free project useful, you can donate.
-<a href="https://secure.avangate.com/order/checkout.php?PRODS=4638772&QTY=1&CART=1&CARD=1&ORDERSTYLE=nLWo45a5jLg=" class="btn_href" target="_blank">Buy our donate card.</a>
-</div>
  
  Projects 
  <select name="cur_project" id="projects">

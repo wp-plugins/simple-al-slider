@@ -8,4 +8,6 @@ $cache_db = false;
 //How long cache sql query data will be used till expired
 $cache_sql_expiration = 1800;
 
+//Slides in per page mode
+$slides_per_page = 6;
 ?>
