@@ -100,12 +100,23 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   foreach ($main_effects as $me)
   {
    ?>
-  <?php if ($slider['main_info']['effect'] == $me) { ?>
-    <option value="<?php echo $me; ?>" selected="selected"><?php echo $me; ?></option>
-    <?php } else { ?>
     <option value="<?php echo $me; ?>"><?php echo $me; ?></option>
-    <?php } } } ?>
+    <?php } } ?>
   </select>
+  <button name="apply_effect_name">apply effect</button>
+  <div class="applied_effects">
+  <?php if ((isset($slider['main_info']))&&(isset($slider['main_info']['effect']))) {
+  $applied_effects = explode("***", $slider['main_info']['effect']);
+  foreach ($applied_effects as $ae)
+  {
+   ?>
+  <?php if (in_array($ae, $main_effects)) { ?>
+    <div class='effect_element' style='line-height:30px;'><img src='<?php echo plugins_url("../../images/close.png", __FILE__); ?>' class='close_effect_elem' style='cursor:pointer;'>&nbsp;&nbsp;&nbsp;<?php echo $ae; ?><input type='hidden' name='effects_names[]' value='<?php echo $ae; ?>'></div>
+    <?php } 
+    }
+  } ?>
+  
+  </div>
   </td>
   </tr>
 

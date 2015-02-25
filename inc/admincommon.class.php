@@ -83,7 +83,7 @@ public static function sial_install()
   `duration_effect` int(8) DEFAULT 100,
   `duration_text_effect` int(8) DEFAULT 200,
   `effect_direction` varchar(100) DEFAULT 'forward',
-  `effect` varchar(100) DEFAULT 'default',
+  `effect` text DEFAULT '',
   `fullscreen` int(2) DEFAULT 0,
   `apply_classes` text DEFAULT '',
   `settings_buttons` int(3) DEFAULT 1,

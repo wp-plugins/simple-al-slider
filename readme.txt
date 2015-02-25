@@ -4,7 +4,7 @@ Donate link: https://secure.avangate.com/order/checkout.php?PRODS=4638772&QTY=1&
 Tags: slider, slideshow, wordpress slider, image slider, responsive slideshow, image Rotator, jquery slider, Photo Slider, slider plugin, javascript slider, responsive slider, featured-content-slider, Horizontal slider, wp slider, vertical slider, best slider plugin, javascript slideshow, slideshow manager, slideshow plugin, image slideshow, jquery slideshow, wordpress slideshow, vertical slides, responsive, plugin, slider widget, widget slider, widget slideshow, widget, widgets, seo, wordpress seo, media, page, slide, slides, image, images, slide show, slider shortcode, picture slider, text slider, text slides, text slideshow, jquery image slider, slider wordpress, image slider wordpress, wordpress slider plugin, html slider, html image slider, html jquery slider, jquery gallery slider, slider js, js image slider, js slideshow, javascript slideshow, js slide show, javascript image slider, simple jquery slider, simple slider, simple image slider, simple jquery image slider, simple javascript image slider, js image rotator, javascript image rotator, banner slider, jquery banner slider, jquery banner, banner slideshow, free image slider, free slider, free sliders, image sliders, jquery image sliders, jquery slider plugin, slider plugin, jquery slider plugins, responsive slider jquery,  jquery vertical slider, vertical image slider jquery, jquery horizontal slider, horizontal image slider jquery, jquery photo slider, photo gallery jquery, jquery photo slideshow, jquery slideshow, jquery image slideshow, jquery slideshow tutorial, website slider, free slider for website, best jquery slider, slideshow html, html image slideshow, jquery image gallery, jquery gallery plugin, slideshow maker online, slideshow online, photo slideshow online, responsive slider, image slider responsive, jquery slide, jquery slide show, jquery image slide, responsive slideshow jquery, slideshow responsive, photo slide show, slide show html, picture slide show, slide show online, responsive gallery slider, jquery slider tutorial, web slider, slider maker, anything slider, slideshow creator,  slideshow for website, image slideshow, simple slideshow, jquery rotator, photo show, slider widget, image slider widget, wordpress slider widget, best wordpress silders, new slider, last version slider, last sliders, new sliders, easy setup slider, free jquery slider, best responsive slider, responsive slider pligin, wordpress jquery plugin, plugin slideshow wordpress, website image slider, jquery image slider plugin, widget slider wordpress, responsive slider free, slider image jquery, slider images for website, latest slider, latest sliders, latest image slider, latest slideshow, latest jquery slider, great jquery slider, jquery slideshow plugins, responsive image slider jquery, vertical slider wordpress, banner slider wordpress, slider images jquery
 Requires at least: 3.6
 Tested up to: 4.1.1
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,9 @@ Some themes (very small amount from tested) reapply css rules (for all images fo
 = 1.1.0 =
 * new effects added, added capability to work with range of slides, added new buttons, changed algorithm for old browsers, changed some specific features.
 
+= 1.1.1 =
+* added capability for multiply effects applying.
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -81,3 +84,6 @@ First version.
 
 = 1.1.0 =
 * new effects added, added capability to work with range of slides, added new buttons, changed algorithm for old browsers, changed some specific features.
+
+= 1.1.1 =
+* changed effect field type.
