@@ -10,4 +10,7 @@ $cache_sql_expiration = 1800;
 
 //Slides in per page mode
 $slides_per_page = 6;
+
+//For db upgrade
+$simple_al_slider_db_version = "1.0";
 ?>

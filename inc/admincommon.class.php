@@ -74,50 +74,50 @@ public static function sial_install()
   $table_texts = $wpdb->prefix.'simpleal_texts';
 
 //slider
-  $sql1 = "CREATE TABLE IF NOT EXISTS `".$table_slider."` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `width` int(5) DEFAULT 0,
-  `height` int(5) DEFAULT 0,
-  `duration` int(8) DEFAULT 1000,
-  `duration_effect` int(8) DEFAULT 100,
-  `duration_text_effect` int(8) DEFAULT 200,
-  `effect_direction` varchar(100) DEFAULT 'forward',
-  `effect` text DEFAULT '',
-  `fullscreen` int(2) DEFAULT 0,
-  `apply_classes` text DEFAULT '',
-  `settings_buttons` int(3) DEFAULT 1,
-  `settings_buttons_top` int(7) DEFAULT 0,
-  PRIMARY KEY (`id`)
+  $sql1 = "CREATE TABLE `".$table_slider."` (
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  name varchar(100) NOT NULL,
+  width int(5) DEFAULT 0,
+  height int(5) DEFAULT 0,
+  duration int(8) DEFAULT 1000,
+  duration_effect int(8) DEFAULT 100,
+  duration_text_effect int(8) DEFAULT 200,
+  effect_direction varchar(100) DEFAULT 'forward',
+  effect text DEFAULT NULL,
+  fullscreen int(2) DEFAULT 0,
+  apply_classes text DEFAULT NULL,
+  settings_buttons int(3) DEFAULT 1,
+  settings_buttons_top int(7) DEFAULT 0,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
 
 
 //slides
-  $sql2 = "CREATE TABLE IF NOT EXISTS `".$table_slides."` (
+  $sql2 = "CREATE TABLE `".$table_slides."` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL DEFAULT '',
   `slider_id` int(11) unsigned NOT NULL,
   `num` int(5) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   FOREIGN KEY (slider_id) REFERENCES ".$table_slider."(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
 
 //images
-  $sql3 = "CREATE TABLE IF NOT EXISTS `".$table_images."` (
+  $sql3 = "CREATE TABLE `".$table_images."` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL DEFAULT '',
   `url` varchar(250) NOT NULL DEFAULT '',
   `image` varchar(250) NOT NULL DEFAULT '',
   `slide_id` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   FOREIGN KEY (slide_id) REFERENCES ".$table_slides."(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
 
 //texts
-  $sql4 = "CREATE TABLE IF NOT EXISTS `".$table_texts."` (
+  $sql4 = "CREATE TABLE `".$table_texts."` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL DEFAULT '',
   `url` varchar(250) NOT NULL DEFAULT '',
@@ -128,22 +128,38 @@ public static function sial_install()
   `offsettop` int(5) NOT NULL DEFAULT 0,
   `color` varchar(50) DEFAULT '#000000',
   `bgcolor` varchar(50) DEFAULT '#ffffff',
-  `style` text DEFAULT '',
-  `classes` text DEFAULT '',
+  `style` text DEFAULT NULL,
+  `classes` text DEFAULT NULL,
   `size` int(5) DEFAULT 10,
   `slide_id` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   FOREIGN KEY (slide_id) REFERENCES ".$table_slides."(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
 
-    $wpdb->query($sql1);
-    $wpdb->query($sql2);
-    $wpdb->query($sql3);
-    $wpdb->query($sql4);
+global $simple_al_slider_db_version;
 
+$installed_ver = get_option( "simple_al_slider_db_version" );
+
+if (( $installed_ver != $simple_al_slider_db_version )||(is_null($installed_ver))) {
+
+require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+      dbDelta($sql1);
+      dbDelta($sql2);
+      dbDelta($sql3);
+      dbDelta($sql4);
+      
+      update_option( "simple_al_slider_db_version", $simple_al_slider_db_version );
+    }
   }
-
+public function simple_al_update_db_check()
+  {
+    global $simple_al_slider_db_version;
+    if (( get_site_option( 'simple_al_slider_db_version' ) != $simple_al_slider_db_version )||(is_null(get_site_option( 'simple_al_slider_db_version' )))) {
+        self::sial_install();
+    }
+  }
 public static function sial_uninstall()
   {
   self::setWpdb();
