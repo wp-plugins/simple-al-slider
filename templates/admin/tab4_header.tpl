@@ -95,6 +95,8 @@ function set_color_pickers()
         set_color_pickers();
 
      $( "input[type='submit']" ).not(".hdn").button();
+                 $('.set_image').button();
+                 window.set_simple_al_image();
 
     });
     }

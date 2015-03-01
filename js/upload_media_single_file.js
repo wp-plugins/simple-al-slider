@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
-    
-$('.set_image').click(function(event)
+window.set_simple_al_image = function(){
+$('.set_image').unbind('click').bind('click', function(event)
 {
   event.preventDefault();
   var current_element = this;
@@ -26,7 +26,7 @@ $('.set_image').click(function(event)
 
       attachements.push([attachement.id, attachement.url, attachement.caption]);
 
-      set_element_image_data(attachement.url, current_element);
+      set_element_image_data(attachement.url, current_element, attachement.width);
       
     })
 
@@ -34,10 +34,12 @@ $('.set_image').click(function(event)
   .open();
 
 });
-function set_element_image_data(url, current_element)
+function set_element_image_data(url, current_element, width)
   {
-    $(current_element).parent().find('.element_image_src').attr('src', url);
+    $(current_element).parent().find('.element_image_src').attr('src', url).css('width', ((width<200)?width:200)+"px");
+
     $(current_element).parent().find('.element_image').val(url);
   }
-  
+}
+window.set_simple_al_image();
 });

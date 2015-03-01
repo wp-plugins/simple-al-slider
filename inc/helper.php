@@ -48,7 +48,7 @@ public function addScryptfront($handle, $path)
               
               $all_plugins = get_plugins();
               
-              wp_localize_script($handle, 'simple_al_WPURLS', array( 'pluginurl' => trailingslashit( plugin_dir_url( __FILE__ ) ), 'aaa' => WP_PLUGIN_DIR."/simple_al_slider/simple_al_slider.php", 'pluginname' => $all_plugins["simple_al_slider/simple_al_slider.php"]['Name'] ));
+              wp_localize_script($handle, 'simple_al_WPURLS', array( 'pluginurl' => trailingslashit( plugin_dir_url( __FILE__ ) ), 'pluginname' => $all_plugins["simple-al-slider/simple-al-slider.php"]['Name'] ));
               
             wp_print_scripts($handle);
         }
