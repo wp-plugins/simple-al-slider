@@ -13,10 +13,16 @@ public function __construct($db)
 public function saveMainData($source, $pid)
   {
   if (!isset($source['fullscreen'])) $source['fullscreen'] = 0;
+  
+  if (isset($source['effects_names']))
+  $source['effects_names_gather'] = implode("***", $source['effects_names']);
+    else
+  $source['effects_names_gather'] = 'opacity';
+  
   $filter = array(array('name', 'name', '%s'),
             array('width', 'width', '%d'), array('height', 'height', '%d'), array('duration', 'duration', '%d'),
             array('duration_effect', 'duration_effect', '%d'), array('duration_text_effect', 'duration_text_effect', '%d'),
-            array('effect', 'effect', '%s'), array('effect_direction', 'effect_direction', '%s'),
+            array('effect', 'effects_names_gather', '%s'), array('effect_direction', 'effect_direction', '%s'),
             array('apply_classes', 'apply_classes', '%s'),
             array('fullscreen', 'fullscreen', '%d')
             );
@@ -62,9 +68,9 @@ public function getMainInfo($id)
     $sql = "select slider.*, slider.id as sldrid, slider.name as sldrname, slider.width as sldrwidth, slider.height as sldrheight,
     '' as delim1,
     slides.*, slides.id as sldsid, slides.name as sldsname, '' delim2,
-    img.*, img.url as imgurl, img.id as imgid, img.name as imgname, img.slide_id as imgsldid, '' delim3,
-    txt.*, txt.url as txturl, txt.id as txtid, txt.name as txtname, txt.width as txtwidth, txt.height as txtheight,
-    txt.slide_id as txtsldid, slides.name as txtsldname, '' delim4
+    img.*, img.url as imgurl, img.image as imgimage, img.id as imgid, img.name as imgname, img.slide_id as imgsldid, '' delim3,
+    txt.*, txt.url as txturl, txt.id as txtid, txt.name as txtname, txt.width as txtwidth, txt.height as txtheight, 
+    txt.image as txtimage, txt.type as txttype, txt.slide_id as txtsldid, slides.name as txtsldname, '' delim4
     from ".$this->table." as slider left join ".$tables['slides']." as slides on (slider.id=slides.slider_id)
     left join ".$tables['images']." as img on (slides.id=img.slide_id) left join ".$tables['texts']." as txt 
     on (slides.id=txt.slide_id) where slider.id=%d order by slider.id, slides.id, img.id, txt.id";
