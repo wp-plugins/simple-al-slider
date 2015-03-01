@@ -143,6 +143,29 @@ var big_frm_errors = [];
                 $(newsel).html("<br>"+big_frm_errors.join("<br>"));
               }
 }  
+
+    var effect_close_event = function(){
+        $('.effect_element img').unbind("click").bind("click", function(event){
+            event.preventDefault();
+          $(this).parent().remove();
+        });
+    }
+    
+    $('button[name="apply_effect_name"]').click(function(event){
+    event.preventDefault();
+    var check_name_possibility = true;
+    $('input[name="effects_names[]"').each(function(i,v){
+      if ($(v).val() == $("select[name='effect']").val())check_name_possibility = false;
+    });
+    if (check_name_possibility)
+      $('.applied_effects').append("<div class='effect_element' style='line-height:30px;'><img src='<?php echo plugins_url("../../images/close.png", __FILE__); ?>' class='close_effect_elem' style='cursor:pointer;'>&nbsp;&nbsp;&nbsp;"+$("select[name='effect']").val()+"<input type='hidden' name='effects_names[]' value='"+$("select[name='effect']").val()+"'></div>");
+
+        effect_close_event();
+
+    });
+
+    effect_close_event();
+    
   });
   </script>
 
@@ -171,10 +194,6 @@ echo wp_create_nonce("upd_rec_slide");
 <!-- ********************************************* Tab Page 1 ****************************************************** -->
 
 <div><img src='<?php echo plugins_url("../../images/caption.png", __FILE__); ?>'></div>
-<div style="float:right;">
-If you find our free project useful, you can donate.
-<a href="https://secure.avangate.com/order/checkout.php?PRODS=4638772&QTY=1&CART=1&CARD=1&ORDERSTYLE=nLWo45a5jLg=" class="btn_href" target="_blank">Buy our donate card.</a>
-</div>
  
  Projects 
  <select name="cur_project" id="projects">
@@ -219,8 +238,8 @@ If you find our free project useful, you can donate.
   <ul>
     <li><a href="#tabs-1">Slider</a></li>
     <li><a href="#tabs-2">Slides</a></li>
-    <li><a href="#tabs-3">Images</a></li>
-    <li><a href="#tabs-4">Texts</a></li>
+    <li><a href="#tabs-3">Bg Images</a></li>
+    <li><a href="#tabs-4">Elements</a></li>
     <li><a href="#tabs-5">Settings</a></li>
     <li><a href="#tabs-6">Paste Code</a></li>
   </ul>
