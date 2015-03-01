@@ -95,7 +95,11 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   <?php $main_effects = array("opacity", "width", "height", "incrop_decrop_vert", "incrop_decrop_horiz", "incrop_decrop4x2", 
   "incrop_decrop7x3", "incrop_decrop10x4", "mpopob_vert", "mpopob_horiz", "mpopob4x2", "mpopob10x4", "decrop_vert", "decrop_horiz",
   "decrop4x2", "decrop7x3", "decrop10x4", "size_rotatex4x2", "size_rotatex10x4", "size_rotatey4x2", "size_rotatey10x4",
-  "skew4x2", "skew7x3", "translatex4x2", "translatex10x5", "translatey4x2", "translatey10x5"); ?>
+  "skew4x2", "skew7x3", "translatex4x2", "translatex10x5", "translatey4x2", "translatey10x5",
+  "left_top_corner_superposition", "left_second_superposition", "left_top_line_superposition", "mixed_top_superposition", 
+  "top_horiz_superposition", "left_vert_superposition", "right_vert_superposition", "bottom_horiz_superposition", 
+  "center_horiz_superposition", "right_bottom_corner_superposition", "left_second_superposition_one_way", 
+  "center_horiz_superposition_one_way", "left_vert_superposition_one_way"); ?>
   <?php if ((isset($slider['main_info']))&&(isset($slider['main_info']['effect']))) {
   foreach ($main_effects as $me)
   {

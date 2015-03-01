@@ -20,7 +20,7 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
     ?>
   <div class="simple_al_item" id="simple_al_item_<?php echo $unq; ?>_<?php echo $slnum; ?>">
     <div class="simple_al_subitem" id="simple_al_subitem_<?php echo $unq; ?>_<?php echo $subslnum; ?>">
-      <img src="<?php echo $slide['imgs']['image']; ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
+      <img src="<?php echo $slide['imgs']['imgimage']; ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
     </div>
     <div class="simple_al_subitem txt_container" id="simple_al_subitem_<?php echo $unq; ?>_<?php echo ($subslnum+1); ?>">
     <?php
@@ -35,6 +35,11 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
     ?>
 
       <?php
+     if (isset($txt['txttype']))
+      {
+     switch ($txt['txttype'])
+        {
+      case 0:
      if ((isset($txt['txturl']))&&(!empty($txt['txturl'])))
       echo "<a href='".$txt['txturl']."'>";
       ?>
@@ -45,9 +50,26 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
         <?php
      if ((isset($txt['txturl']))&&(!empty($txt['txturl'])))
           echo "</a>";
+          break;
+          
+      case 1:
+     if ((isset($txt['txturl']))&&(!empty($txt['txturl'])))
+      echo "<a href='".$txt['txturl']."'>";
+      ?>
+
+      <div class="simple_al_subitem_txt <?php echo $txt['classes']; ?>" id="simple_al_subitem_txt_<?php echo $unq; ?>_<?php echo $txtnum; ?>" style="background-color:<?php echo $txt['bgcolor']; ?>;color:<?php echo $txt['color']; ?>;width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;font-size:<?php echo $txt['size']; ?>pt;display:none;position:absolute;left:0px;top:0px;<?php echo $txt['style']; ?>">
+        <img src="<?php echo stripslashes($txt['txtimage']); ?>" style="width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;">
+      </div>
+        <?php
+     if ((isset($txt['txturl']))&&(!empty($txt['txturl'])))
+          echo "</a>";
+          break;
+
         ?>
 
       <?php
+        }
+      }
     }
     $positions_output .= "},";
       ?>
@@ -61,6 +83,9 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
 
 </div>
 </div>
+</div>
+<div class="class_for_out_styles">
+
 </div>
 <style>
 <?php echo stripslashes($front['slider']['apply_classes']); ?>

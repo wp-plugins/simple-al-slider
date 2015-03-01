@@ -24,11 +24,14 @@ public function __construct($file)
 public function addAdminScryptesAndStyles()
   {
   $helper = new Sial_Helper();
+  
     $helper->addStyle("jquery-ui-css", "css/jquery-ui.css");
+
     $helper->addStyle("main-css", "css/main.css");
     $helper->addStyle("colorpicker-css", "css/jquery.minicolors.css");
 
     $helper->addScrypt("bg-file-js", "js/upload_media_bg_files.js");
+    $helper->addScrypt("media-single-file-js", "js/upload_media_single_file.js");
     $helper->addScrypt("colorpicker-js", "js/jquery.minicolors.min.js");
 
    if(function_exists( 'wp_enqueue_media' )){
@@ -56,6 +59,7 @@ public function addMenu()
 public function init()
   {
     add_action('admin_menu', array($this, 'addMenu'));
+    //add_action('admin_enqueue_scripts', array('\simpleal\Sial_Admin_Common', 'addAdminScryptesAndStyles'));
   }
 public static function onActivate($file)
   {
@@ -122,6 +126,8 @@ public static function sial_install()
   `name` varchar(100) NOT NULL DEFAULT '',
   `url` varchar(250) NOT NULL DEFAULT '',
   `text` text NOT NULL DEFAULT '',
+  `type` int(5) NOT NULL DEFAULT 0,
+  `image` text NOT NULL DEFAULT '',
   `width` int(5) NOT NULL DEFAULT 0,
   `height` int(5) NOT NULL DEFAULT 0,
   `offsetleft` int(5) NOT NULL DEFAULT 0,

@@ -1,5 +1,5 @@
  <div id="tabs-4">
-  <div class="new_text_item" title="New text item creation">
+  <div class="new_text_item" title="New element creation">
     Text <input type="text" name="new_text_item" value="" id="new_text_item"><br>
     Slide
     <select name="slide_text">
@@ -49,7 +49,7 @@ function set_color_pickers()
       height:180,
       modal: true,
       buttons: {
-        "Create new text item": function() {
+        "Create new element": function() {
 
           if ($('#new_text_item').val() == '')
             {

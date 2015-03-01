@@ -41,7 +41,15 @@ public function addScryptfront($handle, $path)
         if ( file_exists($currScryptFile) ) {
 
             wp_register_script($handle, $currScryptUrl, array('jquery'), '1.0', true);
-              wp_localize_script($handle, 'simple_al_WPURLS', array( 'pluginurl' => trailingslashit( plugin_dir_url( __FILE__ ) ) ));
+            
+              if ( ! function_exists( 'get_plugins' ) ) {
+                require_once ABSPATH . 'wp-admin/includes/plugin.php';
+              }
+              
+              $all_plugins = get_plugins();
+              
+              wp_localize_script($handle, 'simple_al_WPURLS', array( 'pluginurl' => trailingslashit( plugin_dir_url( __FILE__ ) ), 'aaa' => WP_PLUGIN_DIR."/simple_al_slider/simple_al_slider.php", 'pluginname' => $all_plugins["simple_al_slider/simple_al_slider.php"]['Name'] ));
+              
             wp_print_scripts($handle);
         }
 

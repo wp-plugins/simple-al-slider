@@ -1,4 +1,4 @@
-<h2>Images</h2>
+<h2>Background Images</h2>
 
 <div class='images_output_area'>
 <?php
@@ -46,7 +46,7 @@ if (isset($slide['imgs'])&&(!empty($slide['imgs'])))
       Image File
       </td>
       <td>
-      <input type="text" name="image" size="50" value="<?php echo $image['image']; ?>">
+      <input type="text" name="image" size="50" value="<?php echo $image['imgimage']; ?>">
       </td>
       </tr>
 
@@ -63,7 +63,7 @@ if (isset($slide['imgs'])&&(!empty($slide['imgs'])))
       </table>
       </div>
       <div class="left_line">
-      <img src="<?php echo $image['image']; ?>" width="150">
+      <img src="<?php echo $image['imgimage']; ?>" width="150">
       </div>
       <div class="clear_line"></div>
 

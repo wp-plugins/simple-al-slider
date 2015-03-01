@@ -45,6 +45,35 @@
 
       <tr>
       <td>
+      Type
+      </td>
+      <td>
+      <select name="element_type">
+      <?php
+      $type_vals = array(0 => "Text Element", 1 => "Image Element");
+      foreach ($type_vals as $k=>$typ)
+        {
+          echo '<option value="'.$k.'">'.$typ.'</option>';
+        }
+      ?>
+      </select>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Image
+      </td>
+      <td>
+      <input type="text" class="element_image" name="element_image" size="50" value="">
+      <br>
+      <button class="set_image">Add Image</button>
+      <img class="element_image_src" src="<?php echo plugins_url("../../images/none.jpg", __FILE__); ?>">
+      </td>
+      </tr>
+
+      <tr>
+      <td>
       Width
       </td>
       <td>
@@ -116,7 +145,7 @@
       Style
       </td>
       <td>
-      <input type="text" name="style" size="30" value="">
+      <input type="text" name="style" size="50" value="">
       </td>
       </tr>
 

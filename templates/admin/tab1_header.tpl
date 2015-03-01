@@ -238,8 +238,8 @@ echo wp_create_nonce("upd_rec_slide");
   <ul>
     <li><a href="#tabs-1">Slider</a></li>
     <li><a href="#tabs-2">Slides</a></li>
-    <li><a href="#tabs-3">Images</a></li>
-    <li><a href="#tabs-4">Texts</a></li>
+    <li><a href="#tabs-3">Bg Images</a></li>
+    <li><a href="#tabs-4">Elements</a></li>
     <li><a href="#tabs-5">Settings</a></li>
     <li><a href="#tabs-6">Paste Code</a></li>
   </ul>

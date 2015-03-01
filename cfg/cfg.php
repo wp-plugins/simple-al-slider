@@ -12,5 +12,5 @@ $cache_sql_expiration = 1800;
 $slides_per_page = 6;
 
 //For db upgrade
-$simple_al_slider_db_version = "1.0";
+$simple_al_slider_db_version = "1.1";
 ?>
