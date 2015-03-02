@@ -92,6 +92,8 @@ public static function sial_install()
   apply_classes text DEFAULT NULL,
   settings_buttons int(3) DEFAULT 1,
   settings_buttons_top int(7) DEFAULT 0,
+  settings_indicators int(3) DEFAULT 1,
+  settings_indicators_width int(7) DEFAULT 0,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";

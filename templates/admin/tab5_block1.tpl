@@ -50,3 +50,56 @@ foreach ($settings_ind as $setts)
 </table>
 <input type="submit" name="settings_buttons_save_btn" value="Save">
 </form>
+
+
+<form method="POST" id="settings_indicators_frm_1" class="settings_indicators_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=4&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>">
+  <input type="hidden" name="pid" value="<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?>">
+  <?php
+  if (function_exists('wp_nonce_field'))
+    {
+    wp_nonce_field('settings_indicators');
+    }
+  ?>
+<h3>Slide Indicators</h3>
+<table id="tbl_settings">
+<?php
+$settings_ind = range(1, 5);
+foreach ($settings_ind as $setts)
+  {
+  echo "<tr><td>";
+  if ($slider['main_info']['settings_indicators'] == $setts)
+    echo "<input type='radio' name='settings_indicators' checked='checked' value='".$setts."'>";
+      else
+    echo "<input type='radio' name='settings_indicators' value='".$setts."'>";
+  echo "</td><td>";
+  echo "Indicators #".$setts;
+  echo "</td><td>";
+  echo "<img src='".plugins_url("../../images/slide_empty_0".$setts.".png", __FILE__)."'>";
+  echo "<img src='".plugins_url("../../images/slide_filled_0".$setts.".png", __FILE__)."'>";
+  echo "</td></tr>";
+  }
+  echo "<tr><td>";
+  if ($slider['main_info']['settings_indicators'] == 0)
+    echo "<input type='radio' name='settings_indicators' checked='checked' value='".(0)."'>";
+      else
+    echo "<input type='radio' name='settings_indicators' value='".(0)."'>";
+  echo "</td><td>";
+  echo "Indicators";
+  echo "</td><td>";
+  echo "Don't show indicators";
+  echo "</td></tr>";
+
+?>
+</table>
+<h3>Indicators parameters</h3>
+<table>
+<tr><td>
+<div style='font-weight:bold;'>Width</div>
+</td><td>
+<input type="text" class="digits_fld" name="settings_indicators_width" value="<?php echo $slider['main_info']['settings_indicators_width']; ?>">
+</td><td>
+(If 0 - "Default width")
+</td></tr>
+</table>
+<input type="submit" name="settings_indicators_save_btn" value="Save">
+</form>

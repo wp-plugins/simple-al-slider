@@ -4,11 +4,12 @@
 ?>
 <div class="simple_al_slider_outter_<?php echo $unq; ?>" style="display:none;">
 <div class="simple_al_slider" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;'>
+<div class="slides_indicator"></div>
 <div class="simple_al_slider_inside" id="simple_al_slider_inside_<?php echo $unq; ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
 
 <?php
 $parent_params = $front['slider']['sldrwidth'].", ".$front['slider']['sldrheight'];
-    $fullscreen = ($front['slider']['fullscreen']==0) ? 'false' : 'true';
+    $fullscreen = $front['slider']['fullscreen'];
 
   $txtnum = 0;
     $positions_output = "{";
@@ -111,12 +112,12 @@ jQuery(function($) {
             window.action_finished = [];
             window.action_finished['<?php echo $unq; ?>'] = false;
 <?php
-
+      global $slide_indicators_front_one_side;
    ?>
 
       window.simple_al_slider_pos['<?php echo $unq; ?>'] = <?php echo $positions_output; ?>;
       
-      window.simple_al_slider.push($('#simple_al_slider_inside_<?php echo $unq; ?>').simple_al_slider({fullscreen:<?php echo $fullscreen; ?>, parent_params:[<?php echo $parent_params; ?>], positions : window.simple_al_slider_pos['<?php echo $unq; ?>'],direction:'<?php echo $front['slider']['effect_direction']; ?>', duration_action:<?php echo $front['slider']['duration']; ?>, duration_effect:<?php echo $front['slider']['duration_effect']; ?>, duration_text_effect:<?php echo $front['slider']['duration_text_effect']; ?>, action:'<?php echo $front['slider']['effect']; ?>', set_buttons: <?php echo $front['slider']['settings_buttons']; ?>, set_top_buttons: <?php echo $front['slider']['settings_buttons_top']; ?>, frame:'parent', uniqid:'<?php echo $unq; ?>'}));
+      window.simple_al_slider.push($('#simple_al_slider_inside_<?php echo $unq; ?>').simple_al_slider({fullscreen:<?php echo $fullscreen; ?>, parent_params:[<?php echo $parent_params; ?>], positions : window.simple_al_slider_pos['<?php echo $unq; ?>'],direction:'<?php echo $front['slider']['effect_direction']; ?>', duration_action:<?php echo $front['slider']['duration']; ?>, duration_effect:<?php echo $front['slider']['duration_effect']; ?>, duration_text_effect:<?php echo $front['slider']['duration_text_effect']; ?>, action:'<?php echo $front['slider']['effect']; ?>', set_buttons: <?php echo $front['slider']['settings_buttons']; ?>, set_top_buttons: <?php echo $front['slider']['settings_buttons_top']; ?>, frame:'parent', uniqid:'<?php echo $unq; ?>', indicators_num:<?php echo $front['slider']['settings_indicators']; ?>, indicators_width:<?php echo $front['slider']['settings_indicators_width']; ?>, slide_indicators_front_one_side : <?php echo $slide_indicators_front_one_side; ?>}));
     
 
     $(window).on("blur focus", function(e) {
@@ -156,6 +157,20 @@ jQuery(function($) {
           $( window ).trigger("resize");
               var window_resize_flag = true;
         }
+
+if (window.slide_by_index == undefined)
+  window.slide_by_index = function(unq, ind)
+    {
+       $.each(window.simple_al_slider, function (i, v){ 
+       
+        if (v.uniqid == unq)
+          {
+            v.slide_to_position(ind);
+          }
+       
+       });
+
+    }
 
   });
 </script>

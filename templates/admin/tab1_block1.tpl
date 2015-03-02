@@ -123,16 +123,22 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   </div>
   </td>
   </tr>
-
+<?php
+  $full_srcw = array(0 => "Default", 1 => "Full Screen", 2 => "Full Width");
+  foreach ($full_srcw as $key=>$full)
+    {
+?>
   <tr>
   <td>
-  Full Screen
+  <?php echo $full; ?>
   </td>
   <td>
-  <input type="checkbox" name="fullscreen" size="10" value="1" <?php if ($slider['main_info']['fullscreen'] == 1)echo " checked='checked'"; ?>>
+  <input type="radio" name="fullscreen" size="10" value="<?php echo $key; ?>" <?php if ($slider['main_info']['fullscreen'] == $key)echo " checked='checked'"; ?>>
   </td>
   </tr>
-  
+  <?php
+    }
+  ?>
   </table>
   </div>
   <div class="left_line">

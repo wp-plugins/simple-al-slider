@@ -44,6 +44,17 @@ public function saveSettingsButtons($source, $pid)
    return $this->db->saveData($this->table, $source, $filter, 'update', $idval, $idtype);
   }
 
+public function saveSettingsIndicators($source, $pid)
+  {
+  $filter = array(array('settings_indicators', 'settings_indicators', '%d'), array('settings_indicators_width', 'settings_indicators_width', '%d'));
+  if (!intval(sanitize_text_field($pid)))return false;
+  
+  $idval = array('id' => intval(sanitize_text_field($pid)));
+  $idtype = array('%d');
+  
+   return $this->db->saveData($this->table, $source, $filter, 'update', $idval, $idtype);
+  }
+
 public function createProject($name)
   {
   $name = sanitize_text_field($name);
