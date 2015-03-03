@@ -1,6 +1,6 @@
-<h2>Texts</h2>
+<h2>Elements</h2>
 
-<button name="create_new_text">Create New Text</button>
+<button name="create_new_text">Create New Element</button>
 
 <div class='texts_output_area'>
 <?php
@@ -12,7 +12,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
   {
   ?>
   <div class='text_container'>
-  <form method="POST" id="text_frm_<?php echo $image['txtid']; ?>" class="text_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=3&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?>&amp;updated=true">
+  <form method="POST" id="text_frm_<?php echo $text['txtid']; ?>" class="text_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=3&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>&amp;updated=true">
           <?php
   if (function_exists('wp_nonce_field'))
     {
@@ -51,6 +51,57 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
       </td>
       <td>
       <input type="text" name="text" size="30" value="<?php echo htmlspecialchars(stripslashes($text['text'])); ?>">
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Type
+      </td>
+      <td>
+      <select name="element_type">
+      <?php
+      $type_vals = array(0 => "Text Element", 1 => "Image Element", 2 => "Template Element");
+      foreach ($type_vals as $k=>$typ)
+        {
+        if ($text['txttype'] == $k)
+          echo '<option value="'.$k.'" selected>'.$typ.'</option>';
+          else
+          echo '<option value="'.$k.'">'.$typ.'</option>';
+        }
+      ?>
+      </select>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Image
+      </td>
+      <td>
+      <input type="text" class="element_image" name="element_image" size="50" value="<?php echo esc_url($text['txtimage']); ?>">
+      <br><button class="set_image">Add Image</button>
+      <img class="element_image_src" src="<?php if ((isset($text['txtimage']))&&(!empty($text['txtimage']))) echo $text['txtimage']; else echo plugins_url("../../images/none.jpg", __FILE__); ?>" width="<?php echo ($text['txtwidth']<200) ? $text['txtwidth'] : 200; ?>">
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Template
+      </td>
+      <td>
+      <select  name="element_template">
+      <?php
+      if ((isset($templates))&&(isset($text['template'])))
+      foreach ($templates as $tmpl)
+        {
+          if ($tmpl == $text['template'])
+            echo "<option value='".sanitize_text_field($tmpl)."' selected>".sanitize_text_field($tmpl)."</option>";
+            else
+            echo "<option value='".sanitize_text_field($tmpl)."'>".sanitize_text_field($tmpl)."</option>";
+        }
+      ?>
+      </select>
       </td>
       </tr>
 
@@ -125,7 +176,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
       Style
       </td>
       <td>
-      <input type="text" name="style" size="30" value="<?php echo $text['style']; ?>">
+      <input type="text" name="style" size="50" value="<?php echo $text['style']; ?>">
       </td>
       </tr>
 

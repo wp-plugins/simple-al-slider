@@ -1,7 +1,7 @@
 <div class='text_hidden_form'>
 
   <div class='text_container'>
-  <form method="POST" id="text_frm_[TEXT_ID]" class="text_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=3&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?>&amp;updated=true">
+  <form method="POST" id="text_frm_[TEXT_ID]" class="text_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=3&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>&amp;updated=true">
             <?php
   if (function_exists('wp_nonce_field'))
     {
@@ -40,6 +40,35 @@
       </td>
       <td>
       <input type="text" name="text" size="30" value="[TEXT]">
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Type
+      </td>
+      <td>
+      <select name="element_type">
+      <?php
+      $type_vals = array(0 => "Text Element", 1 => "Image Element");
+      foreach ($type_vals as $k=>$typ)
+        {
+          echo '<option value="'.$k.'">'.$typ.'</option>';
+        }
+      ?>
+      </select>
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Image
+      </td>
+      <td>
+      <input type="text" class="element_image" name="element_image" size="50" value="">
+      <br>
+      <button class="set_image">Add Image</button>
+      <img class="element_image_src" src="<?php echo plugins_url("../../images/none.jpg", __FILE__); ?>">
       </td>
       </tr>
 
@@ -116,7 +145,7 @@
       Style
       </td>
       <td>
-      <input type="text" name="style" size="30" value="">
+      <input type="text" name="style" size="50" value="">
       </td>
       </tr>
 
