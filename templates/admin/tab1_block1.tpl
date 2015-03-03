@@ -153,6 +153,17 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   </textarea>
   </td>
   </tr>
+  
+  <tr>
+  <td>
+  Autoplay
+  </td>
+  <td>
+  <input type="checkbox" name="autoplay" class="digits_fld" size="10" value="1" <?php if ($slider['main_info']['autoplay'] == 1) echo "checked"; ?>>
+  </td>
+  </tr>
+
+  
 </table>
   </div>
   <div class="clear_line"></div>

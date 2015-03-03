@@ -15,7 +15,7 @@ public function saveTextData($source, $id)
   $filter = array(array('name', 'name', '%s'), array('url', 'url', '%s'),
             array('text', 'text', '%s'), array('slide_id', 'slide_id', '%d'),
             array('image', 'element_image', '%s'), array('type', 'element_type', '%d'),
-            array('width', 'width', '%d'), array('height', 'height', '%d'),
+            array('template', 'element_template', '%s'), array('width', 'width', '%d'), array('height', 'height', '%d'),
             array('offsetleft', 'offsetleft', '%d'), array('offsettop', 'offsettop', '%d'),
             array('color', 'color', '%s'), array('bgcolor', 'bgcolor', '%s'),
             array('style', 'style', '%s'), array('size', 'size', '%d'),

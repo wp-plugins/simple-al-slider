@@ -15,5 +15,5 @@ $slides_per_page = 6;
 $slide_indicators_front_one_side = 8;
 
 //For db upgrade
-$simple_al_slider_db_version = "1.2";
+$simple_al_slider_db_version = "1.3";
 ?>

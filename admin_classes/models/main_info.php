@@ -13,6 +13,7 @@ public function __construct($db)
 public function saveMainData($source, $pid)
   {
   if (!isset($source['fullscreen'])) $source['fullscreen'] = 0;
+  if (!isset($source['autoplay'])) $source['autoplay'] = 0;
   
   if (isset($source['effects_names']))
   $source['effects_names_gather'] = implode("***", $source['effects_names']);
@@ -24,7 +25,7 @@ public function saveMainData($source, $pid)
             array('duration_effect', 'duration_effect', '%d'), array('duration_text_effect', 'duration_text_effect', '%d'),
             array('effect', 'effects_names_gather', '%s'), array('effect_direction', 'effect_direction', '%s'),
             array('apply_classes', 'apply_classes', '%s'),
-            array('fullscreen', 'fullscreen', '%d')
+            array('fullscreen', 'fullscreen', '%d'), array('autoplay', 'autoplay', '%d')
             );
   if (!intval(sanitize_text_field($pid)))return false;
   

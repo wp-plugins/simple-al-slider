@@ -94,6 +94,8 @@ public static function sial_install()
   settings_buttons_top int(7) DEFAULT 0,
   settings_indicators int(3) DEFAULT 1,
   settings_indicators_width int(7) DEFAULT 0,
+  autoplay int(3) DEFAULT 0,
+  move_elements int(3) DEFAULT 0,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
@@ -130,6 +132,7 @@ public static function sial_install()
   `text` text NOT NULL DEFAULT '',
   `type` int(5) NOT NULL DEFAULT 0,
   `image` text NOT NULL DEFAULT '',
+  `template` varchar(250) NOT NULL DEFAULT '',
   `width` int(5) NOT NULL DEFAULT 0,
   `height` int(5) NOT NULL DEFAULT 0,
   `offsetleft` int(5) NOT NULL DEFAULT 0,
@@ -212,7 +215,7 @@ public function execute()
       list($data['image_id'], $data['iminfo']) = $imageController->execute($data['proj_id']);
 
     $textController = new Controller_Texts(new Model_Texts($db));
-      list($data['text_id'], $data['txinfo']) = $textController->execute($data['proj_id']);
+      list($data['text_id'], $data['txinfo'], $data['templates']) = $textController->execute($data['proj_id']);
 
     $mainInfoController = new Controller_MainInfo(new Model_MainInfo($db));
       list($data['proj_id'], $data['all_projects'], $data['slider']) = $mainInfoController->execute($data['proj_id']);

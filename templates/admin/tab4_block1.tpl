@@ -61,7 +61,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
       <td>
       <select name="element_type">
       <?php
-      $type_vals = array(0 => "Text Element", 1 => "Image Element");
+      $type_vals = array(0 => "Text Element", 1 => "Image Element", 2 => "Template Element");
       foreach ($type_vals as $k=>$typ)
         {
         if ($text['txttype'] == $k)
@@ -82,6 +82,26 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
       <input type="text" class="element_image" name="element_image" size="50" value="<?php echo esc_url($text['txtimage']); ?>">
       <br><button class="set_image">Add Image</button>
       <img class="element_image_src" src="<?php if ((isset($text['txtimage']))&&(!empty($text['txtimage']))) echo $text['txtimage']; else echo plugins_url("../../images/none.jpg", __FILE__); ?>" width="<?php echo ($text['txtwidth']<200) ? $text['txtwidth'] : 200; ?>">
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Template
+      </td>
+      <td>
+      <select  name="element_template">
+      <?php
+      if ((isset($templates))&&(isset($text['template'])))
+      foreach ($templates as $tmpl)
+        {
+          if ($tmpl == $text['template'])
+            echo "<option value='".sanitize_text_field($tmpl)."' selected>".sanitize_text_field($tmpl)."</option>";
+            else
+            echo "<option value='".sanitize_text_field($tmpl)."'>".sanitize_text_field($tmpl)."</option>";
+        }
+      ?>
+      </select>
       </td>
       </tr>
 
