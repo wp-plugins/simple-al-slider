@@ -2,10 +2,21 @@
    $unq = "positions_".uniqid();
    
 ?>
-<div class="simple_al_slider_outter_<?php echo $unq; ?>" style="display:none;">
-<div class="simple_al_slider" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;'>
-<div class="slides_indicator"></div>
-<div class="simple_al_slider_inside" id="simple_al_slider_inside_<?php echo $unq; ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
+<div class="simple_al_slider_outter_<?php echo $unq; ?>" style="width:100%;height:100%;">
+  <div class="simple_al_preloader" id="simple_al_preloader_<?php echo $unq; ?>" style="position:relative;left:0px;top:0px;width:100%;height:100%;background-color:#000000;display:table;z-index:1220000;">
+    <div class="simple_al_preloader_inside" style="display:table-cell;vertical-align:middle;text-align:center;">
+      <img src="<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>" style="width:100px;">
+    </div>
+  </div>
+
+<div id="slides_indicator_outter_<?php echo $unq; ?>" style="position:absolute;z-index:1000;width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;">
+<div id="slides_indicator_<?php echo $unq; ?>" class="slides_indicator" style="position:absolute;z-index:1000;"></div>
+<div id="slides_arrows_<?php echo $unq; ?>" class="slides_arrows" style="position:absolute;z-index:1000;"></div>
+</div>
+
+<div id="simple_al_slider_id_<?php echo $unq; ?>" class="simple_al_slider" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;'>
+
+<div class="simple_al_slider_inside" id="simple_al_slider_inside_<?php echo $unq; ?>" style='position:absolute;width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;z-index:10;'>
 
 <?php
 $parent_params = $front['slider']['sldrwidth'].", ".$front['slider']['sldrheight'];
@@ -107,6 +118,27 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
 <?php echo stripslashes($front['slider']['apply_classes']); ?>
 </style>
 <script>
+if (window.cont_width_curr === undefined) window.cont_width_curr = [];
+      window.cont_width_curr['<?php echo $unq; ?>'] = jQuery('.simple_al_slider_outter_<?php echo $unq; ?>').parent().innerWidth();
+
+if (0 != <?php echo $fullscreen; ?>)
+  {
+    jQuery('.simple_al_slider_outter_<?php echo $unq; ?>').innerWidth(jQuery('.simple_al_slider_outter_<?php echo $unq; ?>').parent().innerWidth());
+      jQuery('.simple_al_slider_outter_<?php echo $unq; ?>').innerHeight(jQuery('.simple_al_slider_outter_<?php echo $unq; ?>').parent().innerWidth()*<?php echo $front['slider']['sldrheight']; ?>/<?php echo $front['slider']['sldrwidth']; ?>);
+  }
+  else
+  {
+    jQuery('.simple_al_slider_outter_<?php echo $unq; ?>').innerWidth(<?php echo $front['slider']['sldrwidth']; ?>);
+      jQuery('.simple_al_slider_outter_<?php echo $unq; ?>').innerHeight(<?php echo $front['slider']['sldrheight']; ?>);
+  }
+    jQuery('.simple_al_slider_outter_<?php echo $unq; ?>').css('overflow', 'hidden');
+
+jQuery(window).load(function() {
+  jQuery('#simple_al_preloader_<?php echo $unq; ?>').hide();
+      jQuery('.simple_al_slider_outter_<?php echo $unq; ?>').css('overflow', '');
+  window.processing_simple_slider<?php echo $unq; ?>();
+});
+
 jQuery(function($) {
 
   if (window.simple_al_slider_blur === undefined)
@@ -129,6 +161,7 @@ jQuery(function($) {
 <?php
       global $slide_indicators_front_one_side;
    ?>
+window.processing_simple_slider<?php echo $unq; ?> = function(){
 
       window.simple_al_slider_pos['<?php echo $unq; ?>'] = <?php echo $positions_output; ?>;
       
@@ -161,7 +194,7 @@ jQuery(function($) {
     });
 
     $( window ).on("resize", function() {
-       $('.simple_al_slider_outter_<?php echo $unq; ?>').show();
+//       $('.simple_al_slider_outter_<?php echo $unq; ?>').show();
        $.each(window.simple_al_slider, function (i, v){ v.resize(); });
        $('.simple_al_slider_outter_<?php echo $unq; ?>').find('img').css('max-width', 'none');
     });
@@ -169,6 +202,8 @@ jQuery(function($) {
   var window_resize_flag = false;
     if (!window_resize_flag)
         {
+         $('.simple_al_slider_outter_<?php echo $unq; ?>').css('width', '');
+         $('.simple_al_slider_outter_<?php echo $unq; ?>').css('height', '');
           $( window ).trigger("resize");
               var window_resize_flag = true;
         }
@@ -186,6 +221,6 @@ if (window.slide_by_index == undefined)
        });
 
     }
-
+   }
   });
 </script>
