@@ -3,20 +3,19 @@
    
 ?>
 <div class="simple_al_slider_outter_<?php echo $unq; ?>" style="width:100%;height:100%;">
+  
   <div class="simple_al_preloader" id="simple_al_preloader_<?php echo $unq; ?>" style="position:relative;left:0px;top:0px;width:100%;height:100%;background-color:#000000;display:table;z-index:1220000;">
     <div class="simple_al_preloader_inside" style="display:table-cell;vertical-align:middle;text-align:center;">
       <img src="<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>" style="width:100px;">
     </div>
   </div>
 
-<div id="slides_indicator_outter_<?php echo $unq; ?>" style="pointer-events:none;position:absolute;z-index:1000;width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;">
-<div id="slides_indicator_<?php echo $unq; ?>" class="slides_indicator" style="pointer-events:all;position:absolute;z-index:1000;"></div>
-<div id="slides_arrows_<?php echo $unq; ?>" class="slides_arrows" style="pointer-events:all;position:absolute;z-index:1000;"></div>
-</div>
+<div id="simple_al_slider_id_<?php echo $unq; ?>" class="simple_al_slider" style="position:relative;"><!-- style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;position:relative;'>-->
 
-<div id="simple_al_slider_id_<?php echo $unq; ?>" class="simple_al_slider" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;'>
-
-<div class="simple_al_slider_inside" id="simple_al_slider_inside_<?php echo $unq; ?>" style='position:absolute;width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;z-index:10;'>
+<div id="slides_indicator_<?php echo $unq; ?>" class="slides_indicator" style="position:absolute;z-index:1000;"></div>
+<div id="slides_arrows_<?php echo $unq; ?>" class="slides_arrows" style="position:absolute;z-index:1000;"></div>
+<div style="position:absolute;left:0px;top:0px;z-index:10;">
+<div class="simple_al_slider_inside" id="simple_al_slider_inside_<?php echo $unq; ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;'>
 
 <?php
 $parent_params = $front['slider']['sldrwidth'].", ".$front['slider']['sldrheight'];
@@ -111,6 +110,7 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
 </div>
 </div>
 </div>
+</div>
 <div class="class_for_out_styles">
 
 </div>
@@ -165,7 +165,7 @@ window.processing_simple_slider<?php echo $unq; ?> = function(){
 
       window.simple_al_slider_pos['<?php echo $unq; ?>'] = <?php echo $positions_output; ?>;
       
-      window.simple_al_slider.push($('#simple_al_slider_inside_<?php echo $unq; ?>').simple_al_slider({fullscreen:<?php echo $fullscreen; ?>, parent_params:[<?php echo $parent_params; ?>], positions : window.simple_al_slider_pos['<?php echo $unq; ?>'],direction:'<?php echo $front['slider']['effect_direction']; ?>', duration_action:<?php echo $front['slider']['duration']; ?>, duration_effect:<?php echo $front['slider']['duration_effect']; ?>, duration_text_effect:<?php echo $front['slider']['duration_text_effect']; ?>, action:'<?php echo $front['slider']['effect']; ?>', set_buttons: <?php echo $front['slider']['settings_buttons']; ?>, set_top_buttons: <?php echo $front['slider']['settings_buttons_top']; ?>, frame:'parent', uniqid:'<?php echo $unq; ?>', indicators_num:<?php echo $front['slider']['settings_indicators']; ?>, indicators_width:<?php echo $front['slider']['settings_indicators_width']; ?>, slide_indicators_front_one_side : <?php echo $slide_indicators_front_one_side; ?>, autoplay:<?php echo $front['slider']['autoplay']; ?>}));
+      window.simple_al_slider.push($('#simple_al_slider_inside_<?php echo $unq; ?>').simple_al_slider({container_id:$('#simple_al_slider_inside_'+'<?php echo $unq; ?>'),fullscreen:<?php echo $fullscreen; ?>, parent_params:[<?php echo $parent_params; ?>], positions : window.simple_al_slider_pos['<?php echo $unq; ?>'],direction:'<?php echo $front['slider']['effect_direction']; ?>', duration_action:<?php echo $front['slider']['duration']; ?>, duration_effect:<?php echo $front['slider']['duration_effect']; ?>, duration_text_effect:<?php echo $front['slider']['duration_text_effect']; ?>, action:'<?php echo $front['slider']['effect']; ?>', set_buttons: <?php echo $front['slider']['settings_buttons']; ?>, set_top_buttons: <?php echo $front['slider']['settings_buttons_top']; ?>, frame:'parent', uniqid:'<?php echo $unq; ?>', indicators_num:<?php echo $front['slider']['settings_indicators']; ?>, indicators_width:<?php echo $front['slider']['settings_indicators_width']; ?>, slide_indicators_front_one_side : <?php echo $slide_indicators_front_one_side; ?>, autoplay:<?php echo $front['slider']['autoplay']; ?>}));
     
 
     $(window).on("blur focus", function(e) {
