@@ -9,9 +9,9 @@
     </div>
   </div>
 
-<div id="slides_indicator_outter_<?php echo $unq; ?>" style="position:absolute;z-index:1000;width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;">
-<div id="slides_indicator_<?php echo $unq; ?>" class="slides_indicator" style="position:absolute;z-index:1000;"></div>
-<div id="slides_arrows_<?php echo $unq; ?>" class="slides_arrows" style="position:absolute;z-index:1000;"></div>
+<div id="slides_indicator_outter_<?php echo $unq; ?>" style="pointer-events:none;position:absolute;z-index:1000;width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;">
+<div id="slides_indicator_<?php echo $unq; ?>" class="slides_indicator" style="pointer-events:all;position:absolute;z-index:1000;"></div>
+<div id="slides_arrows_<?php echo $unq; ?>" class="slides_arrows" style="pointer-events:all;position:absolute;z-index:1000;"></div>
 </div>
 
 <div id="simple_al_slider_id_<?php echo $unq; ?>" class="simple_al_slider" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;'>

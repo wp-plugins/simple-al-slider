@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Simple Al Slider
-Description: Simple slider with background and text items. And capability to add images, buttons, templates and videos.
-Version: 1.1.7
+Description: Simple slider with background and text items. And capability to add images and buttons.
+Version: 1.1.8
 Author: alexdtn (<a href="http://al-plugins.biz/">homesite</a>)
 */
 
