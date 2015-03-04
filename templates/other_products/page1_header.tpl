@@ -6,9 +6,19 @@ jQuery( document ).ready(function($) {
   $('button[name="subitem_elem"]').click(function(event){
       event.preventDefault();
         window.open(
-          "http://al-plugins.biz/?page_id=6",
+          "http://al-plugins.biz/subitem-al-slider/",
           '_blank'
         );
   });
+
+  $('button[name="animated_al_list_elem"]').click(function(event){
+      event.preventDefault();
+        window.open(
+          "http://al-plugins.biz/animated-al-list/",
+          '_blank'
+        );
+  });
+  
+  
 });
   </script>

@@ -17,6 +17,9 @@ public function __construct($file)
 
   add_action('init', array($this, 'init'));
      add_action( 'widgets_init', array($this, 'register_slider_widget') );
+     
+    $adminCommon = new Sial_Admin_Common($this->file);
+     add_action( 'plugins_loaded', array($adminCommon, 'simple_al_update_db_check' ));
   }
 public function init()
   {

@@ -9,7 +9,7 @@ protected $trace;
 
 public function __construct()
   {
-      $this->plugin_folder = "simple_al_slider";
+      $this->plugin_folder = "simple-al-slider";
       $this->trace = true;
   }
 public function trace()
