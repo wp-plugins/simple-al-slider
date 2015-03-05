@@ -1,6 +1,3 @@
-<!--
-If you make button in template div must has class "simple_al_subitem_txt" and unique id
--->
 <div id="smth_uniqe_1" class="simple_al_subitem_txt aruba">
 &nbsp;
 </div>

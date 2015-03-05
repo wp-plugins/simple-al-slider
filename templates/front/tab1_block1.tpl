@@ -111,9 +111,20 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
 </div>
 </div>
 </div>
-<div class="class_for_out_styles">
-
+<div class="class_for_out_styles_<?php echo $unq; ?>">
 </div>
+<div class="imgs_garbage_<?php echo $unq; ?>" style="display:none;">
+<img src="<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>">
+<img src="<?php echo plugins_url("../../images/arrow_left_0".$front['slider']['settings_buttons'].".png", __FILE__); ?>">
+<img src="<?php echo plugins_url("../../images/arrow_right_0".$front['slider']['settings_buttons'].".png", __FILE__); ?>">
+
+<img src="<?php echo plugins_url("../../images/slide_filled_0".$front['slider']['settings_indicators'].".png", __FILE__); ?>">
+<img src="<?php echo plugins_url("../../images/slide_empty_0".$front['slider']['settings_indicators'].".png", __FILE__); ?>">
+
+<img src="<?php echo plugins_url("../../images/slide_more_left.png", __FILE__); ?>">
+<img src="<?php echo plugins_url("../../images/slide_more_right.png", __FILE__); ?>">
+</div>
+
 <style>
 <?php echo stripslashes($front['slider']['apply_classes']); ?>
 </style>
@@ -193,11 +204,26 @@ window.processing_simple_slider<?php echo $unq; ?> = function(){
       $(this).data("prevType", e.type);
     });
 
+    //variables to confirm window height and width
+    var lastWindowHeight = 0;//$(window).height();
+    var lastWindowWidth = 0;//$(window).width();
+    
     $( window ).on("resize", function() {
-//       $('.simple_al_slider_outter_<?php echo $unq; ?>').show();
+//confirm window was actually resized
+        if($(window).height()!=lastWindowHeight || $(window).width()!=lastWindowWidth){
+
+            //set this windows size
+            lastWindowHeight = $(window).height();
+            lastWindowWidth = $(window).width();
+       true_resize();
+       }
+    });
+  
+  var true_resize = function()
+    {
        $.each(window.simple_al_slider, function (i, v){ v.resize(); });
        $('.simple_al_slider_outter_<?php echo $unq; ?>').find('img').css('max-width', 'none');
-    });
+    }
   
   var window_resize_flag = false;
     if (!window_resize_flag)
