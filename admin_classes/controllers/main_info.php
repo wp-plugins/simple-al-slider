@@ -24,6 +24,7 @@ public function saveMainData()
     }
    return false; 
   }
+
 public function saveSettingsButtons()
   {
    if (isset($_POST['settings_buttons_save_btn']))
@@ -31,6 +32,19 @@ public function saveSettingsButtons()
       $this->check('settings_buttons');
       
       $this->model_maininfo->saveSettingsButtons($_POST, $_POST['pid']);
+      
+      return $_POST['pid'];
+    }
+   return false; 
+  }
+
+public function saveSettingsIndicators()
+  {
+   if (isset($_POST['settings_indicators_save_btn']))
+    {
+      $this->check('settings_indicators');
+      
+      $this->model_maininfo->saveSettingsIndicators($_POST, $_POST['pid']);
       
       return $_POST['pid'];
     }
@@ -120,6 +134,9 @@ public function execute($pid)
 
    //Save buttons settings
     $proj_id2 = $this->saveSettingsButtons();
+
+   //Save indicators settings
+    $proj_id2 = $this->saveSettingsIndicators();
     
   //Add new main record - action
     $swp2_id = $this->saveMainData();
