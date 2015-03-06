@@ -2,11 +2,11 @@
    $unq = "positions_".uniqid();
    
 ?>
-<div class="simple_al_slider_outter_<?php echo $unq; ?>" style="width:100%;height:100%;">
+<div id="simple_al_slider_outter_<?php echo $unq; ?>" class="simple_al_slider_outter_<?php echo $unq; ?>" style="width:100%;height:100%;display:none;">
   
   <div class="simple_al_preloader" id="simple_al_preloader_<?php echo $unq; ?>" style="position:relative;left:0px;top:0px;width:100%;height:100%;background-color:#000000;display:table;z-index:1220000;">
     <div class="simple_al_preloader_inside" style="display:table-cell;vertical-align:middle;text-align:center;">
-      <img src="<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>" style="width:100px;">
+      <img src="<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>" class="preloaded_image" style="width:100px;">
     </div>
   </div>
 
@@ -113,6 +113,9 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
 </div>
 <div class="class_for_out_styles_<?php echo $unq; ?>">
 </div>
+<div class="class_for_out_styles_sequence_<?php echo $unq; ?>">
+</div>
+
 <div class="imgs_garbage_<?php echo $unq; ?>" style="display:none;">
 <img src="<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>">
 <img src="<?php echo plugins_url("../../images/arrow_left_0".$front['slider']['settings_buttons'].".png", __FILE__); ?>">
@@ -129,6 +132,17 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
 <?php echo stripslashes($front['slider']['apply_classes']); ?>
 </style>
 <script>
+
+var image = new Image();
+image.onload = function () {
+var myElement = document.getElementById("simple_al_slider_outter_<?php echo $unq; ?>");
+  myElement.style.display = "block";
+}
+image.onerror = function () {
+   console.error("Incorret image loading");
+}
+image.src = '<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>';
+
 if (window.cont_width_curr === undefined) window.cont_width_curr = [];
       window.cont_width_curr['<?php echo $unq; ?>'] = jQuery('.simple_al_slider_outter_<?php echo $unq; ?>').parent().innerWidth();
 

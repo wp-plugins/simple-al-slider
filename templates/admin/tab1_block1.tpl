@@ -96,10 +96,20 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   "incrop_decrop7x3", "incrop_decrop10x4", "mpopob_vert", "mpopob_horiz", "mpopob4x2", "mpopob10x4", "decrop_vert", "decrop_horiz",
   "decrop4x2", "decrop7x3", "decrop10x4", "size_rotatex4x2", "size_rotatex10x4", "size_rotatey4x2", "size_rotatey10x4",
   "skew4x2", "skew7x3", "translatex4x2", "translatex10x5", "translatey4x2", "translatey10x5",
+  "rotatex_vert_10x1_back", "rotatex_vert_10x1_forw","rotatex_vert_10x1_hide_back", "rotatex_vert_10x1_hide_forw",
   "left_top_corner_superposition", "left_second_superposition", "left_top_line_superposition", "mixed_top_superposition", 
   "top_horiz_superposition", "left_vert_superposition", "right_vert_superposition", "bottom_horiz_superposition", 
   "center_horiz_superposition", "right_bottom_corner_superposition", "left_second_superposition_one_way", 
-  "center_horiz_superposition_one_way", "left_vert_superposition_one_way"); ?>
+  "center_horiz_superposition_one_way", "left_vert_superposition_one_way",
+  "traditional_horiz_move_2_parts", "traditional_horiz_move_8_parts", "traditional_vert_move_8_parts",
+  "traditional_horiz_move_vert_2_parts", "traditional_vert_move_horiz_2_parts",
+  "sequence_horiz_up", "sequence_horiz_up_back", "sequence_horiz_up_down_10x1_forw", "sequence_horiz_up_down_10x1_back",
+  "sequence_horiz_down", "sequence_horiz_down_back", "sequence_horiz_right_down", "sequence_horiz_right_down_back",
+  "sequence_horiz_right_up", "sequence_horiz_right_up_back", "sequence_opacity_forw_move", "sequence_opacity_back_move",
+  "sequence_opacity_forw", "sequence_opacity_back", "sequence_horiz_opacity_forw_move", "sequence_horiz_opacity_back_move",
+  "sequence_horiz_opacity_forw", "sequence_horiz_opacity_back", "sequence_horiz_opacity_forw_last_move",
+  "sequence_opacity_forw_horiz_lines", "sequence_opacity_back_horiz_lines"
+  ); ?>
   <?php if ((isset($slider['main_info']))&&(isset($slider['main_info']['effect']))) {
   foreach ($main_effects as $me)
   {

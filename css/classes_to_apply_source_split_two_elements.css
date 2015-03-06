@@ -308,3 +308,63 @@ visibility:hidden;
       -ms-transform-origin : 50% 50% 0;
   opacity:0;
 }
+/***********************************/
+.sixth_second_split_one_element_apply_1{
+
+  transform:rotateY(90deg) rotateX(15deg);
+  -webkit-transform:rotateY(90deg) rotateX(15deg);
+  -moz-transform:rotateY(90deg) rotateX(15deg);
+  -o-transform:rotateY(90deg) rotateX(15deg);
+  -ms-transform:rotateY(90deg) rotateX(15deg);
+  transform-origin:50% 50% 0;
+  -webkit-transform-origin:50% 50% 0;
+      -moz-transform-origin : 50% 50% 0;
+      -o-transform-origin : 50% 50% 0;
+      -ms-transform-origin : 50% 50% 0;
+  opacity:1;
+}
+/***********************************/
+.seventh_second_split_one_element_apply_1{
+
+  transform:rotateY(90deg) rotateX(-15deg);
+  -webkit-transform:rotateY(90deg) rotateX(-15deg);
+  -moz-transform:rotateY(90deg) rotateX(-15deg);
+  -o-transform:rotateY(90deg) rotateX(-15deg);
+  -ms-transform:rotateY(90deg) rotateX(-15deg);
+  transform-origin:50% 50% 0;
+  -webkit-transform-origin:50% 50% 0;
+      -moz-transform-origin : 50% 50% 0;
+      -o-transform-origin : 50% 50% 0;
+      -ms-transform-origin : 50% 50% 0;
+  opacity:1;
+}
+/***********************************/
+.eights_second_split_one_element_apply_1{
+
+  transform:rotateY(90deg) rotateX(15deg);
+  -webkit-transform:rotateY(90deg) rotateX(15deg);
+  -moz-transform:rotateY(90deg) rotateX(15deg);
+  -o-transform:rotateY(90deg) rotateX(15deg);
+  -ms-transform:rotateY(90deg) rotateX(15deg);
+  transform-origin:50% 50% 0;
+  -webkit-transform-origin:50% 50% 0;
+      -moz-transform-origin : 50% 50% 0;
+      -o-transform-origin : 50% 50% 0;
+      -ms-transform-origin : 50% 50% 0;
+  opacity:0;
+}
+/***********************************/
+.nineth_second_split_one_element_apply_1{
+
+  transform:rotateY(90deg) rotateX(-15deg);
+  -webkit-transform:rotateY(90deg) rotateX(-15deg);
+  -moz-transform:rotateY(90deg) rotateX(-15deg);
+  -o-transform:rotateY(90deg) rotateX(-15deg);
+  -ms-transform:rotateY(90deg) rotateX(-15deg);
+  transform-origin:50% 50% 0;
+  -webkit-transform-origin:50% 50% 0;
+      -moz-transform-origin : 50% 50% 0;
+      -o-transform-origin : 50% 50% 0;
+      -ms-transform-origin : 50% 50% 0;
+  opacity:0;
+}
