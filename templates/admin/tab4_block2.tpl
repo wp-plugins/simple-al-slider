@@ -50,7 +50,7 @@
       <td>
       <select name="element_type">
       <?php
-      $type_vals = array(0 => "Text Element", 1 => "Image Element");
+      $type_vals = array(0 => "Text Element", 1 => "Image Element", 2 => "Template Element");
       foreach ($type_vals as $k=>$typ)
         {
           echo '<option value="'.$k.'">'.$typ.'</option>';
@@ -69,6 +69,23 @@
       <br>
       <button class="set_image">Add Image</button>
       <img class="element_image_src" src="<?php echo plugins_url("../../images/none.jpg", __FILE__); ?>">
+      </td>
+      </tr>
+
+      <tr>
+      <td>
+      Template
+      </td>
+      <td>
+      <select  name="element_template">
+      <?php
+      if (isset($templates))
+      foreach ($templates as $tmpl)
+        {
+            echo "<option value='".sanitize_text_field($tmpl)."'>".sanitize_text_field($tmpl)."</option>";
+        }
+      ?>
+      </select>
       </td>
       </tr>
 

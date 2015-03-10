@@ -1,6 +1,9 @@
 <div id="smth_uniqe_1" class="simple_al_subitem_txt aruba">
-&nbsp;
+&nbsp;"AURO " de 'Bilbao'
 </div>
+<img r="a" 
+src="http://localhost/wp4.1/wp-content/uploads/2015/02/icon3.png">
+
 <style>
     .aruba { 
     cursor:pointer; 
