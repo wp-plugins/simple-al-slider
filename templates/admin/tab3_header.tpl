@@ -1,1 +1,1 @@
-  <div id="tabs-3">
+  <div id="tabs-3" style="text-align:left;width:97%;" class="welcome-panel">

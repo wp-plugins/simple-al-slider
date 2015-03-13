@@ -5,11 +5,33 @@ defined('ABSPATH') or die("No script hack please!");
 
 class Controller_MainInfo extends Sial_Controller{
 private $model_maininfo;
+  private $main_masks_path;
 
 public function __construct($model_maininfo)
   {
   parent::__construct();
     $this->model_maininfo = $model_maininfo;
+              $this->main_masks_path = plugin_dir_path( __FILE__ )."../../templates/front_masks/";
+  }
+
+public function check_mask_files($dir)
+  {
+  $res = array("none");
+
+          $tmpls = glob($dir . '*');
+          foreach ($tmpls as $tmpl)
+          {
+            if (is_file($tmpl))
+            $res[] = basename($tmpl);
+          }
+    return $res;
+  }
+
+public function getAllMaskFiles()
+  {
+    $main_files = $this->check_mask_files($this->main_masks_path);
+    
+    return $main_files;
   }
 
 public function saveMainData()
@@ -24,6 +46,7 @@ public function saveMainData()
     }
    return false; 
   }
+
 public function saveSettingsButtons()
   {
    if (isset($_POST['settings_buttons_save_btn']))
@@ -31,6 +54,19 @@ public function saveSettingsButtons()
       $this->check('settings_buttons');
       
       $this->model_maininfo->saveSettingsButtons($_POST, $_POST['pid']);
+      
+      return $_POST['pid'];
+    }
+   return false; 
+  }
+
+public function saveSettingsIndicators()
+  {
+   if (isset($_POST['settings_indicators_save_btn']))
+    {
+      $this->check('settings_indicators');
+      
+      $this->model_maininfo->saveSettingsIndicators($_POST, $_POST['pid']);
       
       return $_POST['pid'];
     }
@@ -107,6 +143,9 @@ public function delProject()
 
 public function execute($pid)
   {
+  //Load Mask files
+  $masks = $this->getAllMaskFiles();
+
     //Delete project
     if ($this->delProject())
                   $pid = null;
@@ -120,6 +159,9 @@ public function execute($pid)
 
    //Save buttons settings
     $proj_id2 = $this->saveSettingsButtons();
+
+   //Save indicators settings
+    $proj_id2 = $this->saveSettingsIndicators();
     
   //Add new main record - action
     $swp2_id = $this->saveMainData();
@@ -133,7 +175,7 @@ public function execute($pid)
     if ((!isset($proj_id))||(!$proj_id))$proj_id = $all_projects[0]->id;
     $slider = $this->getMainInfo($proj_id);
   
-    return array($proj_id, $all_projects, $slider);
+    return array($proj_id, $all_projects, $slider, $masks);
   }
 }
 ?>
