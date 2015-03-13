@@ -2,9 +2,8 @@
    $unq = "positions_".uniqid();
    
 if(!function_exists("bust_imgs_in_container")) {  
-function bust_imgs_in_container($source, $counting, $slnum, $unq, $txkey)
+function bust_imgs_in_container($source, $counting, $slnum, $unq, $txkey, $container_templates_scripts, $is_lazy_load)
   {
-   $container_children_scripts = "";
 
     $counting_img = substr_count($source, '<img');
 
@@ -12,6 +11,8 @@ function bust_imgs_in_container($source, $counting, $slnum, $unq, $txkey)
         $output = "<div class='".$uniqid."'>";
     
     $counting_css = $counting + $counting_img;
+    if ($is_lazy_load)
+    {
     $source = preg_replace("/(<img([^>]*?))src=/im", "\\1 src='".plugins_url("../../images/empty.gif", __FILE__)."' data-src=", $source);
     preg_match_all("/url\([\'\"]([^\"\']+)[\'\"]\)/im", $source, $matches);
     $match_result = "";
@@ -20,8 +21,9 @@ function bust_imgs_in_container($source, $counting, $slnum, $unq, $txkey)
       $counting_css++;
       $match_result .= "window.loaded_slides_imgs['".$unq."'][".$slnum."].push([\"simple_al_imgs_csstempl_".$unq."_\"+".$counting_css.", \"".$match."\", \"#simple_al_item_".$unq."_".$slnum."\", \"not_set\"]);";
       }
+     }
     $output .= $source;
-   $output .= "
+   $container_templates_scripts .= "
    <script>
    if (simplal_fl == undefined)var simplal_fl = [];
    if (simplal_fl['".$unq."'] == undefined) simplal_fl['".$unq."'] = [];
@@ -44,11 +46,27 @@ function bust_imgs_in_container($source, $counting, $slnum, $unq, $txkey)
         $output .= "</div>";
 
    
-    return array($counting_css, $output);
+    return array($counting_css, $output, $container_templates_scripts);
   }
 }
 ?>
+ <?php
+  if ($front['slider']['mask_file'] != 'none')
+  {
+?>
+<div style="position:absolute;left:0px;top:0px;">
+<svg>
+<mask id="slideMask">
+    <image x="0" y="0" xlink:href="<?php echo plugin_dir_url( __FILE__ )."../../templates/front_masks/".$front['slider']['mask_file']; ?>" width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>" />
+</mask>
+</svg>
+</div>
+ <?php
+ }
+ ?>
 <script>
+    if (window.not_need_lazy_load == undefined)window.not_need_lazy_load = [];
+    
 if (document.images)
   (new Image()).src = '<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>';
   
@@ -110,9 +128,29 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
     </script>
     ";
     ?>
-  <div class="simple_al_item simple_al_item_<?php echo $unq; ?>" id="simple_al_item_<?php echo $unq; ?>_<?php echo $slnum; ?>">
+  <div class="simple_al_item simple_al_item_<?php echo $unq; ?> <?php echo ($front['slider']['mask_file'] == 'none') ? "" : "loaded"; ?>" id="simple_al_item_<?php echo $unq; ?>_<?php echo $slnum; ?>">
     <div class="simple_al_subitem" id="simple_al_subitem_<?php echo $unq; ?>_<?php echo $subslnum; ?>">
-      <img class="simple_al_bgs_<?php echo $unq; ?>_<?php echo $counting; ?>" src="#" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
+      <?php
+      if ($front['slider']['mask_file'] == 'none')
+        {
+      ?>
+          <img class="simple_al_bgs_<?php echo $unq; ?>_<?php echo $counting; ?>" src="#" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
+      <?php
+        }
+        else
+        {
+      ?>
+<div class="simpleal_outter">
+<svg width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>">
+
+<image x="0" y="0" xlink:href="<?php echo $slide['imgs']['imgimage']; ?>" width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>" style="mask:url(#slideMask);" />
+
+</svg>
+</div>
+
+      <?php
+        }
+      ?>
     </div>
     <div class="simple_al_subitem txt_container" id="simple_al_subitem_<?php echo $unq; ?>_<?php echo ($subslnum+1); ?>">
     <?php
@@ -168,7 +206,20 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
     ";
     ?>
       <div class="simple_al_subitem_txt <?php echo $txt['classes']; ?>" id="simple_al_subitem_txt_<?php echo $unq; ?>_<?php echo $txtnum; ?>" style="background-color:<?php echo $txt['bgcolor']; ?>;color:<?php echo $txt['color']; ?>;width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;font-size:<?php echo $txt['size']; ?>pt;display:none;position:absolute;left:0px;top:0px;<?php echo $txt['style']; ?>">
+    <?php
+       if ($front['slider']['mask_file'] == 'none')
+        {
+    ?>
         <img src="#" class="simple_al_imgs_<?php echo $unq; ?>_<?php echo $counting; ?>" style="width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;">
+     <?php
+        }
+        else
+        {
+     ?>
+        <img src="<?php echo stripslashes($txt['txtimage']); ?>" class="simple_al_imgs_<?php echo $unq; ?>_<?php echo $counting; ?>" style="width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;">
+     <?php
+        }
+     ?>
       </div>
         <?php
      if ((isset($txt['txturl']))&&(!empty($txt['txturl'])))
@@ -185,7 +236,7 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
       if ((isset($txt['template']))&&(!empty($txt['template']))&&($txt['template'] != 'none'))
         {
         $source = file_get_contents(plugin_dir_path( __FILE__ )."../../templates/front_templates/".$txt['template']);
-        list($counter_templates_imgs, $templates_output) = bust_imgs_in_container($source, $counter_templates_imgs, $slnum, $unq, $txkey); 
+        list($counter_templates_imgs, $templates_output, $container_templates_scripts) = bust_imgs_in_container($source, $counter_templates_imgs, $slnum, $unq, $txkey, $container_templates_scripts, ($front['slider']['mask_file'] == 'none')); 
           echo $templates_output;
         }
         ?>
@@ -209,9 +260,21 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
   }
   $positions_output = substr($positions_output, 0, -1);
   $positions_output .= "}";
-  
+
+if ($front['slider']['mask_file'] == 'none')  
+  {
   echo $container_main_script;
   echo $container_children_scripts;
+  echo $container_templates_scripts;
+  }
+  else
+  {
+  ?>
+    <script>
+    window.not_need_lazy_load['<?php echo $unq; ?>'] = true;
+    </script>
+    <?php
+  }
       ?>
 
 </div>
@@ -304,6 +367,7 @@ image.onload = function () {
 var myElement = document.getElementById("simple_al_slider_outter_<?php echo $unq; ?>");
   myElement.style.opacity = 1;
   document.getElementById('preloaded_image_<?php echo $unq; ?>').src = '<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>';
+if (window.not_need_lazy_load['<?php echo $unq; ?>'] != true)
 if (window.loaded_slides != undefined)
   window.loaded_slides(window.slides_nums[0], true);
   else

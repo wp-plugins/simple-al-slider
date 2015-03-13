@@ -27,7 +27,7 @@ public function addScrypt($handle, $path)
 
         if ( file_exists($currScryptFile) ) {
 
-            wp_register_script($handle, $currScryptUrl, array('jquery', 'jquery-ui-core', 'jquery-ui-accordion', 'jquery-ui-tabs', 'jquery-ui-button', 'jquery-ui-dialog'), '1.0', true);
+            wp_register_script($handle, $currScryptUrl, array('jquery'), '1.0', true);
               wp_localize_script($handle, 'simple_al_WPURLS', array( 'pluginurl' => trailingslashit( plugin_dir_url( __FILE__ ) ) ));
             wp_print_scripts($handle);
         }

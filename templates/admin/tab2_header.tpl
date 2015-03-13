@@ -1,4 +1,4 @@
-  <div id="tabs-2">
+  <div id="tabs-2" style="text-align:left;width:97%;" class="welcome-panel">
   <script>
   jQuery(function($) {
     $('#slide_mass_effect').click( function() {

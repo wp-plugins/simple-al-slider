@@ -25,13 +25,15 @@ public function addAdminScryptesAndStyles()
   {
   $helper = new Sial_Helper();
   
-    $helper->addStyle("jquery-ui-css", "css/jquery-ui.css");
-
-    $helper->addStyle("main-css", "css/main.css");
+    $helper->addStyle("simpleal_main-css", "css/simple_al_main_admin.css");
+    
+if ($jquery_minicolors)
     $helper->addStyle("colorpicker-css", "css/jquery.minicolors.css");
 
     $helper->addScrypt("bg-file-js", "js/upload_media_bg_files.js");
     $helper->addScrypt("media-single-file-js", "js/upload_media_single_file.js");
+    
+if ($jquery_minicolors)
     $helper->addScrypt("colorpicker-js", "js/jquery.minicolors.min.js");
 
    if(function_exists( 'wp_enqueue_media' )){
@@ -95,6 +97,7 @@ public static function sial_install()
   settings_indicators int(3) DEFAULT 1,
   settings_indicators_width int(7) DEFAULT 0,
   autoplay int(3) DEFAULT 0,
+  mask_file varchar(250) DEFAULT 'none',
   move_elements int(3) DEFAULT 0,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
@@ -205,6 +208,11 @@ public function execute()
     
     $data = array();
     $data['proj_id'] = $pid;
+
+  if (isset($_GET['active']))
+    $active = $_GET['active'];
+    else
+    $active = 0;
     
     $db = new Sial_Db();
 
@@ -218,17 +226,43 @@ public function execute()
       list($data['text_id'], $data['txinfo'], $data['templates']) = $textController->execute($data['proj_id']);
 
     $mainInfoController = new Controller_MainInfo(new Model_MainInfo($db));
-      list($data['proj_id'], $data['all_projects'], $data['slider']) = $mainInfoController->execute($data['proj_id']);
+      list($data['proj_id'], $data['all_projects'], $data['slider'], $data['masks']) = $mainInfoController->execute($data['proj_id']);
       list($data['slider']['slides_info'], $data['slds_pagination'], $data['slides_caption']) = $slideController->makePagination($data['slider']['slides_info']);
-    
+      
+      $data["tab_active"] = $active;
+    switch ($active)
+    {
+    case 0:
     $views = new Sial_View(array('admin/header', 
                            array('admin/tab1_header', array('admin/tab1_block1'), 'admin/tab1_footer'),
+                          'admin/footer'));
+    break;
+    case 1:
+    $views = new Sial_View(array('admin/header', 
                            array('admin/tab2_header', array('admin/tab2_block1', 'admin/tab2_block2'), 'admin/tab2_footer'),
+                          'admin/footer'));
+    break;
+    case 2:
+    $views = new Sial_View(array('admin/header', 
                            array('admin/tab3_header', array('admin/tab3_block1', 'admin/tab3_block2'), 'admin/tab3_footer'),
+                          'admin/footer'));
+    break;
+    case 3:
+    $views = new Sial_View(array('admin/header', 
                            array('admin/tab4_header', array('admin/tab4_block1', 'admin/tab4_block2'), 'admin/tab4_footer'),
+                          'admin/footer'));
+    break;
+    case 4:
+    $views = new Sial_View(array('admin/header', 
                            array('admin/tab5_header', array('admin/tab5_block1'), 'admin/tab5_footer'),
+                          'admin/footer'));
+    break;
+    case 5:
+    $views = new Sial_View(array('admin/header', 
                            array('admin/tab6_header', array('admin/tab6_block1'), 'admin/tab6_footer'),
                           'admin/footer'));
+    break;
+    }
     $views->setData($data);
     echo $views->viewTemplates();
   }

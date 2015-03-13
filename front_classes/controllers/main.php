@@ -20,7 +20,6 @@ public function add_scripts_fronend()
   $helper = new Sial_Helper();
   
     $helper->addStyle("simple_al_main", "css/simple_al_main.css");
-    $helper->addStyle("source_split_two_elements", "css/classes_to_apply_source_split_two_elements.css");
 
     $helper->addScryptfront("simple_al_slider_modernizr", "js/simple_al_slider_modernizr.js");
     $helper->addScryptfront("simple_al_slider_common", "js/simple_al_slider_common.js");

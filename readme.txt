@@ -4,7 +4,7 @@ Donate link: https://secure.avangate.com/order/checkout.php?PRODS=4638772&QTY=1&
 Tags: slider, slideshow, wordpress slider, image slider, responsive slideshow, image Rotator, jquery slider, Photo Slider, slider plugin, javascript slider, responsive slider, featured-content-slider, Horizontal slider, wp slider, vertical slider, best slider plugin, javascript slideshow, slideshow manager, slideshow plugin, image slideshow, jquery slideshow, wordpress slideshow, vertical slides, responsive, plugin, slider widget, widget slider, widget slideshow, widget, widgets, seo, wordpress seo, media, page, slide, slides, image, images, slide show, slider shortcode, picture slider, text slider, text slides, text slideshow, jquery image slider, slider wordpress, image slider wordpress, wordpress slider plugin, html slider, html image slider, html jquery slider, jquery gallery slider, slider js, js image slider, js slideshow, javascript slideshow, js slide show, javascript image slider, simple jquery slider, simple slider, simple image slider, simple jquery image slider, simple javascript image slider, js image rotator, javascript image rotator, banner slider, jquery banner slider, jquery banner, banner slideshow, free image slider, free slider, free sliders, image sliders, jquery image sliders, jquery slider plugin, slider plugin, jquery slider plugins, responsive slider jquery,  jquery vertical slider, vertical image slider jquery, jquery horizontal slider, horizontal image slider jquery, jquery photo slider, photo gallery jquery, jquery photo slideshow, jquery slideshow, jquery image slideshow, jquery slideshow tutorial, website slider, free slider for website, best jquery slider, slideshow html, html image slideshow, jquery image gallery, jquery gallery plugin, slideshow maker online, slideshow online, photo slideshow online, responsive slider, image slider responsive, jquery slide, jquery slide show, jquery image slide, responsive slideshow jquery, slideshow responsive, photo slide show, slide show html, picture slide show, slide show online, responsive gallery slider, jquery slider tutorial, web slider, slider maker, anything slider, slideshow creator,  slideshow for website, image slideshow, simple slideshow, jquery rotator, photo show, slider widget, image slider widget, wordpress slider widget, best wordpress silders, new slider, last version slider, last sliders, new sliders, easy setup slider, free jquery slider, best responsive slider, responsive slider pligin, wordpress jquery plugin, plugin slideshow wordpress, website image slider, jquery image slider plugin, widget slider wordpress, responsive slider free, slider image jquery, slider images for website, latest slider, latest sliders, latest image slider, latest slideshow, latest jquery slider, great jquery slider, jquery slideshow plugins, responsive image slider jquery, vertical slider wordpress, banner slider wordpress, slider images jquery
 Requires at least: 3.6
 Tested up to: 4.1.1
-Stable tag: 1.1.12
+Stable tag: 1.1.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,7 @@ Simple AL Slider is a great wordpress plugin and easy in setup. It will not only
 
 You can see demo at <br>
 <a href="http://al-plugins.biz/try/">Simple AL Slider Live Demo (with heavy images)</a><br>
+<a href="http://al-plugins.biz/simple-al-slider-any-form/">Simple AL Slider Live Demo (any form)</a><br>
 <a href="http://al-plugins.biz/simple-al-slider-box/">Simple AL Slider Live Demo #1</a><br>
 <a href="http://al-plugins.biz/simple-al-slider-box-2/">Simple AL Slider Live Demo #2</a><br>
 <a href="http://al-plugins.biz/simple-al-slider-box-3/">Simple AL Slider Live Demo #3</a><br>
@@ -41,6 +42,7 @@ You can choose from many effects and add to effect collection for current projec
 *   You can add slides indicators.
 *   Enable/Disable autoplay.
 *   Preloader (with lazy load)
+*   You can apply any form for slides
 
 == Installation ==
 
@@ -68,6 +70,12 @@ You can add html code of video into template file and attach to slide as templat
 
 5. How can i made buttons?
 You can made it through creating text element with apropriate classes or in template element.
+
+6. How can i add pick color library?
+In cfg.php file set $jquery_minicolors to true. 
+
+7. How can i change a form of slides?
+Upload mask file into "templates/front_masks" and apply it in the slider project.
 
 == Screenshots ==
 
@@ -125,6 +133,9 @@ You can made it through creating text element with apropriate classes or in temp
 
 = 1.1.12 =
 * lazy load added, fixed templates in admin panel.
+
+= 1.1.13 =
+* added capability to apply any form for slides, project reworked, removed jquery ui, decrease js size, fixed some bugs ie.
 
 == Upgrade Notice ==
 

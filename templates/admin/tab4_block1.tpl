@@ -214,8 +214,8 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
       Actions
       </td>
       <td>
-      <input type="submit" name="save_text_btn" value=" Save Text ">
-      <input type="submit" name="del_text_btn" value=" Delete Text ">
+      <input type="submit" name="save_text_btn" value=" Save Element ">
+      <input type="submit" name="del_text_btn" value=" Delete Element ">
       </td>
       </tr>
       

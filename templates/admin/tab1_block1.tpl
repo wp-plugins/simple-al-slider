@@ -1,4 +1,9 @@
 <h2>Main Info</h2>
+<br>
+  <div>
+Background Images &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="set_backgrounds">Upload</button>
+  </div>
+
 <?php
 if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
 {
@@ -92,7 +97,8 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   </td>
   <td>
     <select name="effect">
-  <?php $main_effects = array("opacity", "width", "height", "incrop_decrop_vert", "incrop_decrop_horiz", "incrop_decrop4x2", 
+  <?php
+   $main_effects = array("opacity", "width", "height", "incrop_decrop_vert", "incrop_decrop_horiz", "incrop_decrop4x2", 
   "incrop_decrop7x3", "incrop_decrop10x4", "mpopob_vert", "mpopob_horiz", "mpopob4x2", "mpopob10x4", "decrop_vert", "decrop_horiz",
   "decrop4x2", "decrop7x3", "decrop10x4", "size_rotatex4x2", "size_rotatex10x4", "size_rotatey4x2", "size_rotatey10x4",
   "skew4x2", "skew7x3", "translatex4x2", "translatex10x5", "translatey4x2", "translatey10x5",
@@ -109,7 +115,8 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   "sequence_opacity_forw", "sequence_opacity_back", "sequence_horiz_opacity_forw_move", "sequence_horiz_opacity_back_move",
   "sequence_horiz_opacity_forw", "sequence_horiz_opacity_back", "sequence_horiz_opacity_forw_last_move",
   "sequence_opacity_forw_horiz_lines", "sequence_opacity_back_horiz_lines"
-  ); ?>
+  ); 
+  ?>
   <?php if ((isset($slider['main_info']))&&(isset($slider['main_info']['effect']))) {
   foreach ($main_effects as $me)
   {
@@ -153,6 +160,27 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   </div>
   <div class="left_line">
   <table>
+  
+      <tr>
+      <td>
+      Mask
+      </td>
+      <td>
+      <select name="mask_file">
+      <?php
+      if ((isset($masks))&&(isset($slider['main_info']['mask_file'])))
+      foreach ($masks as $mask)
+        {
+          if ($mask == $slider['main_info']['mask_file'])
+            echo "<option value='".sanitize_text_field($mask)."' selected>".sanitize_text_field($mask)."</option>";
+            else
+            echo "<option value='".sanitize_text_field($mask)."'>".sanitize_text_field($mask)."</option>";
+        }
+      ?>
+      </select>
+      </td>
+      </tr>
+
     <tr>
   <td>
   Apply Classes

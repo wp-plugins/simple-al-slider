@@ -24,7 +24,7 @@ public function saveMainData($source, $pid)
             array('width', 'width', '%d'), array('height', 'height', '%d'), array('duration', 'duration', '%d'),
             array('duration_effect', 'duration_effect', '%d'), array('duration_text_effect', 'duration_text_effect', '%d'),
             array('effect', 'effects_names_gather', '%s'), array('effect_direction', 'effect_direction', '%s'),
-            array('apply_classes', 'apply_classes', '%s'),
+            array('apply_classes', 'apply_classes', '%s'), array('mask_file', 'mask_file', '%s'),
             array('fullscreen', 'fullscreen', '%d'), array('autoplay', 'autoplay', '%d')
             );
   if (!intval(sanitize_text_field($pid)))return false;
