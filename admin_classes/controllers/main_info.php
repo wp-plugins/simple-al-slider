@@ -142,10 +142,10 @@ public function delProject()
   }
 public function swapBgDataWithThumbsData($main_data)
   {
-  if (is_array($main_data))
+  if ((is_array($main_data))&&(!empty($main_data)))
   foreach ($main_data['slides_info'] as $msi_key=>$main_si)
     {
-  if (is_array($main_si['imgs']))
+  if ((is_array($main_si['imgs']))&&(!empty($main_si)))
     foreach ($main_si['imgs'] as $msii_key=>$main_sii)
       {
         if ($main_sii['image_wp_id'] == 0)
@@ -160,10 +160,10 @@ public function swapBgDataWithThumbsData($main_data)
       }
     }
     
-  if (is_array($main_data))
+  if ((is_array($main_data))&&(!empty($main_data)))
   foreach ($main_data['slides_info'] as $msi_key=>$main_si)
     {
-  if (is_array($main_si['texts']))
+  if ((is_array($main_si['texts']))&&(!empty($main_si)))
     foreach ($main_si['texts'] as $msii_key=>$main_sii)
       {
         if ($main_sii['image_elem_wp_id'] == 0)
