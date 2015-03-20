@@ -25,11 +25,16 @@ public function addAdminScryptesAndStyles()
   {
   $helper = new Sial_Helper();
   
-    $helper->addStyle("simpleal_main-css", "css/simple_al_main_admin.css");
+   $helper->addStyle("bootstrap-theme-css", "css/bootstrap-theme.min.css");
+   $helper->addStyle("bootstrap.min-css", "css/bootstrap.min.css");
+    $helper->addStyle("main-css", "css/main.css");
+
+global $jquery_minicolors;
     
 if ($jquery_minicolors)
     $helper->addStyle("colorpicker-css", "css/jquery.minicolors.css");
 
+   $helper->addScrypt("bootstrap.min-js", "js/bootstrap.min.js");
     $helper->addScrypt("bg-file-js", "js/upload_media_bg_files.js");
     $helper->addScrypt("media-single-file-js", "js/upload_media_single_file.js");
     
@@ -66,7 +71,8 @@ public function init()
 public static function onActivate($file)
   {
   register_activation_hook($file, array( '\simpleal\Sial_Admin_Common', 'sial_install'));
-    register_deactivation_hook($file, array( '\simpleal\Sial_Admin_Common', 'sial_uninstall'));
+    register_deactivation_hook($file, array( '\simpleal\Sial_Admin_Common', 'sial_deactivate'));
+      register_uninstall_hook($file, array( '\simpleal\Sial_Admin_Common', 'sial_uninstall'));
   }
   
 public static function sial_install()
@@ -89,13 +95,17 @@ public static function sial_install()
   duration_effect int(8) DEFAULT 100,
   duration_text_effect int(8) DEFAULT 200,
   effect_direction varchar(100) DEFAULT 'forward',
-  effect text DEFAULT NULL,
+  effect text,
   fullscreen int(2) DEFAULT 0,
-  apply_classes text DEFAULT NULL,
+  apply_classes text,
   settings_buttons int(3) DEFAULT 1,
   settings_buttons_top int(7) DEFAULT 0,
+  settings_buttons_width int(3) DEFAULT 50,
+  settings_buttons_opacity int(3) DEFAULT 70,
   settings_indicators int(3) DEFAULT 1,
-  settings_indicators_width int(7) DEFAULT 0,
+  settings_indicators_top int(7) DEFAULT 0,
+  settings_indicators_width int(7) DEFAULT 20,
+  settings_num_indicators int(7) DEFAULT 8,
   autoplay int(3) DEFAULT 0,
   mask_file varchar(250) DEFAULT 'none',
   move_elements int(3) DEFAULT 0,
@@ -121,6 +131,7 @@ public static function sial_install()
   `name` varchar(100) NOT NULL DEFAULT '',
   `url` varchar(250) NOT NULL DEFAULT '',
   `image` varchar(250) NOT NULL DEFAULT '',
+  `image_wp_id` int(10) DEFAULT 0,
   `slide_id` int(11) unsigned NOT NULL,
   PRIMARY KEY  (`id`),
   FOREIGN KEY (slide_id) REFERENCES ".$table_slides."(id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -132,9 +143,10 @@ public static function sial_install()
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL DEFAULT '',
   `url` varchar(250) NOT NULL DEFAULT '',
-  `text` text NOT NULL DEFAULT '',
+  `text` text,
   `type` int(5) NOT NULL DEFAULT 0,
-  `image` text NOT NULL DEFAULT '',
+  `image` text,
+  `image_elem_wp_id` int(10) DEFAULT 0,
   `template` varchar(250) NOT NULL DEFAULT '',
   `width` int(5) NOT NULL DEFAULT 0,
   `height` int(5) NOT NULL DEFAULT 0,
@@ -142,8 +154,8 @@ public static function sial_install()
   `offsettop` int(5) NOT NULL DEFAULT 0,
   `color` varchar(50) DEFAULT '#000000',
   `bgcolor` varchar(50) DEFAULT '#ffffff',
-  `style` text DEFAULT NULL,
-  `classes` text DEFAULT NULL,
+  `style` text,
+  `classes` text,
   `size` int(5) DEFAULT 10,
   `slide_id` int(11) unsigned NOT NULL,
   PRIMARY KEY  (`id`),
@@ -165,7 +177,7 @@ require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       dbDelta($sql4);
       
       update_option( "simple_al_slider_db_version", $simple_al_slider_db_version );
-    }
+   }
   }
 public function simple_al_update_db_check()
   {
@@ -173,6 +185,10 @@ public function simple_al_update_db_check()
     if (( get_site_option( 'simple_al_slider_db_version' ) != $simple_al_slider_db_version )||(is_null(get_site_option( 'simple_al_slider_db_version' )))) {
         self::sial_install();
     }
+  }
+public static function sial_deactivate()
+  {
+    delete_option( "simple_al_slider_db_version" );
   }
 public static function sial_uninstall()
   {

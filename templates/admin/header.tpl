@@ -9,7 +9,9 @@ if(!function_exists('current_user_can')){
   die('Access Denied');
 }
 ?>
+<div class="simple_only_for_messages">
 
+</div>
   <script>
   jQuery(function($) {
 
@@ -39,8 +41,21 @@ if(!function_exists('current_user_can')){
 
 window.alert_show = function(msg, type)
   {
-    alert(msg);
+  var src = "";
+  switch (type)
+    {
+    case 'success':
+     src = '<div class="alert alert-success" role="alert">'+msg+'</div>';
+    break;
+    case 'danger':
+     src = '<div class="alert alert-danger" role="alert">'+msg+'</div>';
+    break;
+    }
+
+    $('.simple_only_for_messages').html(src);
   }
+
+      if ('<?php echo $_GET['updated'] ?>' == 'true')window.alert_show('Updated Successfully', 'success');
 
 function empty(element) {
     if (
@@ -67,12 +82,20 @@ function empty(element) {
 
 $('.new_project_close_btn').unbind('click').bind('click', function(event){
               event.preventDefault();
-$( ".new_project_show_dlg" ).hide();
+$( ".new_project_show_dlg" ).hide('slow');
 });
         
 $('#button_show_add_project').unbind('click').bind('click', function(event) {
             event.preventDefault();
-$( ".new_project_show_dlg" ).show();
+$( ".new_project_show_dlg" ).show('slow');
+  });
+  
+$('#new_project_create_id_btn').unbind('click').bind('click', function(event) {
+    if ($('#new_project_name').val() == '')
+      {
+            event.preventDefault();
+            window.alert_show('Need project name!', 'danger');
+      }
   });
   
 });
@@ -128,7 +151,7 @@ echo wp_create_nonce("upd_rec_slide");
 <input type="submit" name="del_proj_btn" value="Delete">
 </form>
  
- <div class="new_project_show_dlg" title="New project creation"  style="display:none;border:1px solid black;background-color:#fff;width:350px;padding-left:20px;">
+ <div class="new_project_show_dlg" title="New project creation"  style="display:none;background-color:#fff;width:350px;padding-left:20px;">
   <form id="pcf" name="project_creation_form" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=<?php echo $tab_active; ?>">
   <?php
   if (function_exists('wp_nonce_field'))
@@ -136,11 +159,21 @@ echo wp_create_nonce("upd_rec_slide");
     wp_nonce_field('sp_project_name');
     }
   ?>
- <h4 class="add_proj_header2">New project</h4>
+<div class="panel panel-primary">
+<div class="panel-heading">
+
+ <h3 class="add_proj_header2 panel-title">New project</h3>
+ 
+       </div>
+<div class="panel-body">
+
  <input type="text" name="new_project_name" value="" id="new_project_name">
  <input type="hidden" name="new_project_btn" value="Add project" id="add_proj_btn">
  <input type="submit" id="new_project_create_id_btn" value="Create">
  <input type="submit" id="new_project_close_id_btn" class="new_project_close_btn"  value="Close">
+ 
+        </div>
+               </div>
   </form>
  </div>
  </div>

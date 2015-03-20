@@ -36,7 +36,11 @@ public function saveMainData($source, $pid)
   }
 public function saveSettingsButtons($source, $pid)
   {
-  $filter = array(array('settings_buttons', 'settings_buttons', '%d'), array('settings_buttons_top', 'settings_buttons_top', '%d'));
+  $filter = array(array('settings_buttons', 'settings_buttons', '%d'),
+   array('settings_buttons_width', 'settings_buttons_width', '%d'),
+   array('settings_buttons_opacity', 'settings_buttons_opacity', '%d'),
+   array('settings_buttons_top', 'settings_buttons_top', '%d')
+   );
   if (!intval(sanitize_text_field($pid)))return false;
   
   $idval = array('id' => intval(sanitize_text_field($pid)));
@@ -47,7 +51,11 @@ public function saveSettingsButtons($source, $pid)
 
 public function saveSettingsIndicators($source, $pid)
   {
-  $filter = array(array('settings_indicators', 'settings_indicators', '%d'), array('settings_indicators_width', 'settings_indicators_width', '%d'));
+  $filter = array(array('settings_indicators', 'settings_indicators', '%d'),
+   array('settings_indicators_top', 'settings_indicators_top', '%d'),
+   array('settings_indicators_width', 'settings_indicators_width', '%d'),
+   array('settings_num_indicators', 'settings_num_indicators', '%d'));
+
   if (!intval(sanitize_text_field($pid)))return false;
   
   $idval = array('id' => intval(sanitize_text_field($pid)));

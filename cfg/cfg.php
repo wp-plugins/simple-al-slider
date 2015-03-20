@@ -11,12 +11,9 @@ $cache_sql_expiration = 1800;
 //Slides in per page mode
 $slides_per_page = 6;
 
-//Front slide indicator one side (full slides count = *2)
-$slide_indicators_front_one_side = 8;
-
 //Using pick color library (use - true, don't use - false)
-$jquery_minicolors = false;
+$jquery_minicolors = true;
 
 //For db upgrade
-$simple_al_slider_db_version = "1.4";
+$simple_al_slider_db_version = "1.5";
 ?>

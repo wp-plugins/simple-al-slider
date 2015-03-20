@@ -8,7 +8,7 @@ function bust_imgs_in_container($source, $counting, $slnum, $unq, $txkey, $conta
     $counting_img = substr_count($source, '<img');
 
         $uniqid = "tmpl_".uniqid();
-        $output = "<div class='".$uniqid."'>";
+        $output = "<div class='".$uniqid." ins_template'>";
     
     $counting_css = $counting + $counting_img;
     if ($is_lazy_load)
@@ -50,20 +50,6 @@ function bust_imgs_in_container($source, $counting, $slnum, $unq, $txkey, $conta
   }
 }
 ?>
- <?php
-  if ($front['slider']['mask_file'] != 'none')
-  {
-?>
-<div style="position:absolute;left:0px;top:0px;">
-<svg>
-<mask id="slideMask">
-    <image x="0" y="0" xlink:href="<?php echo plugin_dir_url( __FILE__ )."../../templates/front_masks/".$front['slider']['mask_file']; ?>" width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>" />
-</mask>
-</svg>
-</div>
- <?php
- }
- ?>
 <script>
     if (window.not_need_lazy_load == undefined)window.not_need_lazy_load = [];
     
@@ -74,15 +60,40 @@ if (document.images)
   window.loaded_slides_imgs['<?php echo $unq; ?>'] = [];
   
   if (window.slides_nums == undefined)window.slides_nums = [];
+  window.slides_nums['<?php echo $unq; ?>'] = [];
 </script>
 
-<div id="simple_al_slider_outter_<?php echo $unq; ?>" class="simple_al_slider_outter_<?php echo $unq; ?>" style="width:100%;height:100%;opacity:0;-moz-opacity:0;-khtml-opacity:0;">
-  
+
+<div id="simple_al_slider_outter_<?php echo $unq; ?>" class="simple_al_slider_outter simple_al_slider_outter_<?php echo $unq; ?>" style="width:100%;height:100%;opacity:0;-moz-opacity:0;-khtml-opacity:0;">
+
+    <?php
+      if ($front['slider']['mask_file'] == 'none')
+      {
+      ?>
   <div class="simple_al_preloader" id="simple_al_preloader_<?php echo $unq; ?>" style="position:relative;left:0px;top:0px;width:100%;height:100%;background-color:#000000;display:table;z-index:1220000;">
     <div class="simple_al_preloader_inside" style="display:table-cell;vertical-align:middle;text-align:center;">
       <img src="#" class="preloaded_image" id="preloaded_image_<?php echo $unq; ?>" style="width:100px;">
     </div>
   </div>
+      <?php
+      }
+      else
+      {
+      ?>
+<div class="simple_al_preloader" id="simple_al_preloader_<?php echo $unq; ?>" style="position:relative;left:0px;top:0px;width:100%;height:100%;display:table;z-index:1220000;">
+<div class="simpleal_preload_outter_<?php echo $unq; ?>">
+  <svg width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>">
+
+<rect x="0" y="0" width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>" style="fill:black;mask:url(#slideMask);"/>
+    <image x="<?php echo $front['slider']['sldrwidth']/2-100/2; ?>" y="<?php echo $front['slider']['sldrheight']/2-50/2; ?>" xlink:href="<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>" width="100" height="50" style="" />
+
+  </svg>
+</div>
+</div>
+
+      <?php
+      }
+      ?>
 
 <div id="simple_al_slider_id_<?php echo $unq; ?>" class="simple_al_slider" style="position:relative;"><!-- style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;position:relative;'>-->
 
@@ -119,7 +130,7 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
 
     function one_time_bg()
     {
-    window.slides_nums.push(".$slnum.");
+    window.slides_nums['".$unq."'].push(".$slnum.");
     if (window.loaded_slides_imgs['".$unq."'][".$slnum."] == undefined)window.loaded_slides_imgs['".$unq."'][".$slnum."] = [];
 
       window.loaded_slides_imgs['".$unq."'][".$slnum."].push([\"simple_al_bgs_".$unq."_".$counting."\", \"".$slide['imgs']['imgimage']."\", \"#simple_al_item_".$unq."_".$slnum."\", \"set\"]);
@@ -134,7 +145,7 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
       if ($front['slider']['mask_file'] == 'none')
         {
       ?>
-          <img class="simple_al_bgs_<?php echo $unq; ?>_<?php echo $counting; ?>" src="#" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
+          <img class="simple_al_bgs_<?php echo $unq; ?>_<?php echo $counting; ?>" src="<?php echo plugins_url("../../images/empty.gif", __FILE__); ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
       <?php
         }
         else
@@ -210,7 +221,7 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
        if ($front['slider']['mask_file'] == 'none')
         {
     ?>
-        <img src="#" class="simple_al_imgs_<?php echo $unq; ?>_<?php echo $counting; ?>" style="width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;">
+        <img src="<?php echo plugins_url("../../images/empty.gif", __FILE__); ?>" class="simple_al_imgs_<?php echo $unq; ?>_<?php echo $counting; ?>" width="<?php echo $txt['txtwidth']; ?>" height="<?php echo $txt['txtheight']; ?>" style="width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;">
      <?php
         }
         else
@@ -280,10 +291,27 @@ if ($front['slider']['mask_file'] == 'none')
 </div>
 </div>
 </div>
+ <?php
+  if ($front['slider']['mask_file'] != 'none')
+  {
+?>
+<div style="position:absolute;left:0px;top:0px;z-index:-10;">
+<svg>
+<mask id="slideMask">
+    <image x="0" y="0" xlink:href="<?php echo plugin_dir_url( __FILE__ )."../../templates/front_masks/".$front['slider']['mask_file']; ?>" width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>" />
+</mask>
+</svg>
+</div>
+ <?php
+ }
+ ?>
+
 </div>
 <div class="class_for_out_styles_<?php echo $unq; ?>">
 </div>
 <div class="class_for_out_styles_sequence_<?php echo $unq; ?>">
+</div>
+<div class="for_lazy_load_<?php echo $unq; ?>" style="">
 </div>
 
 <div class="imgs_garbage_<?php echo $unq; ?>" style="display:none;">
@@ -337,13 +365,12 @@ jQuery(function($) {
   if (window.action_finished == undefined)
             window.action_finished = [];
             window.action_finished['<?php echo $unq; ?>'] = false;
-<?php
-      global $slide_indicators_front_one_side;
-   ?>
 
       window.simple_al_slider_pos['<?php echo $unq; ?>'] = <?php echo $positions_output; ?>;
-      
-      window.simple_al_slider.push($('#simple_al_slider_inside_<?php echo $unq; ?>').simple_al_slider({container_id:$('#simple_al_slider_inside_'+'<?php echo $unq; ?>'),fullscreen:<?php echo $fullscreen; ?>, parent_params:[<?php echo $parent_params; ?>], positions : window.simple_al_slider_pos['<?php echo $unq; ?>'],direction:'<?php echo $front['slider']['effect_direction']; ?>', duration_action:<?php echo $front['slider']['duration']; ?>, duration_effect:<?php echo $front['slider']['duration_effect']; ?>, duration_text_effect:<?php echo $front['slider']['duration_text_effect']; ?>, action:'<?php echo $front['slider']['effect']; ?>', set_buttons: <?php echo $front['slider']['settings_buttons']; ?>, set_top_buttons: <?php echo $front['slider']['settings_buttons_top']; ?>, frame:'parent', uniqid:'<?php echo $unq; ?>', indicators_num:<?php echo $front['slider']['settings_indicators']; ?>, indicators_width:<?php echo $front['slider']['settings_indicators_width']; ?>, slide_indicators_front_one_side : <?php echo $slide_indicators_front_one_side; ?>, autoplay:<?php echo $front['slider']['autoplay']; ?>}));
+<?php
+
+?>      
+      window.simple_al_slider.push($('#simple_al_slider_inside_<?php echo $unq; ?>').simple_al_slider({container_id:$('#simple_al_slider_inside_'+'<?php echo $unq; ?>'),fullscreen:<?php echo $fullscreen; ?>, parent_params:[<?php echo $parent_params; ?>], positions : window.simple_al_slider_pos['<?php echo $unq; ?>'],direction:'<?php echo $front['slider']['effect_direction']; ?>', duration_action:<?php echo $front['slider']['duration']; ?>, duration_effect:<?php echo $front['slider']['duration_effect']; ?>, duration_text_effect:<?php echo $front['slider']['duration_text_effect']; ?>, action:'<?php echo $front['slider']['effect']; ?>', set_buttons: <?php echo $front['slider']['settings_buttons']; ?>, set_top_buttons: <?php echo $front['slider']['settings_buttons_top']; ?>, set_width_buttons: <?php echo $front['slider']['settings_buttons_width']; ?>, set_opacity_buttons: <?php echo $front['slider']['settings_buttons_opacity']; ?>, frame:'parent', uniqid:'<?php echo $unq; ?>', indicators_num:<?php echo $front['slider']['settings_indicators']; ?>, indicators_width:<?php echo $front['slider']['settings_indicators_width']; ?>, indicators_top:<?php echo $front['slider']['settings_indicators_top']; ?>, slide_indicators_front_one_side : <?php echo $front['slider']['settings_num_indicators']; ?>, autoplay:<?php echo $front['slider']['autoplay']; ?>}));
     
 
 if ((wsbi == undefined)||(window.slide_by_index == undefined))
@@ -361,23 +388,30 @@ if ((wsbi == undefined)||(window.slide_by_index == undefined))
     }
 $.fn.simple_al_slider_base.add_indexOf();
 
+if (window.not_need_lazy_load['<?php echo $unq; ?>'] != true)
+ {
 //Preloader Image Load
 var image = new Image();
 image.onload = function () {
 var myElement = document.getElementById("simple_al_slider_outter_<?php echo $unq; ?>");
   myElement.style.opacity = 1;
   document.getElementById('preloaded_image_<?php echo $unq; ?>').src = '<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>';
-if (window.not_need_lazy_load['<?php echo $unq; ?>'] != true)
+
 if (window.loaded_slides != undefined)
-  window.loaded_slides(window.slides_nums[0], true);
+  window.loaded_slides(window.slides_nums['<?php echo $unq; ?>'][0], true);
   else
-  wsbi('<?php echo $unq; ?>', window.slides_nums[0]);
+  wsbi('<?php echo $unq; ?>', window.slides_nums['<?php echo $unq; ?>'][0]);
 }
 image.onerror = function () {
    console.error("Incorret image loading");
 }
 image.src = '<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>';
-
+ }
+ else
+ {
+var myElement = document.getElementById("simple_al_slider_outter_<?php echo $unq; ?>");
+  myElement.style.opacity = 1;
+ }
 
     $(window).on("blur focus", function(e) {
 
@@ -422,7 +456,7 @@ image.src = '<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>
   var true_resize = function()
     {
        $.each(window.simple_al_slider, function (i, v){ v.resize(); });
-       $('.simple_al_slider_outter_<?php echo $unq; ?>').find('img').css('max-width', 'none');
+       $('.simple_al_slider_outter_<?php echo $unq; ?>').find('img').filter(function(){ return $(this).css('max-width') == '100%' }).css('max-width', 'inherit');
     }
   
   var window_resize_flag = false;

@@ -78,7 +78,9 @@ public function makePagination($slides)
     
     if ($num_slides % $per_page == 0)$num_pages--;
     
-    $page = (isset($_GET['pagesld'])) ? $_GET['pagesld'] : -1;
+    $page = (isset($_GET['pagesld'])) ? $_GET['pagesld'] : 0;
+    
+    ($_GET['pagesld'] != 'full') ? $_GET['pagesld'] : $page = -1;
     
     $actual_link = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     
@@ -96,7 +98,7 @@ public function makePagination($slides)
       $slides_new = array_slice($slides, $page*$per_page, $per_page);
       }
 
-      $pagination = "<a href='".$actual_link."'>Show All</a><br><a href='".$actual_link."&pagesld=0'>First</a> ";
+      $pagination = "<a href='".$actual_link."&pagesld=full'>Show All</a><br><a href='".$actual_link."&pagesld=0'>First</a> ";
       if ($page >= 1)$pagination .= "<a href='".$actual_link."&pagesld=".($page-1)."'>Prev</a> ";
       for ($i=0; $i<=$num_pages; $i++)
         {

@@ -8,8 +8,22 @@
     wp_nonce_field('sp_text');
     }
   ?>
-  <h3>[TEXT_NAME]</h3>
-  <input type='hidden' name='text_id' value='[TEXT_ID]'>
+
+  <div class="chk" style="padding-left:10px;">
+  <div class="chk_in">
+    <input type="checkbox" name="elements_chk_now[]" class="elem_[TEXT_ID]" value="[TEXT_ID]">
+  </div>
+  </div>
+
+<div class="panel panel-primary inner_div_frm">
+<div class="panel-heading">
+
+  <h3 class="panel-title">[TEXT_NAME]</h3>
+  
+    </div>
+<div class="panel-body">
+
+  <input type='hidden' name='text_id[]' value='[TEXT_ID]'>
     <div class='text_show'>
       <div class="left_line">
 
@@ -21,7 +35,7 @@
       Name
       </td>
       <td>
-      <input type="text" name="name" size="30" value="[TEXT_NAME]">
+      <input type="text" name="name[]" class="elem_[TEXT_ID]" size="30" value="[TEXT_NAME]">
       </td>
       </tr>
 
@@ -30,7 +44,7 @@
       URL
       </td>
       <td>
-      <input type="text" name="url" size="30" value="">
+      <input type="text" name="url[]" class="elem_[TEXT_ID]" size="30" value="">
       </td>
       </tr>
 
@@ -39,7 +53,7 @@
       Text
       </td>
       <td>
-      <input type="text" name="text" size="30" value="[TEXT]">
+      <input type="text" name="text[]" class="elem_[TEXT_ID]" size="30" value="[TEXT]">
       </td>
       </tr>
 
@@ -48,7 +62,7 @@
       Type
       </td>
       <td>
-      <select name="element_type">
+      <select name="element_type[]" class="elem_[TEXT_ID]">
       <?php
       $type_vals = array(0 => "Text Element", 1 => "Image Element", 2 => "Template Element");
       foreach ($type_vals as $k=>$typ)
@@ -65,7 +79,7 @@
       Image
       </td>
       <td>
-      <input type="text" class="element_image" name="element_image" size="50" value="">
+      <input type="text" class="element_image elem_[TEXT_ID]" name="element_image[]" size="50" value="">
       <br>
       <button class="set_image">Add Image</button>
       <img class="element_image_src" src="<?php echo plugins_url("../../images/none.jpg", __FILE__); ?>">
@@ -77,7 +91,7 @@
       Template
       </td>
       <td>
-      <select  name="element_template">
+      <select  name="element_template[]" class="elem_[TEXT_ID]">
       <?php
       if (isset($templates))
       foreach ($templates as $tmpl)
@@ -94,7 +108,7 @@
       Width
       </td>
       <td>
-      <input type="text" name="width" size="10" value="0">
+      <input type="text" name="width[]" class="elem_[TEXT_ID]" size="10" value="0">
       </td>
       </tr>
 
@@ -103,7 +117,7 @@
       Height
       </td>
       <td>
-      <input type="text" name="height" size="10" value="0">
+      <input type="text" name="height[]" class="elem_[TEXT_ID]" size="10" value="0">
       </td>
       </tr>
 
@@ -112,7 +126,7 @@
       Classes
       </td>
       <td>
-      <input type="text" name="classes" size="30" value="">
+      <input type="text" name="classes[]" class="elem_[TEXT_ID]" size="30" value="">
       </td>
       </tr>
 
@@ -121,7 +135,7 @@
       Offset Left
       </td>
       <td>
-      <input type="text" name="offsetleft" size="10" value="0">
+      <input type="text" name="offsetleft[]" class="elem_[TEXT_ID]" size="10" value="0">
       </td>
       </tr>
 
@@ -135,7 +149,7 @@
       Offset Top
       </td>
       <td>
-      <input type="text" name="offsettop" size="10" value="0">
+      <input type="text" name="offsettop[]" class="elem_[TEXT_ID]" size="10" value="0">
       </td>
       </tr>
 
@@ -144,7 +158,7 @@
       Color
       </td>
       <td>
-      <input type="text" class="hdn_color" name="color" size="10" value="#000000">
+      <input type="text" class="hdn_color elem_[TEXT_ID]" name="color[]" size="10" value="#000000">
       </td>
       </tr>
 
@@ -153,7 +167,7 @@
       Background Color
       </td>
       <td>
-      <input type="text" class="hdn_color" name="bgcolor" size="10" value="#ffffff">
+      <input type="text" class="hdn_color elem_[TEXT_ID]" name="bgcolor[]" size="10" value="#ffffff">
       </td>
       </tr>
 
@@ -162,7 +176,7 @@
       Style
       </td>
       <td>
-      <input type="text" name="style" size="50" value="">
+      <input type="text" name="style[]" class="elem_[TEXT_ID]" size="50" value="">
       </td>
       </tr>
 
@@ -171,7 +185,7 @@
       Size
       </td>
       <td>
-      <input type="text" name="size" size="10" value="10">
+      <input type="text" name="size[]" class="elem_[TEXT_ID]" size="10" value="10">
       </td>
       </tr>
 
@@ -180,7 +194,7 @@
       Slide
       </td>
       <td>
-    <select name="slide_id" id="slide_id_[TEXT_ID]">
+    <select name="slide_id[]" id="slide_id_[TEXT_ID]" class="elem_[TEXT_ID]">
     <?php
     if (isset($slider['slides_info'])&&(!empty($slider['slides_info'])))
     {
@@ -209,6 +223,10 @@
       
       </div>
       <div class="clear_line"></div>
+      
+  </div>
+  </div>
+
     </div>
  </form>
 </div>

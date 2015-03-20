@@ -1,6 +1,8 @@
 <h2><?php echo (isset($slides_caption)) ? $slides_caption : "Slides"; ?></h2>
 
 <div class='slides_output_area'>
+<button id="select_all_slides">Select All</button>
+<button id="select_none_slides">Select None</button>
 <?php
 if (isset($slider['slides_info'])&&(!empty($slider['slides_info'])))
 foreach ($slider['slides_info'] as $slide)
@@ -22,7 +24,14 @@ foreach ($slider['slides_info'] as $slide)
     wp_nonce_field('sp_slide');
     }
   ?>
-  <h3><?php echo $slide['sldsname']; ?></h3>
+<div class="panel panel-primary">
+<div class="panel-heading">
+
+  <h3 class="panel-title"><?php echo $slide['sldsname']; ?></h3>
+  
+      </div>
+<div class="panel-body">
+
   <input type='hidden' name='slide_id' value='<?php echo $slide['sldsid']; ?>'>
     <div class='slide_show'>
       <table>
@@ -48,6 +57,10 @@ foreach ($slider['slides_info'] as $slide)
       
       </table>
     </div>
+    
+    </div>
+    </div>
+
     </form>
   </div>
   <?php

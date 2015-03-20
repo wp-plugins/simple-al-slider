@@ -37,13 +37,21 @@ public function getAllTemplatesFiles()
 
 public function saveTextData()
   {
-   if (isset($_POST['save_text_btn']))
+  if (isset($_POST['save_all_elements_btn']))
+  {
+  $this->check('sp_all_elements');
+  
+      $this->model_texts->saveTextData($_POST);  
+      
+      return true;
+  }
+   elseif (isset($_POST['save_text_btn']))
     {
       $this->check('sp_text');
       
-      $this->model_texts->saveTextData($_POST, $_POST['text_id']);
+      $this->model_texts->saveTextData($_POST);
       
-      return $_POST['text_id'];
+      return true;
     }
    return false; 
   }
@@ -69,19 +77,19 @@ public function delTextData()
     {
       $this->check('sp_text');
       
-      return $this->model_texts->delTextInfo($_POST['text_id']);
+      return $this->model_texts->delTextInfo($_POST['text_id'][0]);
     }
    return false;
   }
 public function massActTextData()
   {
-   if (isset($_POST['mass_execution_btn']))
+   if (isset($_POST['element_mass_execution_btn']))
     {
-      $this->check('sp_text_delete_mass');
+      $this->check('sp_element_delete_mass');
       
-          switch ($_POST['mass_action'])
+          switch ($_POST['element_mass_action'])
           {
-          case '1' : $this->model_texts->massDelTextData($_POST['chk_now']); break;
+          case '1' : $this->model_texts->massDelTextData($_POST['elements_chk_now']); break;
           }
 
       return true;

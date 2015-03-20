@@ -1,5 +1,8 @@
-<h2>Main Info</h2>
-<br>
+<div class="panel panel-primary">
+<div class="panel-heading">
+        <h3 class="panel-title">Main Info</h3>
+      </div>
+<div class="panel-body">
   <div>
 Background Images &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="set_backgrounds">Upload</button>
   </div>
@@ -8,7 +11,7 @@ Background Images &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class
 if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
 {
 ?>
-  <form method="POST" id="main_info_frm_<?php echo $slider['main_info']['sldrid']; ?>" class="main_info_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=0&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>&amp;updated=true">
+  <form method="POST" id="main_info_frm_<?php echo $slider['main_info']['sldrid']; ?>" class="form-inline main_info_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=0&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>&amp;updated=true">
   <?php
   if (function_exists('wp_nonce_field'))
     {
@@ -24,7 +27,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   Name
   </td>
   <td>
-  <input name="name" class="notempty_fld" size="50" value="<?php echo $slider['main_info']['sldrname']; ?>">
+  <input name="name" class="form-control notempty_fld" size="50" value="<?php echo $slider['main_info']['sldrname']; ?>">
   </td>
   </tr>
     <tr>
@@ -32,7 +35,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   Width
   </td>
   <td>
-  <input name="width" class="digits_fld" size="10" value="<?php echo $slider['main_info']['sldrwidth']; ?>">
+  <input name="width" class="form-control digits_fld" size="10" value="<?php echo $slider['main_info']['sldrwidth']; ?>">
   </td>
   </tr>
   <tr>
@@ -40,7 +43,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   Height
   </td>
   <td>
-  <input name="height" class="digits_fld" size="10" value="<?php echo $slider['main_info']['sldrheight']; ?>">
+  <input name="height" class="form-control digits_fld" size="10" value="<?php echo $slider['main_info']['sldrheight']; ?>">
   </td>
   </tr>
   
@@ -49,7 +52,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   Duration
   </td>
   <td>
-  <input name="duration" class="digits_fld" size="10" value="<?php echo $slider['main_info']['duration']; ?>">
+  <input name="duration" class="form-control digits_fld" size="10" value="<?php echo $slider['main_info']['duration']; ?>">
   </td>
   </tr>
 
@@ -58,16 +61,16 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   Effect Duration
   </td>
   <td>
-  <input name="duration_effect" class="digits_fld" size="10" value="<?php echo $slider['main_info']['duration_effect']; ?>">
+  <input name="duration_effect" class="form-control digits_fld" size="10" value="<?php echo $slider['main_info']['duration_effect']; ?>">
   </td>
   </tr>
 
   <tr>
   <td>
-  Text Effect Duration
+  Elements Effect Duration
   </td>
   <td>
-  <input name="duration_text_effect" class="digits_fld" size="10" value="<?php echo $slider['main_info']['duration_text_effect']; ?>">
+  <input name="duration_text_effect" class="form-control digits_fld" size="10" value="<?php echo $slider['main_info']['duration_text_effect']; ?>">
   </td>
   </tr>
 
@@ -76,7 +79,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   Effect Direction
   </td>
   <td>
-  <select name="effect_direction">
+  <select name="effect_direction" class="form-control">
   <?php $directions = array('forward', 'backward');
   if ((isset($slider['main_info']))&&(isset($slider['main_info']['effect_direction']))) { 
   foreach ($directions as $direct)
@@ -96,7 +99,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   Effect
   </td>
   <td>
-    <select name="effect">
+    <select name="effect" class="form-control">
   <?php
    $main_effects = array("opacity", "width", "height", "incrop_decrop_vert", "incrop_decrop_horiz", "incrop_decrop4x2", 
   "incrop_decrop7x3", "incrop_decrop10x4", "mpopob_vert", "mpopob_horiz", "mpopob4x2", "mpopob10x4", "decrop_vert", "decrop_horiz",
@@ -114,7 +117,12 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   "sequence_horiz_right_up", "sequence_horiz_right_up_back", "sequence_opacity_forw_move", "sequence_opacity_back_move",
   "sequence_opacity_forw", "sequence_opacity_back", "sequence_horiz_opacity_forw_move", "sequence_horiz_opacity_back_move",
   "sequence_horiz_opacity_forw", "sequence_horiz_opacity_back", "sequence_horiz_opacity_forw_last_move",
-  "sequence_opacity_forw_horiz_lines", "sequence_opacity_back_horiz_lines"
+  "sequence_opacity_forw_horiz_lines", "sequence_opacity_back_horiz_lines",
+  "double_rotatex_vert_10x1", "double_rotatex_vert_10x1_hide", "double_corner_superposition",
+  "double_horiz_superposition", "double_vert_superposition", "double_sequence_horiz",
+  "double_sequence_horiz_up_down", "double_sequence_horiz_down", "double_sequence_horiz_right_down",
+  "double_sequence_horiz_right_up", "double_sequence_opacity_move", "double_sequence_opacity",
+  "double_sequence_horiz_opacity_move", "double_sequence_horiz_opacity", "double_sequence_opacity_horiz_lines"
   ); 
   ?>
   <?php if ((isset($slider['main_info']))&&(isset($slider['main_info']['effect']))) {
@@ -150,7 +158,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   <?php echo $full; ?>
   </td>
   <td>
-  <input type="radio" name="fullscreen" size="10" value="<?php echo $key; ?>" <?php if ($slider['main_info']['fullscreen'] == $key)echo " checked='checked'"; ?>>
+  <input type="radio" class="form-control" name="fullscreen" size="10" value="<?php echo $key; ?>" <?php if ($slider['main_info']['fullscreen'] == $key)echo " checked='checked'"; ?>>
   </td>
   </tr>
   <?php
@@ -166,7 +174,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
       Mask
       </td>
       <td>
-      <select name="mask_file">
+      <select name="mask_file" class="form-control">
       <?php
       if ((isset($masks))&&(isset($slider['main_info']['mask_file'])))
       foreach ($masks as $mask)
@@ -186,7 +194,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   Apply Classes
   </td>
   <td>
-  <textarea name="apply_classes" style='width:400px;height:200px;'>
+  <textarea name="apply_classes" style='width:400px;height:200px;' class="form-control">
     <?php if (isset($slider['main_info'])&&(isset($slider['main_info']['apply_classes'])))echo stripslashes($slider['main_info']['apply_classes']); ?>
   </textarea>
   </td>
@@ -197,7 +205,7 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
   Autoplay
   </td>
   <td>
-  <input type="checkbox" name="autoplay" class="digits_fld" size="10" value="1" <?php if ($slider['main_info']['autoplay'] == 1) echo "checked"; ?>>
+  <input type="checkbox" name="autoplay" class="form-control digits_fld" size="10" value="1" <?php if ($slider['main_info']['autoplay'] == 1) echo "checked"; ?>>
   </td>
   </tr>
 
@@ -210,3 +218,5 @@ if (isset($slider['main_info'])&&(!empty($slider['main_info'])))
 <?php
 }
 ?>
+</div>
+</div>

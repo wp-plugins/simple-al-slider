@@ -1,7 +1,7 @@
 <h1>Other Products</h1>
 <script>
 jQuery( document ).ready(function($) {
-    $( ".show_product_btn" ).addClass('button').addClass('button-primary');
+    $( ".show_product_btn" ).button();
 
   $('button[name="subitem_elem"]').click(function(event){
       event.preventDefault();
