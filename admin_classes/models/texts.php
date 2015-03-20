@@ -10,15 +10,26 @@ public function __construct($db)
   parent::__construct($db);
     $this->table = $this->db->wpdb->prefix."simpleal_texts";
   }
-public function saveTextData($source, $id)
+public function saveTextData($source)
   {
-  $filter = array(array('name', 'name', '%s'), array('url', 'url', '%s'),
+  for ($i = 0;$i < count($source['text_id']); $i++)
+    {
+    $src = array();
+    $src_keys = array('name', 'url', 'text', 'slide_id', 'element_image', 'element_type', 'element_template', 'width',
+    'height', 'offsetleft', 'offsettop', 'color', 'bgcolor', 'style', 'size', 'classes', 'image_elem_wp_id');
+    foreach ($src_keys as $key)
+      $src[$key] = $source[$key][$i];
+      
+      $id = $source['text_id'][$i];
+      
+    $filter = array(array('name', 'name', '%s'), array('url', 'url', '%s'),
             array('text', 'text', '%s'), array('slide_id', 'slide_id', '%d'),
-            array('width', 'width', '%d'), array('height', 'height', '%d'),
+            array('image', 'element_image', '%s'), array('type', 'element_type', '%d'),
+            array('template', 'element_template', '%s'), array('width', 'width', '%d'), array('height', 'height', '%d'),
             array('offsetleft', 'offsetleft', '%d'), array('offsettop', 'offsettop', '%d'),
             array('color', 'color', '%s'), array('bgcolor', 'bgcolor', '%s'),
             array('style', 'style', '%s'), array('size', 'size', '%d'),
-            array('classes', 'classes', '%s')
+            array('classes', 'classes', '%s'), array('image_elem_wp_id', 'image_elem_wp_id', '%d')
             );
             
   if (!intval(sanitize_text_field($id)))return false;
@@ -26,11 +37,13 @@ public function saveTextData($source, $id)
   $idval = array('id' => intval(sanitize_text_field($id)));
   $idtype = array('%d');
   
-   return $this->db->saveData($this->table, $source, $filter, 'update', $idval, $idtype);
+   $this->db->saveData($this->table, $src, $filter, 'update', $idval, $idtype);
+   }
+   return true;
   }
 public function insTextData($source)
   {
-  $source['name'] = "Text #".uniqid();
+  $source['name'] = "Element #".uniqid();
   $filter = array(array('name', 'name', '%s'), array('url', 'url', '%s'),
             array('text', 'text', '%s'), array('slide_id', 'slide_id', '%d'),
             array('width', 'width', '%d'), array('height', 'height', '%d'),

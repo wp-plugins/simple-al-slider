@@ -65,6 +65,54 @@ public function massActSlideData()
      }
    return false;
   }
+public function makePagination($slides)
+  {
+  global $slides_per_page;
+  $per_page = $slides_per_page;
+  
+  if (empty($slides)||(empty(array_keys($slides)[0])))
+    return array($slides , "", "Slides");
+  
+    $num_slides = count($slides);
+    $num_pages = floor($num_slides/$per_page);
+    
+    if ($num_slides % $per_page == 0)$num_pages--;
+    
+    $page = (isset($_GET['pagesld'])) ? $_GET['pagesld'] : 0;
+    
+    ($_GET['pagesld'] != 'full') ? $_GET['pagesld'] : $page = -1;
+    
+    $actual_link = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    
+          $actual_link = preg_replace("/&pagesld=\d+/", "", $actual_link);
+                    $actual_link = preg_replace("/&active=\d+/", "&active=1", $actual_link);
+
+    if ($page == -1)
+      {
+      $slides_caption = "All Slides";
+      $slides_new = $slides;
+      }
+      else
+      {
+      $slides_caption = "Slides #".($page*$per_page+1)."-".(($page+1)*$per_page);
+      $slides_new = array_slice($slides, $page*$per_page, $per_page);
+      }
+
+      $pagination = "<a href='".$actual_link."&pagesld=full'>Show All</a><br><a href='".$actual_link."&pagesld=0'>First</a> ";
+      if ($page >= 1)$pagination .= "<a href='".$actual_link."&pagesld=".($page-1)."'>Prev</a> ";
+      for ($i=0; $i<=$num_pages; $i++)
+        {
+        if ($page == $i)
+          $pagination .= "<a href='".$actual_link."&pagesld=".($i)."' style='font-weight:bold;'>Slides #".($i*$per_page+1)."-".(($i+1)*$per_page)."</a> ";
+          else
+          $pagination .= "<a href='".$actual_link."&pagesld=".($i)."'>Slides #".($i*$per_page+1)."-".(($i+1)*$per_page)."</a> ";
+        }
+      if (($page < $num_pages)&&($page != -1))$pagination .= "<a href='".$actual_link."&pagesld=".($page+1)."'>Next</a> ";
+      $pagination .= "<a href='".$actual_link."&pagesld=".$num_pages."'>Last</a><br> ";
+
+  return array($slides_new, $pagination, $slides_caption);
+  }
+
 public function execute($pid)
   {
   //Delete background image

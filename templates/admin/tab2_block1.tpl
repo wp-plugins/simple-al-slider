@@ -1,6 +1,8 @@
-<h2>Slides</h2>
+<h2><?php echo (isset($slides_caption)) ? $slides_caption : "Slides"; ?></h2>
 
 <div class='slides_output_area'>
+<button id="select_all_slides">Select All</button>
+<button id="select_none_slides">Select None</button>
 <?php
 if (isset($slider['slides_info'])&&(!empty($slider['slides_info'])))
 foreach ($slider['slides_info'] as $slide)
@@ -15,14 +17,21 @@ foreach ($slider['slides_info'] as $slide)
   </div>
 </div>
 
-  <form method="POST" id="slide_frm_<?php echo $slide['sldsid']; ?>" class="slide_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=1&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?>&amp;updated=true">
+  <form method="POST" id="slide_frm_<?php echo $slide['sldsid']; ?>" class="slide_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=1&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>&amp;updated=true">
     <?php
   if (function_exists('wp_nonce_field'))
     {
     wp_nonce_field('sp_slide');
     }
   ?>
-  <h3><?php echo $slide['sldsname']; ?></h3>
+<div class="panel panel-primary">
+<div class="panel-heading">
+
+  <h3 class="panel-title"><?php echo $slide['sldsname']; ?></h3>
+  
+      </div>
+<div class="panel-body">
+
   <input type='hidden' name='slide_id' value='<?php echo $slide['sldsid']; ?>'>
     <div class='slide_show'>
       <table>
@@ -48,6 +57,10 @@ foreach ($slider['slides_info'] as $slide)
       
       </table>
     </div>
+    
+    </div>
+    </div>
+
     </form>
   </div>
   <?php
@@ -58,7 +71,7 @@ foreach ($slider['slides_info'] as $slide)
 </div>
 
   <br>
-<form id="mass_action_slides_form" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=1&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?>&amp;updated=true">
+<form id="mass_action_slides_form" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=1&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>&amp;updated=true">
   <?php
   if (function_exists('wp_nonce_field'))
     {
@@ -74,3 +87,7 @@ foreach ($slider['slides_info'] as $slide)
 </select>
 <input type="submit" id="slide_mass_effect" name="slide_mass_execution_btn" value="Execute">
 </form>
+
+<?php
+  echo $slds_pagination;
+?>
