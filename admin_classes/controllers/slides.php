@@ -55,7 +55,7 @@ public function massActSlideData()
    if (isset($_POST['slide_mass_execution_btn']))
     {
       $this->check('sp_slide_delete_mass');
-      
+
           switch ($_POST['slide_mass_action'])
           {
           case '1' : $this->model_slides->massDelSlideData($_POST['slides_chk_now']); break;

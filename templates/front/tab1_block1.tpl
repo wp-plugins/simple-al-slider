@@ -95,12 +95,12 @@ if (document.images)
       }
       ?>
 
-<div id="simple_al_slider_id_<?php echo $unq; ?>" class="simple_al_slider" style="position:relative;"><!-- style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;position:relative;'>-->
+<div id="simple_al_slider_id_<?php echo $unq; ?>" class="simple-al-no-flick simple_al_slider" style="position:relative;"><!-- style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;position:relative;'>-->
 
-<div id="slides_indicator_<?php echo $unq; ?>" class="slides_indicator" style="position:absolute;z-index:1000;"></div>
+<div id="slides_indicator_<?php echo $unq; ?>" class="simple-al-no-flick slides_indicator" style="position:absolute;z-index:1000;"></div>
 <div id="slides_arrows_<?php echo $unq; ?>" class="slides_arrows" style="position:absolute;z-index:1000;"></div>
-<div style="position:absolute;left:0px;top:0px;z-index:10;">
-<div class="simple_al_slider_inside" id="simple_al_slider_inside_<?php echo $unq; ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;'>
+<div style="position:absolute;left:0px;top:0px;z-index:10;" class="simple-al-no-flick">
+<div class="simple-al-no-flick simple_al_slider_inside" id="simple_al_slider_inside_<?php echo $unq; ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;'>
 
 <?php
 $parent_params = $front['slider']['sldrwidth'].", ".$front['slider']['sldrheight'];
@@ -139,8 +139,8 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
     </script>
     ";
     ?>
-  <div class="simple_al_item simple_al_item_<?php echo $unq; ?> <?php echo ($front['slider']['mask_file'] == 'none') ? "" : "loaded"; ?>" id="simple_al_item_<?php echo $unq; ?>_<?php echo $slnum; ?>">
-    <div class="simple_al_subitem" id="simple_al_subitem_<?php echo $unq; ?>_<?php echo $subslnum; ?>">
+  <div class="simple-al-no-flick simple_al_item simple_al_item_<?php echo $unq; ?> <?php echo ($front['slider']['mask_file'] == 'none') ? "" : "simpleal_loaded"; ?>" id="simple_al_item_<?php echo $unq; ?>_<?php echo $slnum; ?>">
+    <div class="simple-al-no-flick simple_al_subitem" id="simple_al_subitem_<?php echo $unq; ?>_<?php echo $subslnum; ?>">
       <?php
       if ($front['slider']['mask_file'] == 'none')
         {
@@ -151,13 +151,13 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
         else
         {
       ?>
-<div class="simpleal_outter">
+<!--<div class="simpleal_outter simple-al-no-flick">-->
 <svg width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>">
 
 <image x="0" y="0" xlink:href="<?php echo $slide['imgs']['imgimage']; ?>" width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>" style="mask:url(#slideMask);" />
 
 </svg>
-</div>
+<!--</div>-->
 
       <?php
         }
@@ -298,7 +298,7 @@ if ($front['slider']['mask_file'] == 'none')
 <div style="position:absolute;left:0px;top:0px;z-index:-10;">
 <svg>
 <mask id="slideMask">
-    <image x="0" y="0" xlink:href="<?php echo plugin_dir_url( __FILE__ )."../../templates/front_masks/".$front['slider']['mask_file']; ?>" width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>" />
+    <image class="simple-al-no-flick" x="0" y="0" xlink:href="<?php echo plugin_dir_url( __FILE__ )."../../templates/front_masks/".$front['slider']['mask_file']; ?>" width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>" />
 </mask>
 </svg>
 </div>
