@@ -33,7 +33,17 @@ public function addScrypt($handle, $path)
         }
 
   }
-public function addScryptfront($handle, $path)
+public function registerStylefront($handle, $path)
+  {
+  $currStyleFile = plugin_dir_path( __FILE__ )."/../".$path;
+  $currStyleUrl = plugins_url("/../".$path, __FILE__);
+
+        if ( file_exists($currStyleFile) ) {
+            wp_register_style($handle, $currStyleUrl);
+        }
+  }
+
+public function registerScryptfront($handle, $path)
   {
   $currScryptFile = plugin_dir_path( __FILE__ )."/../".$path;
     $currScryptUrl = plugins_url("/../".$path, __FILE__);
@@ -42,6 +52,26 @@ public function addScryptfront($handle, $path)
 
             wp_register_script($handle, $currScryptUrl, array('jquery'), '1.0', true);
             
+        }
+
+  }
+public function printStylefront($handle, $path)
+  {
+  $currStyleFile = plugin_dir_path( __FILE__ )."/../".$path;
+  $currStyleUrl = plugins_url("/../".$path, __FILE__);
+
+        if ( file_exists($currStyleFile) ) {
+            wp_enqueue_style($handle);
+        }
+  }
+
+public function printScryptfront($handle, $path)
+  {
+  $currScryptFile = plugin_dir_path( __FILE__ )."/../".$path;
+    $currScryptUrl = plugins_url("/../".$path, __FILE__);
+
+        if ( file_exists($currScryptFile) ) {
+
               if ( ! function_exists( 'get_plugins' ) ) {
                 require_once ABSPATH . 'wp-admin/includes/plugin.php';
               }

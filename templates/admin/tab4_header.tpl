@@ -5,23 +5,24 @@
 <div class="panel panel-primary">
 <div class="panel-heading">
 
-  <h3 class="panel-title">Create new element<h3>
+  <h3 class="panel-title"><?php echo $lang[$current_language]['Elements']['new element']['Create new element']; ?><h3>
       </div>
 <div class="panel-body">
 
-    Text <input type="text" name="new_text_item" value="" id="new_text_item"><br>
-    Slide
+    <?php echo $lang[$current_language]['Elements']['new element']['Text']; ?> <input type="text" name="new_text_item" value="" id="new_text_item"><br>
+    <?php echo $lang[$current_language]['Elements']['new element']['Slide']; ?>
     <select name="slide_text">
     <?php
     if (isset($slider['slides_info'])&&(!empty($slider['slides_info'])))
       foreach ($slider['slides_info'] as $slide)
       {
-      echo "<option value='".$slide['sldsid']."'>".$slide['sldsname']."</option>";
+      $swp_slide_caption = (empty($slide['sldsname'])) ? "id:".$slide['sldsid'] : $slide['sldsname'];
+      echo "<option value='".$slide['sldsid']."'>".$swp_slide_caption."</option>";
       }
     ?>
     </select>
-    <input type="submit" class="create_new_element_btn" value="Create">
-    <input type="submit" class="close_new_element_btn" value="Close">
+    <input type="submit" class="create_new_element_btn" value="<?php echo $lang[$current_language]['Elements']['new element']['Create']; ?>">
+    <input type="submit" class="close_new_element_btn" value="<?php echo $lang[$current_language]['Elements']['new element']['Close']; ?>">
   </div>
         </div>
               </div>
@@ -197,7 +198,7 @@ var select_change = function(select)
   
 var select_refresh =  function()
   {
-  $('select').not('#projects').unbind('change').bind('change', function() {
+  $('select').not('#langs').not('#projects').unbind('change').bind('change', function() {
   var select = this;
   var value = select.value;
     $(select).children().removeAttr("selected");

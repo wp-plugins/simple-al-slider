@@ -59,4 +59,8 @@ require_once dirname(__FILE__).'/../admin_classes/controllers/texts.php';
 
 //Additional
 require_once dirname(__FILE__).'/actions.php';
+
+//Languages
+require_once dirname(__FILE__).'/../local/en-en.php';//English
+require_once dirname(__FILE__).'/../local/ru-ru.php';//Russian
 ?>

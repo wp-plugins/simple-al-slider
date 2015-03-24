@@ -43,7 +43,17 @@ public function saveTextData($source)
   }
 public function insTextData($source)
   {
-  $source['name'] = "Element #".uniqid();
+     $current_language = get_option( "simple_al_current_language" );
+      global $lang;
+      
+      $languages = array('en-en', 'ru-ru');
+      foreach ($languages as $cur_lang)
+        {
+        $funcname = "lang_init_".str_replace("-", "_", $cur_lang);
+          $lang = $funcname($current_language, $lang);
+        }
+        
+  $source['name'] = $lang[$current_language]['Elements']['Element']." #".uniqid();
   $filter = array(array('name', 'name', '%s'), array('url', 'url', '%s'),
             array('text', 'text', '%s'), array('slide_id', 'slide_id', '%d'),
             array('width', 'width', '%d'), array('height', 'height', '%d'),

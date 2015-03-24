@@ -1,8 +1,8 @@
-<h2><?php echo (isset($slides_caption)) ? $slides_caption : "Slides"; ?></h2>
+<h2><?php echo (isset($slides_caption)) ? $slides_caption : $lang[$current_language]['Slides']['Slides']; ?></h2>
 
 <div class='slides_output_area'>
-<button id="select_all_slides">Select All</button>
-<button id="select_none_slides">Select None</button>
+<button id="select_all_slides"><?php echo $lang[$current_language]['Slides']['Select All']; ?></button>
+<button id="select_none_slides"><?php echo $lang[$current_language]['Slides']['Select None']; ?></button>
 <?php
 if (isset($slider['slides_info'])&&(!empty($slider['slides_info'])))
 foreach ($slider['slides_info'] as $slide)
@@ -27,7 +27,7 @@ foreach ($slider['slides_info'] as $slide)
 <div class="panel panel-primary">
 <div class="panel-heading">
 
-  <h3 class="panel-title"><?php echo $slide['sldsname']; ?></h3>
+  <h3 class="panel-title"><?php echo (empty($slide['sldsname'])) ? $lang[$current_language]['Slides']['Slide']." (id:".$slide['sldsid'].")" : $lang[$current_language]['Slides']['Slide']." (".$lang[$current_language]['Slides']['Name'].":".$slide['sldsname'].")"; ?></h3>
   
       </div>
 <div class="panel-body">
@@ -38,7 +38,7 @@ foreach ($slider['slides_info'] as $slide)
       
       <tr>
       <td>
-      Name
+      <?php echo $lang[$current_language]['Slides']['Name']; ?>
       </td>
       <td>
       <input type="text" name="slide_name" size="30" value="<?php echo $slide['sldsname']; ?>">
@@ -47,11 +47,11 @@ foreach ($slider['slides_info'] as $slide)
 
       <tr>
       <td>
-      Actions
+      <?php echo $lang[$current_language]['Slides']['Actions']; ?>
       </td>
       <td>
-      <input type="submit" name="save_slide_btn" value=" Save Slide ">
-      <input type="submit" name="del_slide_btn" value=" Delete Slide ">
+      <input type="submit" name="save_slide_btn" value="<?php echo $lang[$current_language]['Slides'][' Save Slide ']; ?>">
+      <input type="submit" name="del_slide_btn" value="<?php echo $lang[$current_language]['Slides'][' Delete Slide ']; ?>">
       </td>
       </tr>
       
@@ -82,10 +82,10 @@ foreach ($slider['slides_info'] as $slide)
   
 </div>
 <select id="slide_mass_action" name="slide_mass_action">
-  <option value="0">None</option>
-  <option value="1">Delete</option>
+  <option value="0"><?php echo $lang[$current_language]['Slides']['None']; ?></option>
+  <option value="1"><?php echo $lang[$current_language]['Slides']['Delete']; ?></option>
 </select>
-<input type="submit" id="slide_mass_effect" name="slide_mass_execution_btn" value="Execute">
+<input type="submit" id="slide_mass_effect" name="slide_mass_execution_btn" value="<?php echo $lang[$current_language]['Slides']['Execute']; ?>">
 </form>
 
 <?php

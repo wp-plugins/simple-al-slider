@@ -36,8 +36,8 @@ public function saveBgData($source)
 public function insBgData($source)
   {
   $unq = uniqid();
-  $source['slide_name'] = "Slide #".$unq;
-    $source['image_name'] = "Image #".$unq;
+  $source['slide_name'] = "";
+    $source['image_name'] = "";
 
   $slide_model = new Model_Slides($this->db);
     $slide_id = $slide_model->insSlideData($source);

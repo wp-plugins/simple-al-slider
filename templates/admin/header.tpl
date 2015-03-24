@@ -8,6 +8,8 @@ die('Access Denied');
 if(!function_exists('current_user_can')){
   die('Access Denied');
 }
+
+ global $lang;
 ?>
 <div class="simple_only_for_messages">
 
@@ -97,6 +99,10 @@ $('#new_project_create_id_btn').unbind('click').bind('click', function(event) {
             window.alert_show('Need project name!', 'danger');
       }
   });
+
+    $('#langs').change( function() {
+      location.href = "<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=0&pid="+$('#projects').val()+"&langs="+$('#langs').val();
+    });
   
 });
 </script>
@@ -126,7 +132,7 @@ echo wp_create_nonce("upd_rec_slide");
 
 
  <div style="float:left;width:50%;">
- Projects 
+ <?php echo $lang[$current_language]['Projects']; ?>
  <select name="cur_project" id="projects">
  <?php
  foreach ($all_projects as $project)
@@ -138,7 +144,7 @@ echo wp_create_nonce("upd_rec_slide");
   }
  ?>
  </select>
- <button name="new_project" id="button_show_add_project">Create new project</button>
+ <button name="new_project" id="button_show_add_project"><?php echo $lang[$current_language]['Create new project']; ?></button>
 
 <form id="projdel" name="project_delete_form" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=<?php echo $tab_active; ?>">
   <?php
@@ -148,9 +154,9 @@ echo wp_create_nonce("upd_rec_slide");
     }
   ?>
 <input type="hidden" name="proj_id" value="<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?>">
-<input type="submit" name="del_proj_btn" value="Delete">
+<input type="submit" name="del_proj_btn" value="<?php echo $lang[$current_language]['Delete project']; ?>">
 </form>
- 
+
  <div class="new_project_show_dlg" title="New project creation"  style="display:none;background-color:#fff;width:350px;padding-left:20px;">
   <form id="pcf" name="project_creation_form" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=<?php echo $tab_active; ?>">
   <?php
@@ -162,15 +168,15 @@ echo wp_create_nonce("upd_rec_slide");
 <div class="panel panel-primary">
 <div class="panel-heading">
 
- <h3 class="add_proj_header2 panel-title">New project</h3>
+ <h3 class="add_proj_header2 panel-title"><?php echo $lang[$current_language]['new project']['New project']; ?></h3>
  
        </div>
 <div class="panel-body">
 
  <input type="text" name="new_project_name" value="" id="new_project_name">
  <input type="hidden" name="new_project_btn" value="Add project" id="add_proj_btn">
- <input type="submit" id="new_project_create_id_btn" value="Create">
- <input type="submit" id="new_project_close_id_btn" class="new_project_close_btn"  value="Close">
+ <input type="submit" id="new_project_create_id_btn" value="<?php echo $lang[$current_language]['new project']['Create']; ?>">
+ <input type="submit" id="new_project_close_id_btn" class="new_project_close_btn"  value="<?php echo $lang[$current_language]['new project']['Close']; ?>">
  
         </div>
                </div>
@@ -180,6 +186,8 @@ echo wp_create_nonce("upd_rec_slide");
 
 <?php
     $actual_link = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+$actual_link = preg_replace("/&langs=[^&]+/", "", $actual_link);
 
     if (preg_match("/&active=\d+/", $actual_link) != 0)
       {
@@ -212,11 +220,27 @@ echo wp_create_nonce("upd_rec_slide");
 ?>
 <div id="tabs" style="float:right;width:49%;">
   <ul>
-    <li class="button button-primary"><a href="<?php echo $actual_link0; ?>" style="color:#fff;text-decoration:none;">Slider</a></li>
-    <li class="button button-primary"><a href="<?php echo $actual_link1; ?>" style="color:#fff;text-decoration:none;">Slides</a></li>
-    <li class="button button-primary"><a href="<?php echo $actual_link2; ?>" style="color:#fff;text-decoration:none;">Bg Images</a></li>
-    <li class="button button-primary"><a href="<?php echo $actual_link3; ?>" style="color:#fff;text-decoration:none;">Elements</a></li>
-    <li class="button button-primary"><a href="<?php echo $actual_link4; ?>" style="color:#fff;text-decoration:none;">Settings</a></li>
-    <li class="button button-primary"><a href="<?php echo $actual_link5; ?>" style="color:#fff;text-decoration:none;">Paste Code</a></li>
+    <li class="button button-primary"><a href="<?php echo $actual_link0; ?>" style="color:#fff;text-decoration:none;"><?php echo $lang[$current_language]['menu']['Slider']; ?></a></li>
+    <li class="button button-primary"><a href="<?php echo $actual_link1; ?>" style="color:#fff;text-decoration:none;"><?php echo $lang[$current_language]['menu']['Slides']; ?></a></li>
+    <li class="button button-primary"><a href="<?php echo $actual_link2; ?>" style="color:#fff;text-decoration:none;"><?php echo $lang[$current_language]['menu']['Background Images']; ?></a></li>
+    <li class="button button-primary"><a href="<?php echo $actual_link3; ?>" style="color:#fff;text-decoration:none;"><?php echo $lang[$current_language]['menu']['Elements']; ?></a></li>
+    <li class="button button-primary"><a href="<?php echo $actual_link4; ?>" style="color:#fff;text-decoration:none;"><?php echo $lang[$current_language]['menu']['Settings']; ?></a></li>
+    <li class="button button-primary"><a href="<?php echo $actual_link5; ?>" style="color:#fff;text-decoration:none;"><?php echo $lang[$current_language]['menu']['Paste Code']; ?></a></li>
   </ul>
+  
+  <div style="float:right;margin-right:40px;">
+ <?php echo $lang[$current_language]['Main Info']['Language']; ?>
+ <select name="cur_lang" id="langs">
+ <?php
+ foreach ($lang as $lng_key=>$lng)
+  {
+  if ($lng_key == $current_language)
+  echo "<option value='".$lng_key."' selected='selected'>".$lng['language']."</option>";
+  else
+  echo "<option value='".$lng_key."'>".$lng['language']."</option>";
+  }
+ ?>
+ </select>
+</div>
+
 </div>

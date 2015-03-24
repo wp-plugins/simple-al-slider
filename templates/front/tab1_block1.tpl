@@ -70,9 +70,9 @@ if (document.images)
       if ($front['slider']['mask_file'] == 'none')
       {
       ?>
-  <div class="simple_al_preloader" id="simple_al_preloader_<?php echo $unq; ?>" style="position:relative;left:0px;top:0px;width:100%;height:100%;background-color:#000000;display:table;z-index:1220000;">
-    <div class="simple_al_preloader_inside" style="display:table-cell;vertical-align:middle;text-align:center;">
-      <img src="#" class="preloaded_image" id="preloaded_image_<?php echo $unq; ?>" style="width:100px;">
+  <div class="simple_al_preloader simple-al-no-flick" id="simple_al_preloader_<?php echo $unq; ?>" style="position:relative;left:0px;top:0px;width:100%;height:100%;background-color:#000000;display:table;z-index:1220000;">
+    <div class="simple_al_preloader_inside simple-al-no-flick" style="display:table-cell;vertical-align:middle;text-align:center;">
+      <img src="<?php echo plugins_url("../../images/empty.gif", __FILE__); ?>" class="preloaded_image simple-al-no-flick" id="preloaded_image_<?php echo $unq; ?>" style="width:100px;">
     </div>
   </div>
       <?php
@@ -80,7 +80,7 @@ if (document.images)
       else
       {
       ?>
-<div class="simple_al_preloader" id="simple_al_preloader_<?php echo $unq; ?>" style="position:relative;left:0px;top:0px;width:100%;height:100%;display:table;z-index:1220000;">
+<div class="simple_al_preloader" id="simple_al_preloader_<?php echo $unq; ?>" style="position:relative;left:0px;top:0px;width:100%;height:100%;display:table;z-index:12000;">
 <div class="simpleal_preload_outter_<?php echo $unq; ?>">
   <svg width="<?php echo $front['slider']['sldrwidth']; ?>" height="<?php echo $front['slider']['sldrheight']; ?>">
 
@@ -145,7 +145,7 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
       if ($front['slider']['mask_file'] == 'none')
         {
       ?>
-          <img class="simple_al_bgs_<?php echo $unq; ?>_<?php echo $counting; ?>" src="<?php echo plugins_url("../../images/empty.gif", __FILE__); ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
+          <img class="simple-al-no-flick simple_al_bgs_<?php echo $unq; ?>_<?php echo $counting; ?>" src="<?php echo plugins_url("../../images/empty.gif", __FILE__); ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
       <?php
         }
         else
@@ -216,7 +216,7 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
     </script>
     ";
     ?>
-      <div class="simple_al_subitem_txt <?php echo $txt['classes']; ?>" id="simple_al_subitem_txt_<?php echo $unq; ?>_<?php echo $txtnum; ?>" style="background-color:<?php echo $txt['bgcolor']; ?>;color:<?php echo $txt['color']; ?>;width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;font-size:<?php echo $txt['size']; ?>pt;display:none;position:absolute;left:0px;top:0px;<?php echo $txt['style']; ?>">
+      <div class="simple-al-no-flick simple_al_subitem_txt <?php echo $txt['classes']; ?>" id="simple_al_subitem_txt_<?php echo $unq; ?>_<?php echo $txtnum; ?>" style="background-color:<?php echo $txt['bgcolor']; ?>;color:<?php echo $txt['color']; ?>;width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;font-size:<?php echo $txt['size']; ?>pt;display:none;position:absolute;left:0px;top:0px;<?php echo $txt['style']; ?>">
     <?php
        if ($front['slider']['mask_file'] == 'none')
         {
@@ -242,7 +242,7 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
       echo "<a href='".$txt['txturl']."'>";
       ?>
 
-      <div class="simple_al_subitem_txt <?php echo $txt['classes']; ?>" id="simple_al_subitem_txt_<?php echo $unq; ?>_<?php echo $txtnum; ?>" style="background-color:<?php echo $txt['bgcolor']; ?>;color:<?php echo $txt['color']; ?>;width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;font-size:<?php echo $txt['size']; ?>pt;display:none;position:absolute;left:0px;top:0px;<?php echo $txt['style']; ?>">
+      <div class="simple-al-no-flick simple_al_subitem_txt <?php echo $txt['classes']; ?>" id="simple_al_subitem_txt_<?php echo $unq; ?>_<?php echo $txtnum; ?>" style="background-color:<?php echo $txt['bgcolor']; ?>;color:<?php echo $txt['color']; ?>;width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;font-size:<?php echo $txt['size']; ?>pt;display:none;position:absolute;left:0px;top:0px;<?php echo $txt['style']; ?>">
       <?php 
       if ((isset($txt['template']))&&(!empty($txt['template']))&&($txt['template'] != 'none'))
         {

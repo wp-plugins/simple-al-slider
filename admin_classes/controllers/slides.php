@@ -67,11 +67,14 @@ public function massActSlideData()
   }
 public function makePagination($slides)
   {
+  global $lang;
+  $current_lang = get_option( "simple_al_current_language" );
+  
   global $slides_per_page;
   $per_page = $slides_per_page;
   
   if (empty($slides)||(empty(array_keys($slides)[0])))
-    return array($slides , "", "Slides");
+    return array($slides , "", $lang[$current_lang]['Slides']['Slides']);
   
     $num_slides = count($slides);
     $num_pages = floor($num_slides/$per_page);
@@ -89,26 +92,26 @@ public function makePagination($slides)
 
     if ($page == -1)
       {
-      $slides_caption = "All Slides";
+      $slides_caption = $lang[$current_lang]['Slides']['All Slides'];
       $slides_new = $slides;
       }
       else
       {
-      $slides_caption = "Slides #".($page*$per_page+1)."-".(($page+1)*$per_page);
+      $slides_caption = $lang[$current_lang]['Slides']['Slides']." #".($page*$per_page+1)."-".(($page+1)*$per_page);
       $slides_new = array_slice($slides, $page*$per_page, $per_page);
       }
 
-      $pagination = "<a href='".$actual_link."&pagesld=full'>Show All</a><br><a href='".$actual_link."&pagesld=0'>First</a> ";
-      if ($page >= 1)$pagination .= "<a href='".$actual_link."&pagesld=".($page-1)."'>Prev</a> ";
+      $pagination = "<a href='".$actual_link."&pagesld=full'>".$lang[$current_lang]['Slides']['Show All']."</a><br><a href='".$actual_link."&pagesld=0'>".$lang[$current_lang]['Slides']['First']."</a> ";
+      if ($page >= 1)$pagination .= "<a href='".$actual_link."&pagesld=".($page-1)."'>".$lang[$current_lang]['Slides']['Prev']."</a> ";
       for ($i=0; $i<=$num_pages; $i++)
         {
         if ($page == $i)
-          $pagination .= "<a href='".$actual_link."&pagesld=".($i)."' style='font-weight:bold;'>Slides #".($i*$per_page+1)."-".(($i+1)*$per_page)."</a> ";
+          $pagination .= "<a href='".$actual_link."&pagesld=".($i)."' style='font-weight:bold;'>".$lang[$current_lang]['Slides']['Slides']." #".($i*$per_page+1)."-".(($i+1)*$per_page)."</a> ";
           else
-          $pagination .= "<a href='".$actual_link."&pagesld=".($i)."'>Slides #".($i*$per_page+1)."-".(($i+1)*$per_page)."</a> ";
+          $pagination .= "<a href='".$actual_link."&pagesld=".($i)."'>".$lang[$current_lang]['Slides']['Slides']." #".($i*$per_page+1)."-".(($i+1)*$per_page)."</a> ";
         }
-      if (($page < $num_pages)&&($page != -1))$pagination .= "<a href='".$actual_link."&pagesld=".($page+1)."'>Next</a> ";
-      $pagination .= "<a href='".$actual_link."&pagesld=".$num_pages."'>Last</a><br> ";
+      if (($page < $num_pages)&&($page != -1))$pagination .= "<a href='".$actual_link."&pagesld=".($page+1)."'>".$lang[$current_lang]['Slides']['Next']."</a> ";
+      $pagination .= "<a href='".$actual_link."&pagesld=".$num_pages."'>".$lang[$current_lang]['Slides']['Last']."</a><br> ";
 
   return array($slides_new, $pagination, $slides_caption);
   }

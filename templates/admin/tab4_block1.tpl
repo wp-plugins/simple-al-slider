@@ -1,11 +1,11 @@
-<h2>Elements</h2>
+<h2><?php echo $lang[$current_language]['Elements']['Elements']; ?></h2>
 
-<button name="create_new_text">Create New Element</button>
+<button name="create_new_text"><?php echo $lang[$current_language]['Elements']['Create New Element']; ?></button>
 <br>
-<button class="apply_for_all_show">Bulk Apply To Elements</button>
+<button class="apply_for_all_show"><?php echo $lang[$current_language]['Elements']['Bulk Apply To Elements']; ?></button>
 <div class="panel panel-primary">
 <div class="panel-heading">
-        <h3 class="panel-title">Bulk Apply To Elements</h3>
+        <h3 class="panel-title"><?php echo $lang[$current_language]['Elements']['Bulk Apply To Elements']; ?></h3>
       </div>
 <div class="panel-body">
 <div class="apply_for_all_elements" style="display:none;">
@@ -13,7 +13,7 @@
       <table>
       <tr>
       <td>
-      Name
+      <?php echo $lang[$current_language]['Elements']['Bulk Name']; ?>
       </td>
       <td>
       <input type="text" name="aname" size="30" value="*">
@@ -22,7 +22,7 @@
 
       <tr>
       <td>
-      URL
+      <?php echo $lang[$current_language]['Elements']['Bulk URL']; ?>
       </td>
       <td>
       <input type="text" name="aurl" size="30" value="*">
@@ -31,7 +31,7 @@
 
       <tr>
       <td>
-      Text
+      <?php echo $lang[$current_language]['Elements']['Bulk Text']; ?>
       </td>
       <td>
       <input type="text" name="atext" size="30" value="*">
@@ -40,12 +40,12 @@
 
       <tr>
       <td>
-      Type
+      <?php echo $lang[$current_language]['Elements']['Bulk Type']; ?>
       </td>
       <td>
       <select name="aelement_type">
       <?php
-      $type_vals = array(-1 => '*', 0 => "Text Element", 1 => "Image Element", 2 => "Template Element");
+      $type_vals = array(-1 => '*', 0 => $lang[$current_language]['Elements']['Text Element'], 1 => $lang[$current_language]['Elements']['Image Element'], 2 => $lang[$current_language]['Elements']['Template Element']);
       foreach ($type_vals as $k=>$typ)
         {
         if (-1 == $k)
@@ -60,7 +60,7 @@
 
       <tr>
       <td>
-      Image
+      <?php echo $lang[$current_language]['Elements']['Bulk Image']; ?>
       </td>
       <td>
       <input type="text" class="aelement_image" name="aelement_image" size="50" value="*">
@@ -69,7 +69,7 @@
 
       <tr>
       <td>
-      Template
+      <?php echo $lang[$current_language]['Elements']['Bulk Template']; ?>
       </td>
       <td>
       <select  name="aelement_template">
@@ -87,7 +87,7 @@
 
       <tr>
       <td>
-      Width
+      <?php echo $lang[$current_language]['Elements']['Bulk Width']; ?>
       </td>
       <td>
       <input type="text" name="awidth" size="10" value="*">
@@ -96,7 +96,7 @@
 
       <tr>
       <td>
-      Height
+      <?php echo $lang[$current_language]['Elements']['Bulk Height']; ?>
       </td>
       <td>
       <input type="text" name="aheight" size="10" value="*">
@@ -105,7 +105,7 @@
 
       <tr>
       <td>
-      Classes
+      <?php echo $lang[$current_language]['Elements']['Bulk Classes']; ?>
       </td>
       <td>
       <input type="text" name="aclasses" size="30" value="*">
@@ -114,7 +114,7 @@
 
       <tr>
       <td>
-      Offset Left
+      <?php echo $lang[$current_language]['Elements']['Bulk Offset Left']; ?>
       </td>
       <td>
       <input type="text" name="aoffsetleft" size="10" value="*">
@@ -126,7 +126,7 @@
 <table>
       <tr>
       <td>
-      Offset Top
+      <?php echo $lang[$current_language]['Elements']['Bulk Offset Top']; ?>
       </td>
       <td>
       <input type="text" name="aoffsettop" size="10" value="*">
@@ -135,7 +135,7 @@
 
       <tr>
       <td>
-      Color
+      <?php echo $lang[$current_language]['Elements']['Bulk Color']; ?>
       </td>
       <td>
       <input type="text" name="acolor" size="10" value="*">
@@ -144,7 +144,7 @@
 
       <tr>
       <td>
-      Background Color
+      <?php echo $lang[$current_language]['Elements']['Bulk Background Color']; ?>
       </td>
       <td>
       <input type="text" name="abgcolor" size="10" value="*">
@@ -153,7 +153,7 @@
 
       <tr>
       <td>
-      Style
+      <?php echo $lang[$current_language]['Elements']['Bulk Style']; ?>
       </td>
       <td>
       <input type="text" name="astyle" size="50" value="*">
@@ -162,7 +162,7 @@
 
       <tr>
       <td>
-      Size
+      <?php echo $lang[$current_language]['Elements']['Bulk Size']; ?>
       </td>
       <td>
       <input type="text" name="asize" size="10" value="*">
@@ -171,12 +171,13 @@
 
       <tr>
       <td>
-      Actions
+      <?php echo $lang[$current_language]['Elements']['Bulk Actions']; ?>
       </td>
       <td>
-      <input type="submit" name="apply_for_all_btn" value=" Apply For ALL Elements ">
-      <input type="submit" name="apply_for_checked_btn" value=" Apply For Checked Elements ">
-          <input type="submit" class="close_apply_for_all_btn" value="Close">
+      <input type="submit" name="apply_for_all_btn" value="<?php echo $lang[$current_language]['Elements']['Bulk Apply For ALL Elements ']; ?>">
+      <br>
+      <input type="submit" name="apply_for_checked_btn" value="<?php echo $lang[$current_language]['Elements']['Bulk Apply For Checked Elements ']; ?>">
+          <input type="submit" class="close_apply_for_all_btn" value="<?php echo $lang[$current_language]['Elements']['Bulk Close']; ?>">
       </td>
       </tr>
 
@@ -185,7 +186,7 @@
 
       </td>
       <td>
-      * - left old value (will not be replaced)
+      <?php echo $lang[$current_language]['Elements']['Bulk left old value']; ?>
       </td>
       </tr>
       
@@ -237,7 +238,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
      
       <tr>
       <td>
-      Name
+      <?php echo $lang[$current_language]['Elements']['Name']; ?>
       </td>
       <td>
       <input type="text" name="name[]" size="30" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo stripslashes($text['txtname']); ?>">
@@ -246,7 +247,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      URL
+      <?php echo $lang[$current_language]['Elements']['URL']; ?>
       </td>
       <td>
       <input type="text" name="url[]" size="30" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo $text['txturl']; ?>">
@@ -255,7 +256,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Text
+      <?php echo $lang[$current_language]['Elements']['Text']; ?>
       </td>
       <td>
       <input type="text" name="text[]" size="30" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo htmlspecialchars(stripslashes($text['text'])); ?>">
@@ -264,12 +265,12 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Type
+      <?php echo $lang[$current_language]['Elements']['Type']; ?>
       </td>
       <td>
       <select name="element_type[]" class="elem_<?php echo $text['txtid']; ?>">
       <?php
-      $type_vals = array(0 => "Text Element", 1 => "Image Element", 2 => "Template Element");
+      $type_vals = array(0 => $lang[$current_language]['Elements']['Text Element'], 1 => $lang[$current_language]['Elements']['Image Element'], 2 => $lang[$current_language]['Elements']['Template Element']);
       foreach ($type_vals as $k=>$typ)
         {
         if ($text['txttype'] == $k)
@@ -284,11 +285,11 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Image
+      <?php echo $lang[$current_language]['Elements']['Image']; ?>
       </td>
       <td>
       <input type="text" class="element_image elem_<?php echo $text['txtid']; ?>" name="element_image[]" size="50" value="<?php echo esc_url($text['txtimage']); ?>">
-      <br><button class="set_image">Add Image</button>
+      <br><button class="set_image"><?php echo $lang[$current_language]['Elements']['Add Image']; ?></button>
       <div style="display:none;">
       <?php if ((isset($text['txtimage_thumb']))&&(!empty($text['txtimage_thumb']))) echo $text['txtimage_thumb']; else echo plugins_url("../../images/none.jpg", __FILE__); ?>
       </div>
@@ -301,7 +302,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Template
+      <?php echo $lang[$current_language]['Elements']['Template']; ?>
       </td>
       <td>
       <select  name="element_template[]" class="elem_<?php echo $text['txtid']; ?>">
@@ -321,7 +322,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Width
+      <?php echo $lang[$current_language]['Elements']['Width']; ?>
       </td>
       <td>
       <input type="text" name="width[]" size="10" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo $text['txtwidth']; ?>">
@@ -330,7 +331,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Height
+      <?php echo $lang[$current_language]['Elements']['Height']; ?>
       </td>
       <td>
       <input type="text" name="height[]" size="10" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo $text['txtheight']; ?>">
@@ -339,7 +340,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Classes
+      <?php echo $lang[$current_language]['Elements']['Classes']; ?>
       </td>
       <td>
       <input type="text" name="classes[]" size="30" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo $text['classes']; ?>">
@@ -348,7 +349,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Offset Left
+      <?php echo $lang[$current_language]['Elements']['Offset Left']; ?>
       </td>
       <td>
       <input type="text" name="offsetleft[]" size="10" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo $text['offsetleft']; ?>">
@@ -360,7 +361,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 <table>
       <tr>
       <td>
-      Offset Top
+      <?php echo $lang[$current_language]['Elements']['Offset Top']; ?>
       </td>
       <td>
       <input type="text" name="offsettop[]" size="10" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo $text['offsettop']; ?>">
@@ -369,7 +370,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Color
+      <?php echo $lang[$current_language]['Elements']['Color']; ?>
       </td>
       <td>
       <input type="text" name="color[]" size="10" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo $text['color']; ?>">
@@ -378,7 +379,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Background Color
+      <?php echo $lang[$current_language]['Elements']['Background Color']; ?>
       </td>
       <td>
       <input type="text" name="bgcolor[]" size="10" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo $text['bgcolor']; ?>">
@@ -387,7 +388,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Style
+      <?php echo $lang[$current_language]['Elements']['Style']; ?>
       </td>
       <td>
       <input type="text" name="style[]" size="50" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo $text['style']; ?>">
@@ -396,7 +397,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Size
+      <?php echo $lang[$current_language]['Elements']['Size']; ?>
       </td>
       <td>
       <input type="text" name="size[]" size="10" class="elem_<?php echo $text['txtid']; ?>" value="<?php echo $text['size']; ?>">
@@ -405,7 +406,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Slide
+      <?php echo $lang[$current_language]['Elements']['Slide']; ?>
       </td>
       <td>
     <select name="slide_id[]" class="elem_<?php echo $text['txtid']; ?>">
@@ -413,10 +414,11 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
     if (isset($slider['slides_info'])&&(!empty($slider['slides_info'])))
       foreach ($slider['slides_info'] as $slide)
       {
+      $swp_slide_caption = (empty($slide['sldsname'])) ? "id:".$slide['sldsid'] : $slide['sldsname'];
       if ($slide['sldsid'] == $text['txtsldid'])
-        echo "<option value='".$slide['sldsid']."' selected='selected'>".$slide['sldsname']."</option>";
+        echo "<option value='".$slide['sldsid']."' selected='selected'>".$swp_slide_caption."</option>";
       else
-        echo "<option value='".$slide['sldsid']."'>".$slide['sldsname']."</option>";
+        echo "<option value='".$slide['sldsid']."'>".$swp_slide_caption."</option>";
       }
     ?>
     </select>
@@ -425,11 +427,11 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 
       <tr>
       <td>
-      Actions
+      <?php echo $lang[$current_language]['Elements']['Actions']; ?>
       </td>
       <td>
-      <input type="submit" name="save_text_btn" value=" Save Element ">
-      <input type="submit" name="del_text_btn" value=" Delete Element ">
+      <input type="submit" name="save_text_btn" value="<?php echo $lang[$current_language]['Elements'][' Save Element ']; ?>">
+      <input type="submit" name="del_text_btn" value="<?php echo $lang[$current_language]['Elements'][' Delete Element ']; ?>">
       </td>
       </tr>
       
@@ -463,7 +465,7 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
 <div class="bulk_elements_frm_div" style="display:none;">
 
 </div>
-      <input type="submit" name="save_all_elements_btn" value=" Save All Elements ">
+      <input type="submit" name="save_all_elements_btn" value="<?php echo $lang[$current_language]['Elements'][' Save All Elements ']; ?>">
 </form>
 
   <br>
@@ -478,8 +480,8 @@ if (isset($slide['texts'])&&(!empty($slide['texts'])))
   
 </div>
 <select id="element_mass_action" name="element_mass_action">
-  <option value="0">None</option>
-  <option value="1">Delete</option>
+  <option value="0"><?php echo $lang[$current_language]['Elements']['None']; ?></option>
+  <option value="1"><?php echo $lang[$current_language]['Elements']['Delete']; ?></option>
 </select>
-<input type="submit" id="element_mass_effect" name="element_mass_execution_btn" value="Execute">
+<input type="submit" id="element_mass_effect" name="element_mass_execution_btn" value="<?php echo $lang[$current_language]['Elements']['Execute']; ?>">
 </form>

@@ -167,7 +167,7 @@ global $simple_al_slider_db_version;
 
 $installed_ver = get_option( "simple_al_slider_db_version" );
 
-if (( $installed_ver != $simple_al_slider_db_version )||(is_null($installed_ver))) {
+if (( $installed_ver != $simple_al_slider_db_version )||(is_null($installed_ver))||($installed_ver === FALSE)) {
 
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
@@ -182,13 +182,16 @@ require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 public function simple_al_update_db_check()
   {
     global $simple_al_slider_db_version;
-    if (( get_site_option( 'simple_al_slider_db_version' ) != $simple_al_slider_db_version )||(is_null(get_site_option( 'simple_al_slider_db_version' )))) {
+    $installed_ver = get_option( "simple_al_slider_db_version" );
+    
+    if (( $installed_ver != $simple_al_slider_db_version )||(is_null($installed_ver))||($installed_ver === FALSE)) {
         self::sial_install();
     }
   }
 public static function sial_deactivate()
   {
     delete_option( "simple_al_slider_db_version" );
+    delete_option( "simple_al_current_language" );
   }
 public static function sial_uninstall()
   {
@@ -229,7 +232,26 @@ public function execute()
     $active = $_GET['active'];
     else
     $active = 0;
-    
+
+$current_lang = get_option( "simple_al_current_language" );
+if (is_null($current_lang)||($current_lang === FALSE))
+      update_option( "simple_al_current_language", 'en-en' );
+
+  if (isset($_GET['langs']))
+          update_option( "simple_al_current_language", $_GET['langs'] );
+
+      $data['current_language'] = get_option( "simple_al_current_language" );      
+      global $lang;
+      
+      $languages = array('en-en', 'ru-ru');
+      foreach ($languages as $cur_lang)
+        {
+        $funcname = "lang_init_".str_replace("-", "_", $cur_lang);
+          $lang = $funcname($data['current_language'], $lang);
+        }
+      
+      $data['lang'] = $lang;
+          
     $db = new Sial_Db();
 
     $slideController = new Controller_Slides(new Model_Slides($db));
@@ -246,6 +268,7 @@ public function execute()
       list($data['slider']['slides_info'], $data['slds_pagination'], $data['slides_caption']) = $slideController->makePagination($data['slider']['slides_info']);
       
       $data["tab_active"] = $active;
+
     switch ($active)
     {
     case 0:

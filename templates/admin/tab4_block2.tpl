@@ -32,7 +32,7 @@
       
       <tr>
       <td>
-      Name
+      <?php echo $lang[$current_language]['Elements']['Name']; ?>
       </td>
       <td>
       <input type="text" name="name[]" class="elem_[TEXT_ID]" size="30" value="[TEXT_NAME]">
@@ -41,7 +41,7 @@
 
       <tr>
       <td>
-      URL
+      <?php echo $lang[$current_language]['Elements']['URL']; ?>
       </td>
       <td>
       <input type="text" name="url[]" class="elem_[TEXT_ID]" size="30" value="">
@@ -50,7 +50,7 @@
 
       <tr>
       <td>
-      Text
+      <?php echo $lang[$current_language]['Elements']['Text']; ?>
       </td>
       <td>
       <input type="text" name="text[]" class="elem_[TEXT_ID]" size="30" value="[TEXT]">
@@ -59,7 +59,7 @@
 
       <tr>
       <td>
-      Type
+      <?php echo $lang[$current_language]['Elements']['Type']; ?>
       </td>
       <td>
       <select name="element_type[]" class="elem_[TEXT_ID]">
@@ -76,19 +76,19 @@
 
       <tr>
       <td>
-      Image
+      <?php echo $lang[$current_language]['Elements']['Image']; ?>
       </td>
       <td>
       <input type="text" class="element_image elem_[TEXT_ID]" name="element_image[]" size="50" value="">
       <br>
-      <button class="set_image">Add Image</button>
+      <button class="set_image"><?php echo $lang[$current_language]['Elements']['Add Image']; ?></button>
       <img class="element_image_src" src="<?php echo plugins_url("../../images/none.jpg", __FILE__); ?>">
       </td>
       </tr>
 
       <tr>
       <td>
-      Template
+      <?php echo $lang[$current_language]['Elements']['Template']; ?>
       </td>
       <td>
       <select  name="element_template[]" class="elem_[TEXT_ID]">
@@ -105,7 +105,7 @@
 
       <tr>
       <td>
-      Width
+      <?php echo $lang[$current_language]['Elements']['Width']; ?>
       </td>
       <td>
       <input type="text" name="width[]" class="elem_[TEXT_ID]" size="10" value="0">
@@ -114,7 +114,7 @@
 
       <tr>
       <td>
-      Height
+      <?php echo $lang[$current_language]['Elements']['Height']; ?>
       </td>
       <td>
       <input type="text" name="height[]" class="elem_[TEXT_ID]" size="10" value="0">
@@ -123,7 +123,7 @@
 
       <tr>
       <td>
-      Classes
+      <?php echo $lang[$current_language]['Elements']['Classes']; ?>
       </td>
       <td>
       <input type="text" name="classes[]" class="elem_[TEXT_ID]" size="30" value="">
@@ -132,7 +132,7 @@
 
       <tr>
       <td>
-      Offset Left
+      <?php echo $lang[$current_language]['Elements']['Offset Left']; ?>
       </td>
       <td>
       <input type="text" name="offsetleft[]" class="elem_[TEXT_ID]" size="10" value="0">
@@ -146,7 +146,7 @@
 
       <tr>
       <td>
-      Offset Top
+      <?php echo $lang[$current_language]['Elements']['Offset Top']; ?>
       </td>
       <td>
       <input type="text" name="offsettop[]" class="elem_[TEXT_ID]" size="10" value="0">
@@ -155,7 +155,7 @@
 
       <tr>
       <td>
-      Color
+      <?php echo $lang[$current_language]['Elements']['Color']; ?>
       </td>
       <td>
       <input type="text" class="hdn_color elem_[TEXT_ID]" name="color[]" size="10" value="#000000">
@@ -164,7 +164,7 @@
 
       <tr>
       <td>
-      Background Color
+      <?php echo $lang[$current_language]['Elements']['Background Color']; ?>
       </td>
       <td>
       <input type="text" class="hdn_color elem_[TEXT_ID]" name="bgcolor[]" size="10" value="#ffffff">
@@ -173,7 +173,7 @@
 
       <tr>
       <td>
-      Style
+      <?php echo $lang[$current_language]['Elements']['Style']; ?>
       </td>
       <td>
       <input type="text" name="style[]" class="elem_[TEXT_ID]" size="50" value="">
@@ -182,7 +182,7 @@
 
       <tr>
       <td>
-      Size
+      <?php echo $lang[$current_language]['Elements']['Size']; ?>
       </td>
       <td>
       <input type="text" name="size[]" class="elem_[TEXT_ID]" size="10" value="10">
@@ -191,7 +191,7 @@
 
       <tr>
       <td>
-      Slide
+      <?php echo $lang[$current_language]['Elements']['Slide']; ?>
       </td>
       <td>
     <select name="slide_id[]" id="slide_id_[TEXT_ID]" class="elem_[TEXT_ID]">
@@ -200,7 +200,8 @@
     {
       foreach ($slider['slides_info'] as $slide)
       {
-        echo "<option value='".$slide['sldsid']."'>".$slide['sldsname']."</option>";
+      $swp_slide_caption = (empty($slide['sldsname'])) ? "id:".$slide['sldsid'] : $slide['sldsname'];
+        echo "<option value='".$slide['sldsid']."'>".$swp_slide_caption."</option>";
       }
     }
     ?>
@@ -210,11 +211,11 @@
 
       <tr>
       <td>
-      Actions
+      <?php echo $lang[$current_language]['Elements']['Actions']; ?>
       </td>
       <td>
-      <input type="submit" name="save_text_btn" value=" Save Element ">
-      <input type="submit" name="del_text_btn" value=" Delete Element ">
+      <input type="submit" name="save_text_btn" value="<?php echo $lang[$current_language]['Elements'][' Save Element ']; ?>">
+      <input type="submit" name="del_text_btn" value="<?php echo $lang[$current_language]['Elements'][' Delete Element ']; ?>">
       </td>
       </tr>
       
