@@ -73,7 +73,7 @@
       </td>
       <td>
       <select  name="aelement_template">
-      <option value="*">*</option>
+      <option value="-1">*</option>
       <?php
       if (isset($templates))
       foreach ($templates as $tmpl)

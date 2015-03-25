@@ -158,9 +158,9 @@ if ($jquery_minicolors)
     ($('input[name="aname"]').val() != '*') ? $('input[name="name[]"].'+$(v).attr('class')).val($('input[name="aname"]').val()) : '';
     ($('input[name="aurl"]').val() != '*') ? $('input[name="url[]"].'+$(v).attr('class')).val($('input[name="aurl"]').val()) : '';
     ($('input[name="atext"]').val() != '*') ? $('input[name="text[]"].'+$(v).attr('class')).val($('input[name="atext"]').val()) : '';
-    if ($('select[name="aelement_type"]').val() != '*') { $('select[name="element_type[]"].'+$(v).attr('class')).val($('select[name="aelement_type"]').val()).change(); $('select[name="element_type[]"].'+$(v).attr('class')).trigger('change'); }
+    if ($('select[name="aelement_type"]').val() != -1) { $('select[name="element_type[]"].'+$(v).attr('class')).val($('select[name="aelement_type"]').val()).change(); $('select[name="element_type[]"].'+$(v).attr('class')).trigger('change'); }
     ($('input[name="aelement_image"]').val() != '*') ? $('input[name="element_image[]"].'+$(v).attr('class')).val($('input[name="aelement_image"]').val()) : '';
-    if ($('select[name="aelement_template"]').val() != '*') { $('select[name="element_template[]"].'+$(v).attr('class')).val($('select[name="aelement_template"]').val()).change(); $('select[name="element_template[]"].'+$(v).attr('class')).trigger('change'); }
+    if ($('select[name="aelement_template"]').val() != -1) { $('select[name="element_template[]"].'+$(v).attr('class')).val($('select[name="aelement_template"]').val()).change(); $('select[name="element_template[]"].'+$(v).attr('class')).trigger('change'); }
     ($('input[name="awidth"]').val() != '*') ? $('input[name="width[]"].'+$(v).attr('class')).val($('input[name="awidth"]').val()) : '';
     ($('input[name="aheight"]').val() != '*') ? $('input[name="height[]"].'+$(v).attr('class')).val($('input[name="aheight"]').val()) : '';
     ($('input[name="aclasses"]').val() != '*') ? $('input[name="classes[]"].'+$(v).attr('class')).val($('input[name="aclasses"]').val()) : '';
@@ -178,9 +178,9 @@ if ($jquery_minicolors)
     ($('input[name="aname"]').val() != '*') ? $('input[name="name[]"]').val($('input[name="aname"]').val()) : '';
     ($('input[name="aurl"]').val() != '*') ? $('input[name="url[]"]').val($('input[name="aurl"]').val()) : '';
     ($('input[name="atext"]').val() != '*') ? $('input[name="text[]"]').val($('input[name="atext"]').val()) : '';
-    if ($('select[name="aelement_type"]').val() != '*') { $('select[name="element_type[]"]').val($('select[name="aelement_type"]').val()).change(); $('select[name="element_type[]"]').trigger('change'); }
+    if ($('select[name="aelement_type"]').val() != -1) { $('select[name="element_type[]"]').val($('select[name="aelement_type"]').val()).change(); $('select[name="element_type[]"]').trigger('change'); }
     ($('input[name="aelement_image"]').val() != '*') ? $('input[name="element_image[]"]').val($('input[name="aelement_image"]').val()) : '';
-    if ($('select[name="aelement_template"]').val() != '*') { $('select[name="element_template[]"]').val($('select[name="aelement_template"]').val()).change(); $('select[name="element_template[]"]').trigger('change'); }
+    if ($('select[name="aelement_template"]').val() != -1) { $('select[name="element_template[]"]').val($('select[name="aelement_template"]').val()).change(); $('select[name="element_template[]"]').trigger('change'); }
     ($('input[name="awidth"]').val() != '*') ? $('input[name="width[]"]').val($('input[name="awidth"]').val()) : '';
     ($('input[name="aheight"]').val() != '*') ? $('input[name="height[]"]').val($('input[name="aheight"]').val()) : '';
     ($('input[name="aclasses"]').val() != '*') ? $('input[name="classes[]"]').val($('input[name="aclasses"]').val()) : '';

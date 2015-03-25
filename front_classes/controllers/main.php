@@ -28,8 +28,8 @@ public function register_scripts_fronend()
   }
 public function print_scripts_fronend()
   {
-  global $adding_scripts;
-  if ($adding_scripts !== true)return;
+  global $simpleal_adding_scripts;
+  if ($simpleal_adding_scripts !== true)return;
 
   $helper = new Sial_Helper();
   

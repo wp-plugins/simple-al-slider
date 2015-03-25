@@ -7,8 +7,8 @@ class Sial_Users extends Sial_Base{
 
 public function simple_al_slider($atts)
   {
-  global $adding_scripts;
-  $adding_scripts = true;
+  global $simpleal_adding_scripts;
+  $simpleal_adding_scripts = true;
   
   $front = new Sial_Users_Common();
     return $front->execute($atts['id']);

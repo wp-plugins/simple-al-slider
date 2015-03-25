@@ -72,8 +72,13 @@ public function makePagination($slides)
   
   global $slides_per_page;
   $per_page = $slides_per_page;
+
+  if ((is_array($slides))&&(!empty($slides)))
+  $first_key = array_shift(array_slice(array_keys($slides), 0, 1));
+  else
+  $first_key = "";
   
-  if (empty($slides)||(empty(array_keys($slides)[0])))
+  if (empty($slides)||(empty($first_key)))
     return array($slides , "", $lang[$current_lang]['Slides']['Slides']);
   
     $num_slides = count($slides);

@@ -51,16 +51,16 @@ if ($jquery_minicolors)
   }
 public function addMenu()
   {
-    $main_page = add_menu_page('Simple AL Slider', 'Simple AL Slider', 'manage_options', 'simpleal_show_about', array('\simpleal\Sial_Admin_Common', 'simpleal_show_about'), plugins_url('images/menu_pict.png', $this->file));
+    $main_page = add_menu_page('Simple AL Slider', 'Simple AL Slider', 'manage_options', 'simpleal_show_about', array($this, 'simpleal_show_about'), plugins_url('images/menu_pict.png', $this->file));
        	
-    $submenu = add_submenu_page('simpleal_show_about', 'Simple AL Slider Setup', 'Simple AL Slider Setup', 'manage_options', 'simpleal_slider_show', array('\simpleal\Sial_Admin_Common', 'execute'));
-    $submenu2 = add_submenu_page('simpleal_show_about', 'Simple Slider Info', 'Simple Slider Info', 'manage_options', 'simpleal_slider_show_info', array('\simpleal\Sial_Admin_Common', 'show_info'));
-    $submenu3 = add_submenu_page('simpleal_show_about', 'Other Products', 'Other Products', 'manage_options', 'simpleal_slider_show_products', array('\simpleal\Sial_Admin_Common', 'simpleal_show_products'));
+    $submenu = add_submenu_page('simpleal_show_about', 'Simple AL Slider Setup', 'Simple AL Slider Setup', 'manage_options', 'simpleal_slider_show', array($this, 'execute'));
+    $submenu2 = add_submenu_page('simpleal_show_about', 'Simple Slider Info', 'Simple Slider Info', 'manage_options', 'simpleal_slider_show_info', array($this, 'show_info'));
+    $submenu3 = add_submenu_page('simpleal_show_about', 'Other Products', 'Other Products', 'manage_options', 'simpleal_slider_show_products', array($this, 'simpleal_show_products'));
 
-       	add_action('admin_print_styles-' . $submenu, array('\simpleal\Sial_Admin_Common', 'addAdminScryptesAndStyles'));
-       	add_action('admin_print_styles-' . $submenu2, array('\simpleal\Sial_Admin_Common', 'addAdminScryptesAndStyles'));
-       	add_action('admin_print_styles-' . $submenu3, array('\simpleal\Sial_Admin_Common', 'addAdminScryptesAndStyles'));
-       	add_action('admin_print_styles-' . $main_page, array('\simpleal\Sial_Admin_Common', 'addAdminScryptesAndStyles'));
+       	add_action('admin_print_styles-' . $submenu, array($this, 'addAdminScryptesAndStyles'));
+       	add_action('admin_print_styles-' . $submenu2, array($this, 'addAdminScryptesAndStyles'));
+       	add_action('admin_print_styles-' . $submenu3, array($this, 'addAdminScryptesAndStyles'));
+       	add_action('admin_print_styles-' . $main_page, array($this, 'addAdminScryptesAndStyles'));
 
   }
 public function init()
