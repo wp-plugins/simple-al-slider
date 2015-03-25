@@ -15,6 +15,6 @@ $slides_per_page = 6;
 $jquery_minicolors = true;
 
 //For db upgrade
-$simple_al_slider_db_version = "1.7";
+$simple_al_slider_db_version = "1.8";
 
 ?>

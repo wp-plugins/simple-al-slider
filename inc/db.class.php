@@ -58,7 +58,7 @@ public function generalSql($sql, $params)
   {
   foreach ($params as &$pr)
     $pr = sanitize_text_field($pr);
-  
+
     $result = $this->wpdb->query($this->wpdb->prepare($sql, $params));
       if (( false === $result )&&( $this->errors === true )) {
           wp_die( __('Could not execute query (generalSql): '. $this->wpdb->last_error) ); 

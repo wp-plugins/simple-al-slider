@@ -109,7 +109,7 @@ public static function sial_install()
   autoplay int(3) DEFAULT 0,
   mask_file varchar(250) DEFAULT 'none',
   move_elements int(3) DEFAULT 0,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (id)
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
 
@@ -120,8 +120,7 @@ public static function sial_install()
   `name` varchar(150) NOT NULL DEFAULT '',
   `slider_id` int(11) unsigned NOT NULL,
   `num` int(5) unsigned NOT NULL,
-  PRIMARY KEY  (`id`),
-  FOREIGN KEY (slider_id) REFERENCES ".$table_slider."(id) ON UPDATE CASCADE ON DELETE CASCADE
+  PRIMARY KEY  (id)
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
 
@@ -133,8 +132,7 @@ public static function sial_install()
   `image` varchar(250) NOT NULL DEFAULT '',
   `image_wp_id` int(10) DEFAULT 0,
   `slide_id` int(11) unsigned NOT NULL,
-  PRIMARY KEY  (`id`),
-  FOREIGN KEY (slide_id) REFERENCES ".$table_slides."(id) ON UPDATE CASCADE ON DELETE CASCADE
+  PRIMARY KEY  (id)
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
 
@@ -158,8 +156,7 @@ public static function sial_install()
   `classes` text,
   `size` int(5) DEFAULT 10,
   `slide_id` int(11) unsigned NOT NULL,
-  PRIMARY KEY  (`id`),
-  FOREIGN KEY (slide_id) REFERENCES ".$table_slides."(id) ON UPDATE CASCADE ON DELETE CASCADE
+  PRIMARY KEY  (id)
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
 
@@ -175,7 +172,7 @@ require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       dbDelta($sql2);
       dbDelta($sql3);
       dbDelta($sql4);
-      
+
       update_option( "simple_al_slider_db_version", $simple_al_slider_db_version );
    }
   }
@@ -202,12 +199,12 @@ public static function sial_uninstall()
   $table_slides = $wpdb->prefix.'simpleal_slides';
   $table_images = $wpdb->prefix.'simpleal_images';
   $table_texts = $wpdb->prefix.'simpleal_texts';
-  
+
   $sql1 = "DROP TABLE ".$table_slider.";";
   $sql2 = "DROP TABLE ".$table_slides.";";
   $sql3 = "DROP TABLE ".$table_images.";";
   $sql4 = "DROP TABLE ".$table_texts.";";
-  
+
     $wpdb->query($sql4);
     $wpdb->query($sql3);
     $wpdb->query($sql2);

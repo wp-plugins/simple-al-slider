@@ -95,12 +95,19 @@ public function getMainInfo($id)
     left join ".$tables['images']." as img on (slides.id=img.slide_id) left join ".$tables['texts']." as txt 
     on (slides.id=txt.slide_id) where slider.id=%d order by slider.id, slides.id, img.id, txt.id";
     
-    //return $this->db->fetchByVal($this->table, "id", $id, '%d');
     return $this->db->fetchData($sql, $params);
   }
 public function delMainInfo($id)
   {
-    return $this->db->deleteRow($this->table, "id", $id, '%d');
+  $tables = array('slides'=>$this->db->wpdb->prefix."simpleal_slides", 'images'=>$this->db->wpdb->prefix."simpleal_images",
+                  'texts'=>$this->db->wpdb->prefix."simpleal_texts");
+
+  $params = array($id);
+  $sql = "delete sldr.*, slds.*, imgs.*, txts.* from ".$this->table." as sldr left join ".$tables['slides']." as slds on (sldr.id=slds.slider_id) left join ".$tables['images']." as imgs on (imgs.slide_id=slds.id) left join ".$tables['texts']." as txts on (txts.slide_id=slds.id) where sldr.id=%d";
+
+    $this->db->generalSql($sql, $params);
+
+    return true;
   }
 }
 ?>
