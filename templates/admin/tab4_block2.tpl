@@ -83,6 +83,9 @@
       <br>
       <button class="set_image"><?php echo $lang[$current_language]['Elements']['Add Image']; ?></button>
       <img class="element_image_src" src="<?php echo plugins_url("../../images/none.jpg", __FILE__); ?>">
+      <div class="for_attachment_id" style="display:none;">
+      <input type='hidden' name='image_elem_wp_id[]' value='<?php echo plugins_url("../../images/none.jpg", __FILE__); ?>'>
+      </div>
       </td>
       </tr>
 

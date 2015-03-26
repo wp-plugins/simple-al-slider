@@ -12,9 +12,14 @@ public function __construct($db)
   }
 public function saveBgData($source)
   {
+  $hlp = new Sial_Helper();
   for ($i = 0;$i < count($source['image_id']); $i++)
     {
     $src = array();
+    
+    $imid = $hlp->pn_get_attachment_id_from_url($source['image'][$i]);
+    if ($imid != $source['image_wp_id'][$i])$source['image_wp_id'][$i] = $imid;
+    
     $src_keys = array('image_name', 'url', 'image', 'image_wp_id');
     foreach ($src_keys as $key)
       $src[$key] = $source[$key][$i];

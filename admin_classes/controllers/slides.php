@@ -74,7 +74,10 @@ public function makePagination($slides)
   $per_page = $slides_per_page;
 
   if ((is_array($slides))&&(!empty($slides)))
-  $first_key = array_shift(array_slice(array_keys($slides), 0, 1));
+  {
+  $swp_key = array_slice(array_keys($slides), 0, 1);
+  $first_key = array_shift($swp_key);
+  }
   else
   $first_key = "";
   
@@ -88,11 +91,12 @@ public function makePagination($slides)
     
     $page = (isset($_GET['pagesld'])) ? $_GET['pagesld'] : 0;
     
-    ($_GET['pagesld'] != 'full') ? $_GET['pagesld'] : $page = -1;
+    ((array_key_exists('pagesld', $_GET))&&($_GET['pagesld'] == 'full')) ? $page = -1 : "";
     
     $actual_link = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     
           $actual_link = preg_replace("/&pagesld=\d+/", "", $actual_link);
+          $actual_link = preg_replace("/&pagesld=full/", "", $actual_link);
                     $actual_link = preg_replace("/&active=\d+/", "&active=1", $actual_link);
 
     if ($page == -1)

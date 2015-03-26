@@ -59,7 +59,7 @@ class Slider_Widget extends \WP_Widget {
 
       foreach ($all_projects as $cur_prj)
       {
-      if ($instance['slider_id'] == $cur_prj->id)
+      if ((array_key_exists('slider_id', $instance))&&($instance['slider_id'] == $cur_prj->id))
         $output .= "<option value='".$cur_prj->id."' selected='selected'>".$cur_prj->name."</option>";
         else
         $output .= "<option value='".$cur_prj->id."'>".$cur_prj->name."</option>";

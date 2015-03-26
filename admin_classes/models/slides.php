@@ -12,7 +12,7 @@ public function __construct($db)
   }
 public function saveSlideData($source, $id)
   {
-  $filter = array(array('name', 'slide_name', '%s'), array('num', 'num', '%d')
+  $filter = array(array('name', 'slide_name', '%s')/*, array('num', 'num', '%d')*/
             );
   if (!intval(sanitize_text_field($id)))return false;
   

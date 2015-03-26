@@ -57,7 +57,7 @@ window.alert_show = function(msg, type)
     $('.simple_only_for_messages').html(src);
   }
 
-      if ('<?php echo $_GET['updated'] ?>' == 'true')window.alert_show('Updated Successfully', 'success');
+      if ('<?php echo (array_key_exists('updated', $_GET)) ? $_GET['updated'] : ""; ?>' == 'true')window.alert_show('Updated Successfully', 'success');
 
 function empty(element) {
     if (

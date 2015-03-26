@@ -204,7 +204,7 @@ public function saveData($table, $source, $filter, $type_action, $idval = null, 
 
     foreach ($filter as $flt)
       {
-      if ($flt[3] != 'not')
+      if ((array_key_exists(3, $flt))&&($flt[3] != 'not'))
       switch ($flt[2])
         {
         case '%d':$values[$flt[0]] = intval(sanitize_text_field($source[$flt[1]]));
@@ -212,7 +212,10 @@ public function saveData($table, $source, $filter, $type_action, $idval = null, 
                                                                            break;
         case '%s':$values[$flt[0]] = sanitize_text_field($source[$flt[1]]);break;
         }
-        else $values[$flt[0]] = $source[$flt[1]];
+        else 
+        {
+          $values[$flt[0]] = $source[$flt[1]];
+        }
         
           array_push($types, $flt[2]);
       }

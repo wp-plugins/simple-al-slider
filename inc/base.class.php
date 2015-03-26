@@ -27,7 +27,7 @@ public function microtime_float()
     list($usec, $sec) = explode(" ", microtime());
     return ((float)$usec + (float)$sec);
 }
-public function register_slider_widget()
+public static function register_slider_widget()
   {
     register_widget( '\simpleal\Slider_Widget' );
   }

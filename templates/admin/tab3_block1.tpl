@@ -71,6 +71,7 @@ if (isset($slide['imgs'])&&(!empty($slide['imgs'])))
       </tr>
       
       </table>
+      <input type="hidden" name="image_wp_id[]" size="30" value="<?php echo $image['image_wp_id']; ?>">
       </div>
       <div class="left_line" style="">
       <?php echo $image['image_thumb']; ?>

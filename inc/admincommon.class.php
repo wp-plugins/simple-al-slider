@@ -116,46 +116,46 @@ public static function sial_install()
 
 //slides
   $sql2 = "CREATE TABLE `".$table_slides."` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) NOT NULL DEFAULT '',
-  `slider_id` int(11) unsigned NOT NULL,
-  `num` int(5) unsigned NOT NULL,
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  name varchar(150) NOT NULL DEFAULT '',
+  slider_id int(11) unsigned NOT NULL,
+  num int(5) unsigned NOT NULL,
   PRIMARY KEY  (id)
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
 
 //images
   $sql3 = "CREATE TABLE `".$table_images."` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `url` varchar(250) NOT NULL DEFAULT '',
-  `image` varchar(250) NOT NULL DEFAULT '',
-  `image_wp_id` int(10) DEFAULT 0,
-  `slide_id` int(11) unsigned NOT NULL,
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  name varchar(100) NOT NULL DEFAULT '',
+  url varchar(250) NOT NULL DEFAULT '',
+  image varchar(250) NOT NULL DEFAULT '',
+  image_wp_id int(10) DEFAULT 0,
+  slide_id int(11) unsigned NOT NULL,
   PRIMARY KEY  (id)
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
 
 //texts
   $sql4 = "CREATE TABLE `".$table_texts."` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `url` varchar(250) NOT NULL DEFAULT '',
-  `text` text,
-  `type` int(5) NOT NULL DEFAULT 0,
-  `image` text,
-  `image_elem_wp_id` int(10) DEFAULT 0,
-  `template` varchar(250) NOT NULL DEFAULT '',
-  `width` int(5) NOT NULL DEFAULT 0,
-  `height` int(5) NOT NULL DEFAULT 0,
-  `offsetleft` int(5) NOT NULL DEFAULT 0,
-  `offsettop` int(5) NOT NULL DEFAULT 0,
-  `color` varchar(50) DEFAULT '#000000',
-  `bgcolor` varchar(50) DEFAULT '#ffffff',
-  `style` text,
-  `classes` text,
-  `size` int(5) DEFAULT 10,
-  `slide_id` int(11) unsigned NOT NULL,
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  name varchar(100) NOT NULL DEFAULT '',
+  url varchar(250) NOT NULL DEFAULT '',
+  text text,
+  type int(5) NOT NULL DEFAULT 0,
+  image text,
+  image_elem_wp_id int(10) DEFAULT 0,
+  template varchar(250) NOT NULL DEFAULT '',
+  width int(5) NOT NULL DEFAULT 0,
+  height int(5) NOT NULL DEFAULT 0,
+  offsetleft int(5) NOT NULL DEFAULT 0,
+  offsettop int(5) NOT NULL DEFAULT 0,
+  color varchar(50) DEFAULT '#000000',
+  bgcolor varchar(50) DEFAULT '#ffffff',
+  style text,
+  classes text,
+  size int(5) DEFAULT 10,
+  slide_id int(11) unsigned NOT NULL,
   PRIMARY KEY  (id)
 ) ENGINE=InnoDb  DEFAULT CHARSET=utf8 ;
 ";
@@ -262,6 +262,9 @@ if (is_null($current_lang)||($current_lang === FALSE))
 
     $mainInfoController = new Controller_MainInfo(new Model_MainInfo($db));
       list($data['proj_id'], $data['all_projects'], $data['slider'], $data['masks']) = $mainInfoController->execute($data['proj_id']);
+      
+      if (!array_key_exists('slides_info', $data['slider']))$data['slider']['slides_info'] = "";
+      
       list($data['slider']['slides_info'], $data['slds_pagination'], $data['slides_caption']) = $slideController->makePagination($data['slider']['slides_info']);
       
       $data["tab_active"] = $active;

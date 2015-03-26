@@ -272,11 +272,16 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
   $positions_output = substr($positions_output, 0, -1);
   $positions_output .= "}";
 
+?>
+</div>
+</div>
+</div>
+<?php
 if ($front['slider']['mask_file'] == 'none')  
   {
-  echo $container_main_script;
-  echo $container_children_scripts;
-  echo $container_templates_scripts;
+  if ((isset($container_main_script))&&(!empty($container_main_script)))echo $container_main_script;
+  if ((isset($container_children_scripts))&&(!empty($container_children_scripts)))echo $container_children_scripts;
+  if ((isset($container_templates_scripts))&&(!empty($container_templates_scripts)))echo $container_templates_scripts;
   }
   else
   {
@@ -288,9 +293,7 @@ if ($front['slider']['mask_file'] == 'none')
   }
       ?>
 
-</div>
-</div>
-</div>
+
  <?php
   if ($front['slider']['mask_file'] != 'none')
   {

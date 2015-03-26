@@ -15,7 +15,7 @@ public function execute($proj_id)
   {
     return $this->model_main->get_main_results($proj_id);
   }
-public function register_scripts_fronend()
+public static function register_scripts_fronend()
   {
   $helper = new Sial_Helper();
   
@@ -26,7 +26,7 @@ public function register_scripts_fronend()
     $helper->registerScryptfront("simple_al_slider_common", "js/simple_al_slider_common.min.js");
     
   }
-public function print_scripts_fronend()
+public static function print_scripts_fronend()
   {
   global $simpleal_adding_scripts;
   if ($simpleal_adding_scripts !== true)return;
