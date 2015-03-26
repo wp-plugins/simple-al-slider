@@ -12,7 +12,7 @@ public function __construct($db)
   }
 public function saveSlideData($source, $id)
   {
-  $filter = array(array('name', 'slide_name', '%s'), array('num', 'num', '%d')
+  $filter = array(array('name', 'slide_name', '%s')/*, array('num', 'num', '%d')*/
             );
   if (!intval(sanitize_text_field($id)))return false;
   
@@ -41,11 +41,22 @@ public function getSlideInfoFirst()
 
 public function delSlideInfo($id)
   {
-    return $this->db->deleteRow($this->table, "id", $id, '%d');
+  $tables = array('slides'=>$this->db->wpdb->prefix."simpleal_slides", 'images'=>$this->db->wpdb->prefix."simpleal_images",
+                  'texts'=>$this->db->wpdb->prefix."simpleal_texts");
+
+  $params = array($id);
+  $sql = "delete slds.*, imgs.*, txts.* from ".$this->table." as slds left join ".$tables['images']." as imgs on (imgs.slide_id=slds.id) left join ".$tables['texts']." as txts on (txts.slide_id=slds.id) where slds.id=%d";
+    $this->db->generalSql($sql, $params);
+
+    return true;
   }
 public function massDelSlideData($chk_ids)
   {
-    return $this->db->massDeleteRows($this->table, 'id', $chk_ids);
+  foreach ($chk_ids as $id)
+    {
+      $this->delSlideInfo($id);
+    }
+   return true;
   }
 
 }
