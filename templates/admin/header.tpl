@@ -17,6 +17,11 @@ if(!function_exists('current_user_can')){
   <script>
   jQuery(function($) {
 
+  window.simpleal_info_alert_set_width_and_height = '<?php echo $lang[$current_language]['alert message']['save width and height']; ?>';
+  window.simpleal_info_alert_wrong_project_name = '<?php echo $lang[$current_language]['alert message']['wrong project name']; ?>';
+  window.simpleal_info_alert_updated_successfully = '<?php echo $lang[$current_language]['alert message']['updated successfully']; ?>';
+  window.simpleal_info_alert_wrong_item_text = "<?php echo $lang[$current_language]['alert message']['wrong item text']; ?>";
+  
     $('.btn_href').addClass('button');
     
     $('#button_show_add_project').addClass('button');
@@ -49,6 +54,9 @@ window.alert_show = function(msg, type)
     case 'success':
      src = '<div class="alert alert-success" role="alert">'+msg+'</div>';
     break;
+    case 'info':
+     src = '<div class="alert alert-info" role="alert">'+msg+'</div>';
+    break;
     case 'danger':
      src = '<div class="alert alert-danger" role="alert">'+msg+'</div>';
     break;
@@ -57,7 +65,7 @@ window.alert_show = function(msg, type)
     $('.simple_only_for_messages').html(src);
   }
 
-      if ('<?php echo (array_key_exists('updated', $_GET)) ? $_GET['updated'] : ""; ?>' == 'true')window.alert_show('Updated Successfully', 'success');
+      if ('<?php echo (array_key_exists('updated', $_GET)) ? $_GET['updated'] : ""; ?>' == 'true')window.alert_show(window.simpleal_info_alert_updated_successfully, 'success');
 
 function empty(element) {
     if (
@@ -96,7 +104,7 @@ $('#new_project_create_id_btn').unbind('click').bind('click', function(event) {
     if ($('#new_project_name').val() == '')
       {
             event.preventDefault();
-            window.alert_show('Need project name!', 'danger');
+            window.alert_show(window.simpleal_info_alert_wrong_project_name, 'danger');
       }
   });
 

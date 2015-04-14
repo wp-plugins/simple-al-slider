@@ -1,4 +1,5 @@
 <h2><?php echo $lang[$current_language]['Elements']['Elements']; ?></h2>
+<p style="">* <?php echo $lang[$current_language]['Elements']['Images Alt Notice']; ?></p>
 
 <button name="create_new_text"><?php echo $lang[$current_language]['Elements']['Create New Element']; ?></button>
 <br>

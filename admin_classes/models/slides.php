@@ -10,8 +10,18 @@ public function __construct($db)
   parent::__construct($db);
     $this->table = $this->db->wpdb->prefix."simpleal_slides";
   }
-public function saveSlideData($source, $id)
+public function saveSlideData($source)
   {
+  for ($i = 0;$i < count($source['slide_id']); $i++)
+    {
+    $src = array();
+    
+    $src_keys = array('slide_name');
+    foreach ($src_keys as $key)
+      $src[$key] = $source[$key][$i];
+      
+      $id = $source['slide_id'][$i];
+
   $filter = array(array('name', 'slide_name', '%s')/*, array('num', 'num', '%d')*/
             );
   if (!intval(sanitize_text_field($id)))return false;
@@ -19,7 +29,9 @@ public function saveSlideData($source, $id)
   $idval = array('id' => intval(sanitize_text_field($id)));
   $idtype = array('%d');
   
-   return $this->db->saveData($this->table, $source, $filter, 'update', $idval, $idtype);
+  $this->db->saveData($this->table, $src, $filter, 'update', $idval, $idtype);
+    }
+   return true;
   }
 public function insSlideData($source)
   {

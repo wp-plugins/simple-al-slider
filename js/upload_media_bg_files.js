@@ -27,7 +27,8 @@ $('.set_backgrounds').click(function(event)
       attachement = attachement.toJSON();
 
       attachements.push([attachement.id, attachement.url, attachement.caption]);
-
+      
+      set_init_slider_params(attachement.width, attachement.height);
       send_bg_data(attachement.id, attachement.url, image_frm, slide_frm);
       
     })
@@ -36,6 +37,15 @@ $('.set_backgrounds').click(function(event)
   .open();
 
 });
+function set_init_slider_params(width, height)
+  {
+    if (($('input[name="width"]').val() == 0)&&($('input[name="height"]').val() == 0))
+      {
+        $('input[name="width"]').val(width);
+        $('input[name="height"]').val(height);
+        window.alert_show(window.simpleal_info_alert_set_width_and_height, 'info');
+      }
+  }
 function ins_slide_into_array(slide_id, slide_name)
   {
   $('select[name="slide_id"]').append($('<option>', {value: slide_id, text: slide_name}));

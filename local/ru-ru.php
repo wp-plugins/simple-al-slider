@@ -63,8 +63,10 @@ $lang['ru-ru']['Slides']['First'] = 'Первая';
 $lang['ru-ru']['Slides']['Last'] = 'Последняя';
 $lang['ru-ru']['Slides']['Prev'] = 'Предыдущая';
 $lang['ru-ru']['Slides']['Next'] = 'Следующая';
+$lang['ru-ru']['Slides'][' Save All Slides '] = ' Сохранить все Слайды ';
 
 $lang['ru-ru']['Background Images']['Background Images'] = 'Фоновые изображения';
+$lang['ru-ru']['Background Images']['Background Images Alt Notice'] = 'Имена фоновых изображений будут использованы в качестве alt аттрибутов на фронтальной стороне';
 $lang['ru-ru']['Background Images']['Name'] = 'Имя';
 $lang['ru-ru']['Background Images']['URL'] = 'УРЛ';
 $lang['ru-ru']['Background Images']['Image File'] = 'Файл изображения';
@@ -78,6 +80,7 @@ $lang['ru-ru']['Background Images']['for'] = 'для';
 
 $lang['ru-ru']['Elements']['Elements'] = 'Элементы';
 $lang['ru-ru']['Elements']['Create New Element'] = 'Создать Новый Элемент';
+$lang['ru-ru']['Elements']['Images Alt Notice'] = 'Текст изображений будет выведен в alt аттрибутах на фронтальной стороне';
 
 $lang['ru-ru']['Elements']['Bulk Apply To Elements'] = 'Пакетное Применение к Элементам';
 $lang['ru-ru']['Elements']['Bulk Name'] = 'Имя';
@@ -163,6 +166,12 @@ $lang['ru-ru']['Settings']['Front number of bullets by one side'] = 'Колич�
 $lang['ru-ru']['Paste Code']['Paste Code'] = 'Вставить Код';
 $lang['ru-ru']['Paste Code']['Paste into post, page ...'] = 'Вставить в запись, страницу ...';
 $lang['ru-ru']['Paste Code']['Paste into template'] = 'Вставить в Шаблон';
+
+$lang['ru-ru']['alert message']['wrong project name'] = 'Необходимо имя проекта!';
+$lang['ru-ru']['alert message']['save width and height'] = 'Сохранить "Основную Информацию" чтобы применить ширину и высоту';
+$lang['ru-ru']['alert message']['updated successfully'] = 'Успешно Обновлено';
+$lang['ru-ru']['alert message']['wrong item text'] = 'Ошибочный текст элемента';
+
 break;
 default : 
   $lang['ru-ru']['language'] = 'Русский';

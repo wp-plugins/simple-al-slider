@@ -1,4 +1,5 @@
 <h2><?php echo $lang[$current_language]['Background Images']['Background Images']; ?></h2>
+<p style="">* <?php echo $lang[$current_language]['Background Images']['Background Images Alt Notice']; ?></p>
 
 <div class='images_output_area'>
 <?php

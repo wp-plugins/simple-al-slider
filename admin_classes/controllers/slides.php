@@ -14,11 +14,19 @@ public function __construct($model_slides)
 
 public function saveSlideData()
   {
-   if (isset($_POST['save_slide_btn']))
+   if (isset($_POST['save_all_slides_btn']))
+    {
+      $this->check('sp_all_slides');
+      
+      $this->model_slides->saveSlideData($_POST);
+      
+      return true;
+    }
+   elseif (isset($_POST['save_slide_btn']))
     {
       $this->check('sp_slide');
       
-      $this->model_slides->saveSlideData($_POST, $_POST['slide_id']);
+      $this->model_slides->saveSlideData($_POST);
       
       return $_POST['slide_id'];
     }

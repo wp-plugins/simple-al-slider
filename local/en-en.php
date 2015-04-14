@@ -63,8 +63,10 @@ $lang['en-en']['Slides']['First'] = 'First';
 $lang['en-en']['Slides']['Last'] = 'Last';
 $lang['en-en']['Slides']['Prev'] = 'Prev';
 $lang['en-en']['Slides']['Next'] = 'Next';
+$lang['en-en']['Slides'][' Save All Slides '] = ' Save All Slides ';
 
 $lang['en-en']['Background Images']['Background Images'] = 'Background Images';
+$lang['en-en']['Background Images']['Background Images Alt Notice'] = 'Background image names will be used in alt attributtes on front side';
 $lang['en-en']['Background Images']['Name'] = 'Name';
 $lang['en-en']['Background Images']['URL'] = 'URL';
 $lang['en-en']['Background Images']['Image File'] = 'Image File';
@@ -78,6 +80,7 @@ $lang['en-en']['Background Images']['for'] = 'for';
 
 $lang['en-en']['Elements']['Elements'] = 'Elements';
 $lang['en-en']['Elements']['Create New Element'] = 'Create New Element';
+$lang['en-en']['Elements']['Images Alt Notice'] = 'Image texts will be used in alt attributtes on front side';
 
 $lang['en-en']['Elements']['Bulk Apply To Elements'] = 'Bulk Apply To Elements';
 $lang['en-en']['Elements']['Bulk Name'] = 'Name';
@@ -163,6 +166,12 @@ $lang['en-en']['Settings']['Front number of bullets by one side'] = 'Front numbe
 $lang['en-en']['Paste Code']['Paste Code'] = 'Paste Code';
 $lang['en-en']['Paste Code']['Paste into post, page ...'] = 'Paste into post, page ...';
 $lang['en-en']['Paste Code']['Paste into template'] = 'Paste into template';
+
+$lang['en-en']['alert message']['wrong project name'] = 'Need project name!';
+$lang['en-en']['alert message']['save width and height'] = 'Save "Main Info" now to apply width and height settings';
+$lang['en-en']['alert message']['updated successfully'] = 'Updated Successfully';
+$lang['en-en']['alert message']['wrong item text'] = 'Wrong element\'s text';
+
 break;
 default : 
   $lang['en-en']['language'] = 'English';

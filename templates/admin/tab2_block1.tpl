@@ -24,7 +24,7 @@ foreach ($slider['slides_info'] as $slide)
     wp_nonce_field('sp_slide');
     }
   ?>
-<div class="panel panel-primary">
+<div class="panel panel-primary inner_div_slide_frm">
 <div class="panel-heading">
 
   <h3 class="panel-title"><?php echo (empty($slide['sldsname'])) ? $lang[$current_language]['Slides']['Slide']." (id:".$slide['sldsid'].")" : $lang[$current_language]['Slides']['Slide']." (".$lang[$current_language]['Slides']['Name'].":".$slide['sldsname'].")"; ?></h3>
@@ -32,7 +32,7 @@ foreach ($slider['slides_info'] as $slide)
       </div>
 <div class="panel-body">
 
-  <input type='hidden' name='slide_id' value='<?php echo $slide['sldsid']; ?>'>
+  <input type='hidden' name='slide_id[]' value='<?php echo $slide['sldsid']; ?>'>
     <div class='slide_show'>
       <table>
       
@@ -41,7 +41,7 @@ foreach ($slider['slides_info'] as $slide)
       <?php echo $lang[$current_language]['Slides']['Name']; ?>
       </td>
       <td>
-      <input type="text" name="slide_name" size="30" value="<?php echo $slide['sldsname']; ?>">
+      <input type="text" name="slide_name[]" size="30" value="<?php echo $slide['sldsname']; ?>">
       </td>
       </tr>
 
@@ -70,6 +70,19 @@ foreach ($slider['slides_info'] as $slide)
 
 </div>
 
+
+<form method="POST" id="bulk_slides_frm_all" class="form-inline bulk_slides_frm" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=1&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>&amp;updated=true">
+          <?php
+  if (function_exists('wp_nonce_field'))
+    {
+    wp_nonce_field('sp_all_slides');
+    }
+  ?>
+<div class="bulk_slides_frm_div" style="display:none;">
+
+</div>
+      <input type="submit" name="save_all_slides_btn" value="<?php echo $lang[$current_language]['Slides'][' Save All Slides ']; ?>">
+</form>
   <br>
 <form id="mass_action_slides_form" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>?page=simpleal_slider_show&active=1&pid=<?php if (isset($_GET['pid']))echo $_GET['pid']; else echo $proj_id; ?><?php echo (isset($_GET['pagesld'])) ? "&pagesld=".$_GET['pagesld'] : ""; ?>&amp;updated=true">
   <?php

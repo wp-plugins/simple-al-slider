@@ -16,5 +16,21 @@
   $("input[name='slides_chk_now[]']").prop('checked', false);
   });
   
+  
+    $('input[name="save_all_slides_btn"]').click(function(event){
+
+      $('input').each(function(i,v) {
+          $(v).attr('value', $(v).val());
+      });
+
+
+    $('form').not('.bulk_slides_frm').each(function(i,v){
+        $(v).replaceWith($(v).find('.inner_div_slide_frm').html())
+      });
+
+        $('.bulk_slides_frm_div').append($('.slides_output_area').html());
+
+  });
+  
   });
   </script>

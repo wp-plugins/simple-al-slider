@@ -61,7 +61,8 @@ public function printStylefront($handle, $path)
   $currStyleUrl = plugins_url("/../".$path, __FILE__);
 
         if ( file_exists($currStyleFile) ) {
-            wp_enqueue_style($handle);
+            //wp_enqueue_style($handle);
+            echo "<link rel='stylesheet' property='stylesheet' id='".$handle."'  href='".$currStyleUrl."?ver=4.1.1' type='text/css' media='all' />";
         }
   }
 

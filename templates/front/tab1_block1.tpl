@@ -72,7 +72,7 @@ if (document.images)
       ?>
   <div class="simple_al_preloader simple-al-no-flick" id="simple_al_preloader_<?php echo $unq; ?>" style="position:relative;left:0px;top:0px;width:100%;height:100%;background-color:#000000;display:table;z-index:1220000;">
     <div class="simple_al_preloader_inside simple-al-no-flick" style="display:table-cell;vertical-align:middle;text-align:center;">
-      <img src="<?php echo plugins_url("../../images/empty.gif", __FILE__); ?>" class="preloaded_image simple-al-no-flick" id="preloaded_image_<?php echo $unq; ?>" style="width:100px;">
+      <img alt="Preloader" src="<?php echo plugins_url("../../images/empty.gif", __FILE__); ?>" class="preloaded_image simple-al-no-flick" id="preloaded_image_<?php echo $unq; ?>" style="width:100px;">
     </div>
   </div>
       <?php
@@ -96,6 +96,10 @@ if (document.images)
       ?>
 
 <div id="simple_al_slider_id_<?php echo $unq; ?>" class="simple-al-no-flick simple_al_slider" style="position:relative;"><!-- style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;overflow:hidden;position:relative;'>-->
+
+<style scoped>
+<?php echo stripslashes($front['slider']['apply_classes']); ?>
+</style>
 
 <div id="slides_indicator_<?php echo $unq; ?>" class="simple-al-no-flick slides_indicator" style="position:absolute;z-index:1000;"></div>
 <div id="slides_arrows_<?php echo $unq; ?>" class="slides_arrows" style="position:absolute;z-index:1000;"></div>
@@ -145,7 +149,7 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
       if ($front['slider']['mask_file'] == 'none')
         {
       ?>
-          <img class="simple-al-no-flick simple_al_bgs_<?php echo $unq; ?>_<?php echo $counting; ?>" src="<?php echo plugins_url("../../images/empty.gif", __FILE__); ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
+          <img alt="<?php echo $slide['imgs']['imgname']; ?>" class="simple-al-no-flick simple_al_bgs_<?php echo $unq; ?>_<?php echo $counting; ?>" src="<?php echo plugins_url("../../images/empty.gif", __FILE__); ?>" style='width:<?php echo $front['slider']['sldrwidth']; ?>px;height:<?php echo $front['slider']['sldrheight']; ?>px;'>
       <?php
         }
         else
@@ -221,13 +225,13 @@ if (isset($front['slides_info'])&&(!empty($front['slides_info'])))
        if ($front['slider']['mask_file'] == 'none')
         {
     ?>
-        <img src="<?php echo plugins_url("../../images/empty.gif", __FILE__); ?>" class="simple_al_imgs_<?php echo $unq; ?>_<?php echo $counting; ?>" width="<?php echo $txt['txtwidth']; ?>" height="<?php echo $txt['txtheight']; ?>" style="width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;">
+        <img alt="<?php echo $txt['text']; ?>" src="<?php echo plugins_url("../../images/empty.gif", __FILE__); ?>" class="simple_al_imgs_<?php echo $unq; ?>_<?php echo $counting; ?>" width="<?php echo $txt['txtwidth']; ?>" height="<?php echo $txt['txtheight']; ?>" style="width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;">
      <?php
         }
         else
         {
      ?>
-        <img src="<?php echo stripslashes($txt['txtimage']); ?>" class="simple_al_imgs_<?php echo $unq; ?>_<?php echo $counting; ?>" style="width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;">
+        <img alt="<?php echo $txt['text']; ?>" src="<?php echo stripslashes($txt['txtimage']); ?>" class="simple_al_imgs_<?php echo $unq; ?>_<?php echo $counting; ?>" style="width:<?php echo $txt['txtwidth']; ?>px;height:<?php echo $txt['txtheight']; ?>px;">
      <?php
         }
      ?>
@@ -318,20 +322,17 @@ if ($front['slider']['mask_file'] == 'none')
 </div>
 
 <div class="imgs_garbage_<?php echo $unq; ?>" style="display:none;">
-<img src="<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>">
-<img src="<?php echo plugins_url("../../images/arrow_left_0".$front['slider']['settings_buttons'].".png", __FILE__); ?>">
-<img src="<?php echo plugins_url("../../images/arrow_right_0".$front['slider']['settings_buttons'].".png", __FILE__); ?>">
+<img alt="load1" src="<?php echo plugins_url("../../images/preloader2.gif", __FILE__); ?>">
+<img alt="load2" src="<?php echo plugins_url("../../images/arrow_left_0".$front['slider']['settings_buttons'].".png", __FILE__); ?>">
+<img alt="load3" src="<?php echo plugins_url("../../images/arrow_right_0".$front['slider']['settings_buttons'].".png", __FILE__); ?>">
 
-<img src="<?php echo plugins_url("../../images/slide_filled_0".$front['slider']['settings_indicators'].".png", __FILE__); ?>">
-<img src="<?php echo plugins_url("../../images/slide_empty_0".$front['slider']['settings_indicators'].".png", __FILE__); ?>">
+<img alt="load4" src="<?php echo plugins_url("../../images/slide_filled_0".$front['slider']['settings_indicators'].".png", __FILE__); ?>">
+<img alt="load5" src="<?php echo plugins_url("../../images/slide_empty_0".$front['slider']['settings_indicators'].".png", __FILE__); ?>">
 
-<img src="<?php echo plugins_url("../../images/slide_more_left.png", __FILE__); ?>">
-<img src="<?php echo plugins_url("../../images/slide_more_right.png", __FILE__); ?>">
+<img alt="load6" src="<?php echo plugins_url("../../images/slide_more_left.png", __FILE__); ?>">
+<img alt="load7" src="<?php echo plugins_url("../../images/slide_more_right.png", __FILE__); ?>">
 </div>
 
-<style>
-<?php echo stripslashes($front['slider']['apply_classes']); ?>
-</style>
 <script>
 
 if (window.cont_width_curr === undefined) window.cont_width_curr = [];

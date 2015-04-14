@@ -79,7 +79,7 @@ function set_color_pickers()
        if ($('#new_text_item').val() == '')
             {
             event.preventDefault();
-              window.alert_show('Wrong item text', 'danger');
+              window.alert_show(window.simpleal_info_alert_wrong_item_text, 'danger');
             }
             else
             {
