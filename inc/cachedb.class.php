@@ -11,12 +11,13 @@ public function __construct()
   }
 public function fetchDataMain($sql, $params)
   {
-  global $cache_db;
+  global $simpleal_cache_db;
+  global $simpleal_cache_sql_expiration;
   $fullSql = $this->wpdb->prepare($sql, $params);
-    if (!($cache_db)||(($cache = wp_cache_get( $fullSql, 'simpleal_main_front' )) === false))
+    if (!($simpleal_cache_db)||(($cache = wp_cache_get( $fullSql, 'simpleal_main_front' )) === false))
       {
         $data = $this->filterMainData($this->fetchDatafullQuery($fullSql));
-          wp_cache_add( $fullSql, $data, 'simpleal_main_front', $cache_sql_expiration );
+          wp_cache_add( $fullSql, $data, 'simpleal_main_front', $simpleal_cache_sql_expiration );
           return $data;
       }
       else

@@ -10,23 +10,39 @@ public function __construct($db)
   parent::__construct($db);
     $this->table = $this->db->wpdb->prefix."simpleal_images";
   }
-public function saveBgData($source, $id)
+public function saveBgData($source)
   {
+  $hlp = new Sial_Helper();
+  for ($i = 0;$i < count($source['image_id']); $i++)
+    {
+    $src = array();
+    
+    $imid = $hlp->pn_get_attachment_id_from_url($source['image'][$i]);
+    if ($imid != $source['image_wp_id'][$i])$source['image_wp_id'][$i] = $imid;
+    
+    $src_keys = array('image_name', 'url', 'image', 'image_wp_id');
+    foreach ($src_keys as $key)
+      $src[$key] = $source[$key][$i];
+      
+      $id = $source['image_id'][$i];
+
   $filter = array(array('name', 'image_name', '%s'), array('url', 'url', '%s'),
-            array('image', 'image', '%s')
+            array('image', 'image', '%s'), array('image_wp_id', 'image_wp_id', '%d')
             );
   if (!intval(sanitize_text_field($id)))return false;
   
   $idval = array('id' => intval(sanitize_text_field($id)));
   $idtype = array('%d');
   
-   return $this->db->saveData($this->table, $source, $filter, 'update', $idval, $idtype);
+   $this->db->saveData($this->table, $src, $filter, 'update', $idval, $idtype);
+   }
+   return  true;
   }
 public function insBgData($source)
   {
   $unq = uniqid();
-  $source['slide_name'] = "Slide #".$unq;
-    $source['image_name'] = "Image #".$unq;
+  $source['slide_name'] = "";
+    $source['image_name'] = "";
 
   $slide_model = new Model_Slides($this->db);
     $slide_id = $slide_model->insSlideData($source);
@@ -35,7 +51,8 @@ public function insBgData($source)
     $source['slide_id'] = $slide_id;
     
   $filter = array(array('name', 'image_name', '%s'), array('url', 'url', '%s'),
-            array('image', 'bgimg', '%s'), array('slide_id', 'slide_id', '%d')
+            array('image', 'bgimg', '%s'), array('slide_id', 'slide_id', '%d'),
+            array('image_wp_id', 'attachment_id', '%d')
             );
 
    $image_id = $this->db->saveData($this->table, $source, $filter, 'insert', null, null);
