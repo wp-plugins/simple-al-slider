@@ -14,8 +14,9 @@
 <li>Text Effect Duration - duration of text appear effect.</li>
 <li>Effect Direction - direction of slides move.</li>
 <li>Effect - choose effect for slider.</li>
-<li>Full Screen - show slider in full screen mode.</li>
+<li>Full Screen, Full width, Default - show slider in Full Screen, Full width, Default modes.</li>
 <li>Apply Classes - field for CSS description.</li>
+<li>Autoplay - slides changes automatically.</li>
 </ul>
 </p>
 <h4><span  style='font-weight:bold;'>Background Images</span></h4>
@@ -30,28 +31,31 @@ Each slide in section "Slides" has image in "Images" section and they numbers ar
 image as background "Image #547da9e22a2bd".
 </p>
 </div>
-<h3>Texts</h3>
+<h3>Elements</h3>
 <div>
 <p>
-To apply new text to appropriate slide you need :
+To apply new element to appropriate slide you need :
 <ul style='list-style-type: disc;'>
 <li>Create slide using tab "Slider" -> "Background Images" -> button "Upload".</li>
-<li>Create text using tab "Texts" -> button "Create New Text".
+<li>Create element using tab "Elements" -> button "Create New Element".
 Fill such fields:
   <ul style='list-style-type: square;'>
-    <li>Name - texts block name.</li>
-    <li>Url - texts block url.</li>
-    <li>Text - texts block text.</li>
-    <li>Width - texts block width.</li>
-    <li>Height - texts block height.</li>
-    <li>Classes - classes which you can apply to the current texts block.</li>
-    <li>Offset Left - left offset for texts block.</li>
-    <li>Offset Top - top offset for texts block.</li>
+    <li>Name - element block name.</li>
+    <li>Url - element block url.</li>
+    <li>Text - element block text.</li>
+    <li>Type - type of element (text element, image element, template element).</li>
+    <li>Image - image for block.</li>
+    <li>Template - template for block.</li>
+    <li>Width - element block width.</li>
+    <li>Height - element block height.</li>
+    <li>Classes - classes which you can apply to the current element block.</li>
+    <li>Offset Left - left offset for element block.</li>
+    <li>Offset Top - top offset for element block.</li>
     <li>Color - text color.</li>
-    <li>Background color - texts block background color.</li>
-    <li>Style - texts block css styles.</li>
-    <li>Size - font size for current text block.</li>
-    <li>Slide - which slide this text block attach to.</li>
+    <li>Background color - element block background color.</li>
+    <li>Style - element block css styles.</li>
+    <li>Size - font size for current element block.</li>
+    <li>Slide - which slide this element block attach to.</li>
   </ul>
 </li>
 </ul>
