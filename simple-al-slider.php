@@ -2,7 +2,7 @@
 /*
 Plugin Name: Simple Al Slider
 Description: Simple slider with background and elements. And capability to add images, buttons, html templates and videos(youtube...).
-Version: 1.2.8
+Version: 1.2.9
 Author: alexdtn (<a href="http://al-plugins.biz/">homesite</a>)
 */
 
