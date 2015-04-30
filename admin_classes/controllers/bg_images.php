@@ -14,13 +14,27 @@ public function __construct($model_bgimages)
 
 public function saveBgData()
   {
-   if (isset($_POST['save_image_btn']))
+    $hlp = new Sial_Helper();
+
+   if (isset($_POST['save_all_bgimages_btn']))
+    {
+      $this->check('sp_all_bgimages');
+      
+      foreach ($_POST['image'] as $key=>$img)
+       {
+          $_POST['image_wp_id'][$key] = $hlp->pn_get_attachment_id_from_url( $img );
+       }
+      $this->model_bgimages->saveBgData($_POST);
+      
+      return true;
+    }
+   elseif (isset($_POST['save_image_btn']))
     {
       $this->check('sp_bg_image');
       
-      $this->model_bgimages->saveBgData($_POST, $_POST['image_id']);
+      $this->model_bgimages->saveBgData($_POST);
       
-      return $_POST['image_id'];
+      return true;
     }
    return false; 
   }
@@ -46,7 +60,7 @@ public function delBgData()
     {
       $this->check('sp_bg_image');
       
-      return $this->model_bgimages->delBgInfo($_POST['image_id']);
+      return $this->model_bgimages->delBgInfo($_POST['image_id'][0]);
     }
    return false;
   }
